@@ -16,6 +16,8 @@ concurrency:
 
 jobs:
   build:
+    # Pages is only set up on the standalone site repo; skip in other copies (e.g. itmaruthu/m2pnexus).
+    if: github.repository == 'itmaruthu/m2p-nexus-claude-version'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
