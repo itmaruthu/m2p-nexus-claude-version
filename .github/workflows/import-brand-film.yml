@@ -21,6 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Install ffmpeg
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+
       - name: Download export
         env:
           FILM_URL: ${{ inputs.url }}
@@ -34,7 +37,6 @@ jobs:
 
       - name: Encode web copies and poster
         run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
           mkdir -p public/media
           M="$RUNNER_TEMP/master.mp4"
           # Silent, streaming-friendly H.264 at 1280x720 for every browser
