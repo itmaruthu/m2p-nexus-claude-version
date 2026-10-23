@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Code,
@@ -11,16 +11,11 @@ import {
   CheckCircle,
   ChevronDown,
   Laptop,
-  Star,
-  Sparkles,
-  Phone,
-  Mail,
-  UserCheck,
-  Briefcase
+  Sparkles
 } from 'lucide-react';
 import Seo from '../components/Seo';
-import founderPhoto from '../assets/founder_photo.jpg';
-import coFounderPhoto from '../assets/co_founder_photo.png';
+import founderPhoto from '../assets/founder_photo.webp';
+import coFounderPhoto from '../assets/co_founder_photo.webp';
 
 // Framer Motion Animation Variants
 const fadeInUp = {

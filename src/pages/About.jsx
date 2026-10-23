@@ -1,11 +1,9 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Shield,
   Eye,
   Target,
-  Compass,
   Sparkles,
   HeartHandshake,
   Factory,
@@ -24,6 +22,7 @@ import {
   Cpu
 } from 'lucide-react';
 import Seo from '../components/Seo';
+import { links } from '../config/site';
 
 // Framer Motion Animation Variants
 const fadeInUp = {
@@ -41,8 +40,6 @@ const staggerContainer = {
 };
 
 export default function About() {
-  const navigate = useNavigate();
-  const whatsappUrl = "https://wa.me/919944283316?text=Hello%20Maruthu%2C%0A%0AI%20visited%20the%20M2P%20Nexus%20website%20and%20would%20like%20to%20discuss%20my%20business%20requirements.%0A%0APlease%20contact%20me.%0A%0AThank%20you.";
 
   const coreValues = [
     { title: 'Trust & Integrity', desc: 'We guard client operational secrets and deliver completely transparent software architectures with no hidden maintenance clauses.', icon: Shield },
@@ -279,17 +276,17 @@ export default function About() {
             Reach out to our engineering and consulting team to discuss your operational challenges and explore customized software options.
           </p>
           <div className="flex justify-center gap-4 pt-2">
-            <button
-              onClick={() => navigate('/contact')}
-              className="bg-brand-secondary text-white hover:bg-brand-primary font-bold px-8 py-3 rounded-md shadow transition-colors cursor-pointer"
+            <Link
+              to="/contact"
+              className="inline-block bg-brand-secondary text-white hover:bg-brand-primary font-bold px-8 py-3 rounded-md shadow transition-colors"
             >
               Contact Our Office
-            </button>
+            </Link>
             <a
-              href={whatsappUrl}
+              href={links.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="border border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10 font-bold px-8 py-3 rounded-md transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="border border-[#25D366] text-[#0F7A40] hover:bg-[#25D366]/10 font-bold px-8 py-3 rounded-md transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               WhatsApp Us
             </a>

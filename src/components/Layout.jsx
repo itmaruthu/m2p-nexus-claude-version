@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
@@ -16,7 +16,7 @@ export default function Layout({ children }) {
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg text-brand-text font-sans antialiased">
       <Header />
-      <main className="flex-grow">
+      <main id="main" tabIndex={-1} className="flex-grow outline-none">
         {children}
       </main>
       <Footer />

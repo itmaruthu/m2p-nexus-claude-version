@@ -1,58 +1,57 @@
 import { useEffect, useState, useRef } from 'react';
 
+const DURATION = 1500;
+
 export default function StatCounter({ target, suffix = '', label }) {
+  const end = parseInt(target, 10);
+  const isNumeric = !Number.isNaN(end);
   const [count, setCount] = useState(0);
   const countRef = useRef(null);
-  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
+    const node = countRef.current;
+    if (!node || !isNumeric) return;
+
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let frame;
+    let start;
+
+    // Ease-out count from 0 to `end`; jumps straight to the end when motion is reduced.
+    const step = (now) => {
+      start ??= now;
+      const progress = reduceMotion ? 1 : Math.min((now - start) / DURATION, 1);
+      setCount(Math.round(progress * (2 - progress) * end));
+      if (progress < 1) frame = requestAnimationFrame(step);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         if (entries[0].isIntersecting) {
-          setHasStarted(true);
+          observer.disconnect();
+          frame = requestAnimationFrame(step);
         }
       },
       { threshold: 0.1 }
     );
-    if (countRef.current) observer.observe(countRef.current);
-    return () => { if (countRef.current) observer.unobserve(countRef.current); };
-  }, []);
+    observer.observe(node);
 
-  useEffect(() => {
-    if (!hasStarted) return;
-    const end = parseInt(target, 10);
-    if (isNaN(end)) { setCount(target); return; }
-
-    let frame = 0;
-    const duration = 1500;
-    const frameRate = 1000 / 60;
-    const totalFrames = Math.round(duration / frameRate);
-
-    const timer = setInterval(() => {
-      frame++;
-      const progress = frame / totalFrames;
-      const easeProgress = progress * (2 - progress);
-      const currentCount = Math.round(easeProgress * end);
-      if (frame >= totalFrames) { setCount(end); clearInterval(timer); }
-      else setCount(currentCount);
-    }, frameRate);
-
-    return () => clearInterval(timer);
-  }, [hasStarted, target]);
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [end, isNumeric]);
 
   return (
     <div
       ref={countRef}
-      className="text-center p-6 bg-white border rounded-lg shadow-sm hover:shadow-md transition-shadow"
-      style={{ borderColor: '#E2E8F0' }}
+      className="text-center p-6 bg-white border border-brand-border rounded-lg shadow-sm hover:shadow-md transition-shadow"
     >
-      <div
-        className="text-3xl md:text-4xl font-bold mb-2"
-        style={{ fontFamily: "'Outfit', sans-serif", color: '#1E3A8A' }}
-      >
-        {typeof count === 'number' ? `${count}${suffix}` : target}
+      <div className="text-3xl md:text-4xl font-bold mb-2 font-heading text-brand-secondary">
+        {/* Screen readers get the final figure, not every intermediate number. */}
+        <span aria-hidden="true">{isNumeric ? `${count}${suffix}` : target}</span>
+        <span className="sr-only">{isNumeric ? `${end}${suffix}` : target}</span>
       </div>
-      <p className="text-sm md:text-base font-medium" style={{ color: '#1E293B' }}>{label}</p>
+      <p className="text-sm md:text-base font-medium text-brand-text">{label}</p>
     </div>
   );
 }

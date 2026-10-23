@@ -1,13 +1,10 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Laptop, Brain, Users, TrendingUp, CheckCircle, Target } from 'lucide-react';
 import Seo from '../components/Seo';
-import techIllustration from '../assets/tech_illustration.png';
-import aiIllustration from '../assets/ai_illustration.png';
-import growthIllustration from '../assets/growth_illustration.png';
+import techIllustration from '../assets/tech_illustration.webp';
+import aiIllustration from '../assets/ai_illustration.webp';
 
 export default function Services() {
-  const navigate = useNavigate();
 
   const servicesList = [
     {
@@ -247,12 +244,12 @@ export default function Services() {
             Send us a brief description of your daily workflows, material registries, or manual roadblocks. We will compile a custom roadmap detailing software options.
           </p>
           <div className="pt-2">
-            <button
-              onClick={() => navigate('/contact')}
-              className="bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors cursor-pointer"
+            <Link
+              to="/contact"
+              className="inline-block bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors"
             >
               Get Custom Assessment
-            </button>
+            </Link>
           </div>
         </div>
       </section>

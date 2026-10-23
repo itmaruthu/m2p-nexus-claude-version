@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Check,
@@ -9,14 +9,26 @@ import {
   Users,
   ChevronLeft,
   ChevronRight,
-  Quote
+  Quote,
+  Pause,
+  Play
 } from 'lucide-react';
 import Seo from '../components/Seo';
 
 // Client avatars
-import clientAvatar1 from '../assets/client_avatar_1.png';
-import clientAvatar2 from '../assets/client_avatar_2.png';
-import clientAvatar3 from '../assets/client_avatar_3.png';
+import clientAvatar1 from '../assets/client_avatar_1.webp';
+import clientAvatar2 from '../assets/client_avatar_2.webp';
+import clientAvatar3 from '../assets/client_avatar_3.webp';
+
+// Client testimonials and the rating/audit block are hidden until every quote, name, photo and score is
+// real and the client has given written permission to publish it. Unverified reviews and ratings count as
+// misleading advertising (India: Consumer Protection Act 2019 / CCPA guidelines; US: FTC fake-review rule;
+// EU: Unfair Commercial Practices Directive). Replace the data below with real, consented entries, then set
+// this to true.
+const SHOW_CLIENT_REVIEWS = false;
+
+// Seconds between automatic testimonial slides (WCAG 2.2.2 also needs the pause button below).
+const AUTOPLAY_MS = 6000;
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
@@ -29,11 +41,13 @@ const staggerContainer = {
 };
 
 export default function Industries() {
-  const navigate = useNavigate();
-  const whatsappUrl = "https://wa.me/919944283316?text=Hello%20Maruthu%2C%0A%0AI%20visited%20the%20M2P%20Nexus%20website%20and%20would%20like%20to%20discuss%20my%20business%20requirements.%0A%0APlease%20contact%20me.%0A%0AThank%20you.";
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  // Explicit pause from the Pause/Play button; hover and focus pauses are temporary.
+  const [isStopped, setIsStopped] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
@@ -103,16 +117,16 @@ export default function Industries() {
     setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
   };
 
-  // Auto-loop carousel every 2.5 seconds (2500ms), pausing on hover/interaction
+  // Auto-advance, pausing on hover, keyboard focus, touch, the Pause button, or reduced-motion preference.
   useEffect(() => {
-    if (isPaused) return;
+    if (!SHOW_CLIENT_REVIEWS || isPaused || isStopped) return;
 
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
-    }, 2500);
+    }, AUTOPLAY_MS);
 
     return () => clearInterval(timer);
-  }, [isPaused, testimonials.length]);
+  }, [isPaused, isStopped, testimonials.length]);
 
   const handleTouchStart = (e) => {
     setTouchStart(e.targetTouches[0].clientX);
@@ -270,8 +284,8 @@ export default function Industries() {
   return (
     <>
       <Seo
-        title="Industries We Serve - Worked Client Details & Reviews"
-        description="Explore the industries M2P Nexus works in, client project scope, verified client testimonials with photos, and our overall quality review metrics."
+        title="Industries We Serve"
+        description="Explore the industries M2P Nexus works in - manufacturing, agribusiness, retail, logistics and more - with the challenges we solve and the impact delivered."
       />
 
       {/* Hero Section */}
@@ -383,8 +397,10 @@ export default function Industries() {
         </div>
       </section>
 
+      {SHOW_CLIENT_REVIEWS && (
+      <>
       {/* Client Testimonials 3D Coverflow Section */}
-      <section className="py-16 md:py-24 bg-brand-section border-b border-brand-border overflow-hidden">
+      <section aria-roledescription="carousel" aria-label="Client testimonials" className="py-16 md:py-24 bg-brand-section border-b border-brand-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">Testimonials</span>
@@ -401,6 +417,9 @@ export default function Industries() {
             className="relative w-full max-w-5xl mx-auto py-4 min-h-[440px] sm:min-h-[470px] flex items-center justify-center overflow-hidden [perspective:1000px]"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
+            onFocus={() => setIsPaused(true)}
+            onBlur={() => setIsPaused(false)}
+            aria-live={isPaused || isStopped ? 'polite' : 'off'}
             onTouchStart={(e) => {
               setIsPaused(true);
               handleTouchStart(e);
@@ -419,6 +438,10 @@ export default function Industries() {
                 return (
                   <div
                     key={t.id}
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${idx + 1} of ${testimonials.length}`}
+                    aria-hidden={!isActive}
                     onClick={() => setActiveIndex(idx)}
                     style={{
                       ...style,
@@ -454,7 +477,7 @@ export default function Industries() {
                     <div className="space-y-3 pt-3 border-t border-slate-100">
                       <div className="flex items-center gap-3">
                         <div className="w-11 h-11 rounded-full overflow-hidden border-2 border-brand-secondary/80 shadow-xs shrink-0">
-                          <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
+                          <img src={t.image} alt="" width="44" height="44" loading="lazy" className="w-full h-full object-cover" />
                         </div>
                         <div className="min-w-0">
                           <h4 className="font-extrabold text-brand-primary text-sm font-heading leading-snug truncate">{t.name}</h4>
@@ -488,6 +511,7 @@ export default function Industries() {
             <div className="bg-white border border-slate-200 shadow-md rounded-full px-4 py-2 inline-flex items-center gap-4">
               {/* Left Arrow */}
               <button
+                type="button"
                 onClick={handlePrev}
                 aria-label="Previous Testimonial"
                 className="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 hover:text-brand-primary hover:bg-slate-100 transition-all cursor-pointer"
@@ -501,7 +525,9 @@ export default function Industries() {
                   <button
                     key={i}
                     onClick={() => setActiveIndex(i)}
-                    aria-label={`Go to slide ${i + 1}`}
+                    type="button"
+                    aria-label={`Go to testimonial ${i + 1}`}
+                    aria-current={i === activeIndex ? 'true' : undefined}
                     className={`transition-all duration-300 cursor-pointer ${
                       i === activeIndex
                         ? 'w-7 h-2.5 bg-slate-800 rounded-full'
@@ -511,8 +537,19 @@ export default function Industries() {
                 ))}
               </div>
 
+              {/* Pause / Play */}
+              <button
+                type="button"
+                onClick={() => setIsStopped((s) => !s)}
+                aria-label={isStopped ? 'Play testimonials' : 'Pause testimonials'}
+                className="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 hover:text-brand-primary hover:bg-slate-100 transition-all cursor-pointer"
+              >
+                {isStopped ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+              </button>
+
               {/* Right Arrow */}
               <button
+                type="button"
                 onClick={handleNext}
                 aria-label="Next Testimonial"
                 className="w-8 h-8 rounded-full flex items-center justify-center text-slate-600 hover:text-brand-primary hover:bg-slate-100 transition-all cursor-pointer"
@@ -582,6 +619,8 @@ export default function Industries() {
           </div>
         </div>
       </section>
+      </>
+      )}
 
       {/* CTA Section */}
       <section className="bg-brand-primary text-white py-16 text-center">
@@ -593,12 +632,12 @@ export default function Industries() {
             Discuss your system constraints directly with our tech director. Get custom weighbridge, logistics, billing, or ERP audits.
           </p>
           <div className="pt-2">
-            <button
-              onClick={() => navigate('/contact')}
-              className="bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors cursor-pointer"
+            <Link
+              to="/contact"
+              className="inline-block bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors"
             >
               Consult with our Architect
-            </button>
+            </Link>
           </div>
         </div>
       </section>

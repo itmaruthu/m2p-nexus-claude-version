@@ -1,5 +1,4 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   Laptop,
@@ -9,19 +8,14 @@ import {
   CheckCircle,
   Target,
   ArrowRight,
-  ExternalLink,
-  ShieldCheck,
-  Zap,
-  Settings,
-  Layers,
   ShoppingBag,
   Check
 } from 'lucide-react';
 import Seo from '../components/Seo';
-import dashboardMockup from '../assets/dashboard_mockup.png';
+import { links } from '../config/site';
 
 // Reusable Case Study Card Component matching Technology Solutions design system exactly
-function CaseStudyCard({ project, idx, navigate }) {
+function CaseStudyCard({ project, idx }) {
   const isYuvaTextiles = project.title === 'Yuva Textiles';
 
   if (isYuvaTextiles) {
@@ -182,18 +176,18 @@ function CaseStudyCard({ project, idx, navigate }) {
           </div>
 
           <div className="pt-2 flex flex-wrap gap-4 justify-between items-center text-xs">
-            <button
-              onClick={() => navigate('/contact')}
-              className="font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1 cursor-pointer"
+            <Link
+              to="/contact"
+              className="font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1"
             >
               View Project Details <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-            </button>
-            <button
-              onClick={() => navigate('/contact')}
-              className="font-bold text-brand-accent hover:text-emerald-600 flex items-center gap-1 cursor-pointer"
+            </Link>
+            <Link
+              to="/contact"
+              className="font-bold text-brand-accent hover:text-emerald-600 flex items-center gap-1"
             >
               Enquire About This Project <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-            </button>
+            </Link>
           </div>
         </div>
       </motion.div>
@@ -296,12 +290,12 @@ function CaseStudyCard({ project, idx, navigate }) {
 
         {/* CTA Button */}
         <div className="pt-2 flex justify-between items-center text-xs">
-          <button
-            onClick={() => navigate('/contact')}
-            className="font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1 cursor-pointer"
+          <Link
+            to="/contact"
+            className="font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1"
           >
             Enquire about this case <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-          </button>
+          </Link>
         </div>
       </div>
     </motion.div>
@@ -309,8 +303,6 @@ function CaseStudyCard({ project, idx, navigate }) {
 }
 
 export default function Portfolio() {
-  const navigate = useNavigate();
-  const whatsappUrl = "https://wa.me/919944283316?text=Hello%20Maruthu%2C%0A%0AI%20visited%20the%20M2P%20Nexus%20website%20and%20would%20like%20to%20discuss%20my%20business%20requirements.%0A%0APlease%20contact%20me.%0A%0AThank%20you.";
 
   const growthCaseStudies = [
     {
@@ -598,7 +590,7 @@ export default function Portfolio() {
 
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {category.projects.map((project, idx) => (
-                      <CaseStudyCard key={idx} project={project} idx={idx} navigate={navigate} />
+                      <CaseStudyCard key={idx} project={project} idx={idx} />
                     ))}
                   </div>
                 </div>
@@ -661,7 +653,7 @@ export default function Portfolio() {
             {/* Case Studies Grid */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {growthCaseStudies.map((caseStudy, idx) => (
-                <CaseStudyCard key={idx} project={caseStudy} idx={idx} navigate={navigate} />
+                <CaseStudyCard key={idx} project={caseStudy} idx={idx} />
               ))}
             </div>
           </div>
@@ -679,10 +671,10 @@ export default function Portfolio() {
           </p>
           <div className="pt-2">
             <a
-              href={whatsappUrl}
+              href={links.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#25D366] text-white hover:bg-[#20ba59] px-8 py-3.5 rounded-md text-sm font-bold shadow-md hover:shadow-lg transition-all inline-flex items-center gap-1.5 cursor-pointer"
+              className="bg-[#0F7A40] text-white hover:bg-[#0B6534] px-8 py-3.5 rounded-md text-sm font-bold shadow-md hover:shadow-lg transition-all inline-flex items-center gap-1.5 cursor-pointer"
             >
               Request Live Demo
             </a>
