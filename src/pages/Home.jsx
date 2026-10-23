@@ -4,6 +4,8 @@ import Seo from '../components/Seo';
 import { links, site } from '../config/site';
 import { clients } from '../config/clients';
 import { WhatsAppIcon } from '../components/icons';
+import ClosingCta from '../components/ClosingCta';
+import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
 import founderPhoto from '../assets/founder_photo.webp';
 
 // Content follows the M2P Nexus brand guide: problem first, plain language, one partner instead of five
@@ -137,9 +139,6 @@ function DigitalInvoice() {
   );
 }
 
-const sectionPad = 'max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24';
-const h2Class = 'font-display font-extrabold text-ink text-3xl sm:text-4xl leading-[1.08] tracking-[-0.015em]';
-
 export default function Home() {
   return (
     <>
@@ -163,7 +162,7 @@ export default function Home() {
                 href={links.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-leaf px-6 py-3.5 font-semibold text-white hover:bg-[#185730] transition-colors"
+                className={whatsappButton}
               >
                 <WhatsAppIcon className="w-5 h-5" />
                 Chat with us on WhatsApp
@@ -171,14 +170,14 @@ export default function Home() {
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center rounded-lg border-2 border-ink px-6 py-3 font-semibold text-ink hover:bg-ink hover:text-white transition-colors"
+                className={outlineButton}
               >
                 Book a consultation
               </Link>
             </div>
             <p className="text-body">
               Or call{' '}
-              <a href={links.call} className="font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink">
+              <a href={links.call} className={textLink}>
                 {site.phones[0].display}
               </a>
             </p>
@@ -258,7 +257,7 @@ export default function Home() {
               </div>
             ))}
           </div>
-          <Link to="/services" className="inline-block font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink">
+          <Link to="/services" className={`inline-block ${textLink}`}>
             See all services
           </Link>
         </div>
@@ -277,7 +276,7 @@ export default function Home() {
                 </span>
               ))}
             </p>
-            <Link to="/industries" className="inline-block font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink">
+            <Link to="/industries" className={`inline-block ${textLink}`}>
               How we help each industry
             </Link>
           </div>
@@ -301,7 +300,7 @@ export default function Home() {
         <div className={`${sectionPad} space-y-10`}>
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <h2 className={h2Class}>Some things we&rsquo;ve built</h2>
-            <Link to="/portfolio" className="font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink">
+            <Link to="/portfolio" className={textLink}>
               See the full portfolio
             </Link>
           </div>
@@ -380,7 +379,7 @@ export default function Home() {
             <p className="text-body">
               <span className="font-heading font-semibold text-ink">Maruthu Pandi PT</span>, Founder &amp; Director
               <span className="mx-3 text-rule" aria-hidden="true">|</span>
-              <Link to="/founder" className="font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink">
+              <Link to="/founder" className={textLink}>
                 Meet the founders
               </Link>
             </p>
@@ -388,41 +387,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Closing call to action with the brand promise */}
-      <section className="bg-ink text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid gap-10 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-8 space-y-5">
-            <h2 className="font-display font-extrabold text-4xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
-              Tell us how your business runs today.
-            </h2>
-            <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">
-              We&rsquo;ll listen first, then suggest a practical first step, whether that&rsquo;s billing software, a website, hiring help or AI.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 pt-2">
-              <a
-                href={links.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[#1F7A45] px-6 py-3.5 font-semibold text-white hover:bg-[#18663A] transition-colors"
-              >
-                <WhatsAppIcon className="w-5 h-5" />
-                Chat with us on WhatsApp
-                <span className="sr-only">(opens in a new tab)</span>
-              </a>
-              <a
-                href={links.call}
-                className="inline-flex items-center justify-center rounded-lg border-2 border-white/70 px-6 py-3 font-semibold text-white hover:bg-white hover:text-ink transition-colors"
-              >
-                Call {site.phones[0].display}
-              </a>
-            </div>
-          </div>
-          <p className="lg:col-span-4 lg:text-right">
-            <span lang="ta" className="block font-semibold text-marigold text-xl">வேரிலிருந்து வெற்றிவரை</span>
-            <span className="block text-slate-300">From Roots to Success</span>
-          </p>
-        </div>
-      </section>
+      <ClosingCta />
     </>
   );
 }

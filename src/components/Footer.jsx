@@ -47,26 +47,18 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-heading font-semibold text-base mb-4">Our services</h3>
             <ul className="space-y-3 text-sm">
-              <li>
-                <Link to="/services" className="hover:text-white transition-colors flex items-center gap-1">
-                  Technology Solutions
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-white transition-colors flex items-center gap-1">
-                  AI & Automation
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-white transition-colors flex items-center gap-1">
-                  Workforce Excellence
-                </Link>
-              </li>
-              <li>
-                <Link to="/services" className="hover:text-white transition-colors flex items-center gap-1">
-                  Business Growth
-                </Link>
-              </li>
+              {[
+                ['run', 'Run your business'],
+                ['smarter', 'Work smarter'],
+                ['grow', 'Grow'],
+              ].map(([id, label]) => (
+                <li key={id}>
+                  {/* Plain <a>: React Router's <Link> does not scroll to #fragments on its own. */}
+                  <a href={`${import.meta.env.BASE_URL}services/#${id}`} className="hover:text-white transition-colors">
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 

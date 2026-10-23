@@ -285,7 +285,6 @@ export default function Industries() {
       />
 
       <PageHero
-        eyebrow="Industries"
         title="Industries We Serve"
         crumb="Industries"
         intro="The sectors we work in, the problems we solve there, and the business impact our systems deliver."

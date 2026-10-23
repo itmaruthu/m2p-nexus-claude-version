@@ -503,7 +503,6 @@ export default function Portfolio() {
       />
 
       <PageHero
-        eyebrow="Portfolio"
         title="Our Detailed Portfolio"
         crumb="Portfolio"
         intro="Real software systems and staffing frameworks engineered to solve critical operational bottlenecks."
