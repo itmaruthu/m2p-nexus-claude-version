@@ -18,7 +18,8 @@ export default function App() {
   return (
     // reducedMotion="user" turns off framer-motion transforms for visitors who ask the OS for less motion.
     <MotionConfig reducedMotion="user">
-      <Router>
+      {/* basename keeps routes working when the site is served from a sub-path (GitHub Pages). */}
+      <Router basename={import.meta.env.BASE_URL}>
         <Layout>
           <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
             <Routes>

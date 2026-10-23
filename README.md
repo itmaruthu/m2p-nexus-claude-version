@@ -49,3 +49,8 @@ Use WebP, sized for how large the image is shown (about 2× the display size), a
 - The mobile menu traps focus, closes on Escape and returns focus to the menu button.
 - Use `<Link>` for navigation, not `<button onClick={navigate}>`.
 - Keep text contrast at 4.5:1 or more. The WhatsApp green for buttons is `#0F7A40`, because white text on the lighter `#25D366` is not readable enough.
+
+## Deploying
+
+- **Vercel:** connect the repo; `vercel.json` adds the SPA rewrite and the full security-header set.
+- **GitHub Pages:** `.github/workflows/deploy-pages.yml` builds with the repo sub-path (`VITE_BASE`) and publishes on every push to `fix/nexus-security-a11y` (or run it manually from the Actions tab). In the repo, set **Settings → Pages → Source** to **GitHub Actions** once. Pages cannot send HTTP headers, so production builds also carry the CSP as a `<meta>` tag (see `vite.config.js`). Direct links such as `/about` are served through `404.html`, which works for visitors but returns HTTP 404 to search engines — use Vercel or a custom domain with proper hosting for the public launch.
