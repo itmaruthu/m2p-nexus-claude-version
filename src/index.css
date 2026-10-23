@@ -78,6 +78,36 @@
   animation: slip-in 750ms cubic-bezier(0.2, 0.7, 0.2, 1) 400ms both;
 }
 
+/* Film grain over the dark ink bands: a tiny inline SVG noise tile, so it costs no request. */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Dark bands: a soft marigold light that follows the pointer (set by useSpotlight). Hidden on touch. */
+.spotlight {
+  --spot-x: 70%;
+  --spot-y: 30%;
+}
+.spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(520px circle at var(--spot-x) var(--spot-y), rgba(242, 169, 0, 0.13), transparent 60%);
+  transition: background-position 0.2s;
+}
+@media (hover: none) {
+  .spotlight::before {
+    display: none;
+  }
+}
+
 /* Respect the OS "reduce motion" setting (WCAG 2.3.3). framer-motion is handled by <MotionConfig>. */
 @media (prefers-reduced-motion: reduce) {
   html {

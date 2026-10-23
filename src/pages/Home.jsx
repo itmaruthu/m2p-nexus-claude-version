@@ -6,6 +6,7 @@ import { WhatsAppIcon } from '../components/icons';
 import ClosingCta from '../components/ClosingCta';
 import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
 import ScatterToSorted from '../components/ScatterToSorted';
+import BrandFilm from '../components/BrandFilm';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
 import founderPhoto from '../assets/founder_photo.webp';
 
@@ -156,6 +157,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <BrandFilm
+        title="Seventeen seconds on what changes when you work with us."
+        text="From paper bills and five separate vendors to one connected business, with roots in Madurai."
+      />
 
       {/* Signature scroll scene: scattered paper slips become one connected system */}
       <ScatterToSorted />

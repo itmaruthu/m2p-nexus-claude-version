@@ -64,3 +64,16 @@ Use WebP, sized for how large the image is shown (about 2× the display size), a
 3. `scripts/prerender.mjs`: renders every route in `src/config/routes.js` to `dist/<route>/index.html` (plus `404.html`) with that page's own title, description and canonical URL, then deletes `dist-ssr/`.
 
 Visitors get real HTML immediately (faster first paint, better SEO and link previews); React then attaches to it in the browser. When you add a page, add its `<Route>` in `src/App.jsx` **and** its path in `src/config/routes.js`. Code that touches `window` or `document` must run inside `useEffect` (or check `typeof window`), because pages are also rendered at build time in Node.
+
+## Brand film
+
+`public/media/brand-film-720.mp4`, `.webm` and `brand-film-poster.webp` are the M2P Nexus brand film
+("From Roots to Success", about 17 seconds, silent), used by `src/components/BrandFilm.jsx` on Home and About.
+
+- **Source:** designed and animated on a Moda canvas bound to the "M2P Nexus" brand kit
+  (https://moda.app/canvas/68d920d6-78bc-4f10-8ef5-e21ed8cf8bf8). Edit the scenes there.
+- **Update:** export the canvas from Moda as mp4 with scope "sequence", then run the
+  **Import brand film** workflow (Actions tab) with the export link. It re-encodes the web copies and poster
+  with ffmpeg and commits them here.
+
+Scenes: paper bills, five vendors, roots becoming one connected system, the M2P Nexus tagline.

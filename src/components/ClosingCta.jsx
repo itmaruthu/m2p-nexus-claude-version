@@ -1,15 +1,17 @@
 import { links, site } from '../config/site';
 import { WhatsAppIcon } from './icons';
 import RootsToNexus from './RootsToNexus';
+import useSpotlight from './useSpotlight';
 
 /** Dark closing band with the brand promise and the roots-to-network signature: ends Home, Services and About. */
 export default function ClosingCta({
   title = 'Tell us how your business runs today.',
   text = 'We’ll listen first, then suggest a practical first step, whether that’s billing software, a website, hiring help or AI.',
 }) {
+  const spotlight = useSpotlight();
   return (
-    <section className="bg-ink text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid gap-10 lg:grid-cols-12 lg:items-end">
+    <section ref={spotlight} className="relative overflow-hidden bg-ink text-white grain spotlight">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid gap-10 lg:grid-cols-12 lg:items-end">
         <div className="lg:col-span-8 space-y-5">
           <h2 className="font-display font-extrabold text-4xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">{title}</h2>
           <p className="text-lg text-slate-300 leading-relaxed max-w-2xl">{text}</p>

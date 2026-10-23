@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import RootsToNexus from '../components/RootsToNexus';
 import ClosingCta from '../components/ClosingCta';
+import BrandFilm from '../components/BrandFilm';
 import { h2Class, sectionPad, textLink } from '../components/styles';
 
 // All content here comes from the M2P Nexus brand guide (story, mission, vision, direction, differentiators).
@@ -81,6 +82,12 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      <BrandFilm
+        headingId="about-film-heading"
+        title="The idea behind M2P Nexus, in one short film."
+        text="Every business deserves the systems big companies have, from one partner who understands how it really runs."
+      />
 
       {/* Mission and vision */}
       <section className="bg-[#F4F6FA] border-b border-rule">
