@@ -275,7 +275,7 @@ export default function About() {
               to="/contact"
               className="inline-block bg-brand-secondary text-white hover:bg-brand-primary font-bold px-8 py-3 rounded-md shadow transition-colors"
             >
-              Book a Consultation
+              Book a consultation
             </Link>
             <a
               href={links.whatsapp}

@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Python env for scripts/build-display-font.py
+.venv

@@ -33,7 +33,7 @@ export default function Footer() {
               Bridging the gap between traditional businesses and modern technology through AI-powered solutions, workforce excellence, and digital transformation.
             </p>
             <div className="flex flex-col space-y-2 pt-2">
-              <h3 id="footer-quick-links" className="text-xs font-semibold uppercase text-brand-accent tracking-wider font-heading">Quick Links</h3>
+              <h3 id="footer-quick-links" className="text-sm font-semibold text-brand-accent font-heading">Quick links</h3>
               <nav aria-labelledby="footer-quick-links" className="grid grid-cols-2 gap-2 text-sm">
                 <Link to="/about" className="hover:text-white transition-colors">About Us</Link>
                 <Link to="/founder" className="hover:text-white transition-colors">The Founder</Link>
@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* Column 2: Services */}
           <div>
-            <h3 className="text-white font-heading font-semibold text-base uppercase tracking-wider mb-4">Our Services</h3>
+            <h3 className="text-white font-heading font-semibold text-base mb-4">Our services</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link to="/services" className="hover:text-white transition-colors flex items-center gap-1">
@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Column 3: Contact details */}
           <div>
-            <h3 className="text-white font-heading font-semibold text-base uppercase tracking-wider mb-4">Contact Details</h3>
+            <h3 className="text-white font-heading font-semibold text-base mb-4">Contact details</h3>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-2.5">
                 <Phone className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
@@ -125,7 +125,7 @@ export default function Footer() {
               வேரிலிருந்து வெற்றிவரை
             </p>
             <p className="text-xs text-slate-400 tracking-wider">
-              From Root to Success
+              From Roots to Success
             </p>
           </div>
         </div>

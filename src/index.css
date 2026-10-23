@@ -12,9 +12,30 @@
   --color-brand-text: #1E293B;
   --color-brand-border: #E2E8F0;
 
-  /* Fonts (self-hosted via @fontsource-variable, imported in main.jsx) */
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-heading: 'Outfit Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Home palette: carbon-copy ink, ledger rule, logo leaf green, Madurai marigold (decoration only). */
+  --color-ink: #172554;
+  --color-rule: #D6E0F0;
+  --color-leaf: #1F6B3A;
+  --color-marigold: #F2A900;
+  --color-body: #334155;
+
+  /* Fonts (self-hosted via @fontsource, imported in main.jsx) */
+  --font-sans: 'Hind Madurai', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Archivo Variable', ui-sans-serif, system-ui, sans-serif;
+  --font-hand: 'Kavivanar', 'Hind Madurai', cursive;
+}
+
+/* Archivo at its widest: signboard-style display type for big headlines. A trimmed instance (125% width,
+   weights 700-800, Latin only) built by scripts/build-display-font.py, ~18 KB instead of ~175 KB. */
+@font-face {
+  font-family: 'Archivo Expanded';
+  src: url('./assets/fonts/archivo-expanded.woff2') format('woff2');
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+@utility font-display {
+  font-family: 'Archivo Expanded', var(--font-heading);
 }
 
 /* Base layer overrides */
@@ -39,6 +60,22 @@
     outline: 3px solid var(--color-brand-accent);
     outline-offset: 2px;
   }
+}
+
+/* Home hero: the digital invoice slips over the paper bill once on load. CSS only, so it also runs in
+   pre-rendered HTML; the reduced-motion rule below shortens it to an instant change. */
+@keyframes slip-in {
+  from {
+    opacity: 0;
+    transform: translate(32px, 24px) rotate(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-slip-in {
+  animation: slip-in 750ms cubic-bezier(0.2, 0.7, 0.2, 1) 400ms both;
 }
 
 /* Respect the OS "reduce motion" setting (WCAG 2.3.3). framer-motion is handled by <MotionConfig>. */

@@ -1,8 +1,13 @@
 import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
-import '@fontsource-variable/inter'
-import '@fontsource-variable/outfit'
+// Hind Madurai: Tamil + Latin body text. Archivo (weight axis): headings. The expanded display cut is a
+// small custom file declared in index.css (see scripts/build-display-font.py).
+import '@fontsource/hind-madurai/400.css'
+import '@fontsource/hind-madurai/500.css'
+import '@fontsource/hind-madurai/600.css'
+import '@fontsource/hind-madurai/700.css'
+import '@fontsource-variable/archivo/wght.css'
 import './index.css'
 import App from './App.jsx'
 

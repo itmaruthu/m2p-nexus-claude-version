@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import m2pLogo from '../assets/m2p_nexus_logo.webp';
 import { links } from '../config/site';
 import { WhatsAppIcon } from './icons';
@@ -132,8 +132,7 @@ export default function Header() {
               to="/contact"
               className="text-sm font-semibold bg-brand-secondary text-white hover:bg-brand-primary px-4 py-2.5 rounded-md transition-all shadow-sm hover:shadow-md flex items-center gap-1"
             >
-              Book a Consultation
-              <ArrowRight className="w-4 h-4" />
+              Book a consultation
             </Link>
           </div>
 
@@ -225,8 +224,7 @@ export default function Header() {
                 onClick={closeMenu}
                 className="w-full py-3 bg-brand-secondary text-white rounded-md font-semibold text-sm shadow hover:bg-brand-primary transition-colors flex items-center justify-center gap-1.5"
               >
-                Book a Consultation
-                <ArrowRight className="w-4 h-4" />
+                Book a consultation
               </Link>
             </div>
           </div>

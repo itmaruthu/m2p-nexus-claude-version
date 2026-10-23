@@ -243,7 +243,7 @@ export default function Services() {
               to="/contact"
               className="inline-block bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors"
             >
-              Book a Consultation
+              Book a consultation
             </Link>
           </div>
         </div>
