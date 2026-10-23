@@ -1,5 +1,5 @@
 import Seo from '../components/Seo';
-import PageHero from '../components/PageHero';
+import ServiceSwitchboard from '../components/ServiceSwitchboard';
 import ClosingCta from '../components/ClosingCta';
 import { h2Class, sectionPad, textLink } from '../components/styles';
 
@@ -77,30 +77,28 @@ export default function Services() {
         description="M2P Nexus services: software and billing systems, websites, mobile apps, AI automation, digital transformation, IT consulting, digital marketing and HR, from one partner in Madurai."
       />
 
-      <PageHero
-        crumb="Services"
-        title="Everything your business needs to go digital, from one team"
-        intro="Software, websites, AI, hiring and marketing. Start with the one that hurts most today; we’ll help with the rest when you’re ready."
-      >
-        <nav aria-label="Service groups">
-          <ul className="flex flex-wrap gap-x-8 gap-y-3 pt-2">
-            {groups.map((g) => (
-              <li key={g.id}>
-                <a href={`#${g.id}`} className={textLink}>
-                  {g.title}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </PageHero>
+      <ServiceSwitchboard />
+
+      {/* Jump links to the full details below */}
+      <nav aria-label="Service groups" className="bg-[#F4F6FA] border-b border-rule">
+        <ul className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-wrap gap-x-8 gap-y-3">
+          <li className="font-heading font-semibold text-body">Full details:</li>
+          {groups.map((g) => (
+            <li key={g.id}>
+              <a href={`#${g.id}`} className={textLink}>
+                {g.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {groups.map((g, gi) => (
         <section
           key={g.id}
           id={g.id}
           aria-labelledby={`${g.id}-title`}
-          className={`scroll-mt-24 border-b border-rule ${gi % 2 ? 'bg-white' : 'bg-[#F4F6FA]'}`}
+          className={`scroll-mt-24 border-b border-rule ${gi % 2 ? 'bg-[#F4F6FA]' : 'bg-white'}`}
         >
           <div className={`${sectionPad} grid gap-12 lg:grid-cols-12`}>
             <div className="lg:col-span-4 space-y-4 lg:sticky lg:top-28 self-start">

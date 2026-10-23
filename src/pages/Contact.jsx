@@ -1,5 +1,6 @@
 import Seo from '../components/Seo';
-import PageHero from '../components/PageHero';
+import { Link } from 'react-router-dom';
+import ChatDemo from '../components/ChatDemo';
 import { links, site } from '../config/site';
 import { WhatsAppIcon } from '../components/icons';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
@@ -20,22 +21,46 @@ export default function Contact() {
         description="Talk to M2P Nexus in Madurai. WhatsApp or call +91 99442 83316, email hello@m2pnexus.com. You speak directly with our team, no forms."
       />
 
-      <PageHero
-        crumb="Contact"
-        title="Talk to us"
-        intro="Message, call or email. You’ll speak directly with our team, no forms and no call centre."
-      >
-        <div className="flex flex-col sm:flex-row gap-3 pt-2">
-          <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" className={whatsappButton}>
-            <WhatsAppIcon className="w-5 h-5" />
-            Chat with us on WhatsApp
-            {NEW_TAB}
-          </a>
-          <a href={links.call} className={outlineButton}>
-            Call {site.phones[0].display}
-          </a>
+<section className="bg-white border-b border-rule overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 md:pt-10 md:pb-20 space-y-8">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex items-center gap-2 text-sm text-body">
+              <li>
+                <Link to="/" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="font-semibold text-ink">
+                Contact
+              </li>
+            </ol>
+          </nav>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
+            <div className="lg:col-span-7 space-y-7">
+              <h1 className="font-display font-extrabold text-ink text-[2.6rem] sm:text-6xl lg:text-[4.6rem] leading-[1.02] tracking-[-0.03em]">
+                Talk to us like you&rsquo;d talk to a friend who knows tech.
+              </h1>
+              <p className="text-lg sm:text-xl text-body leading-relaxed max-w-xl">
+                Message, call or email. You&rsquo;ll speak directly with our team, in Tamil or English, with no forms and no call centre.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" className={whatsappButton}>
+                  <WhatsAppIcon className="w-5 h-5" />
+                  Chat with us on WhatsApp
+                  {NEW_TAB}
+                </a>
+                <a href={links.call} className={outlineButton}>
+                  Call {site.phones[0].display}
+                </a>
+              </div>
+            </div>
+            <div className="lg:col-span-5">
+              <ChatDemo />
+            </div>
+          </div>
         </div>
-      </PageHero>
+      </section>
 
       <section className="bg-[#F4F6FA] border-b border-rule">
         <div className={`${sectionPad} grid gap-14 lg:grid-cols-12`}>

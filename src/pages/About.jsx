@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
-import PageHero from '../components/PageHero';
+import RootsToNexus from '../components/RootsToNexus';
 import ClosingCta from '../components/ClosingCta';
 import { h2Class, sectionPad, textLink } from '../components/styles';
 
@@ -25,11 +25,47 @@ export default function About() {
         description="M2P Nexus is a technology and business solutions partner from Madurai, bringing software, AI, HR, digital marketing and consulting together for startups, MSMEs, traders and enterprises."
       />
 
-      <PageHero
-        crumb="About"
-        title="About M2P Nexus"
-        intro="A technology and business solutions partner from Madurai, Tamil Nadu. We bring software, AI, hiring, marketing and consulting together, so growing businesses get one team instead of five vendors."
-      />
+{/* Signature hero: the tagline, and the roots-to-network drawing labelled with what we connect. */}
+      <section className="bg-white border-b border-rule overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10 md:pt-10 space-y-6">
+          <nav aria-label="Breadcrumb">
+            <ol className="flex items-center gap-2 text-sm text-body">
+              <li>
+                <Link to="/" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
+                  Home
+                </Link>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="font-semibold text-ink">
+                About
+              </li>
+            </ol>
+          </nav>
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <h1 className="lg:col-span-7 font-display font-extrabold text-ink text-[2.4rem] sm:text-6xl lg:text-[4.4rem] leading-[1.02] tracking-[-0.03em]">
+              From roots to success.
+              <span lang="ta" className="mt-3 block font-sans font-semibold text-leaf text-2xl sm:text-3xl tracking-normal">
+                வேரிலிருந்து வெற்றிவரை
+              </span>
+            </h1>
+            <p className="lg:col-span-5 text-lg sm:text-xl text-body leading-relaxed">
+              M2P Nexus is a technology and business solutions partner from Madurai. We start from how your business already works, its roots, and connect it to the software, AI, people and marketing it needs to grow.
+            </p>
+          </div>
+          <RootsToNexus
+            className="w-full mt-4"
+            groundLabel="Your business"
+            labels={['Software', 'Marketing', 'AI', 'Websites & apps', 'Growth', 'Hiring']}
+          />
+          <ul className="sm:hidden flex flex-wrap gap-2" aria-hidden="true">
+            {['Software', 'Websites & apps', 'AI', 'Marketing', 'Hiring', 'Growth'].map((l) => (
+              <li key={l} className="rounded-full border border-rule px-3 py-1 text-sm font-semibold text-ink">
+                {l}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
       {/* Why we exist */}
       <section className="bg-white border-b border-rule">

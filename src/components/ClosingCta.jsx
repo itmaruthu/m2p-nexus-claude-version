@@ -1,7 +1,8 @@
 import { links, site } from '../config/site';
 import { WhatsAppIcon } from './icons';
+import RootsToNexus from './RootsToNexus';
 
-/** Dark closing band with the brand promise: the last thing on Home, Services and About. */
+/** Dark closing band with the brand promise and the roots-to-network signature: ends Home, Services and About. */
 export default function ClosingCta({
   title = 'Tell us how your business runs today.',
   text = 'We’ll listen first, then suggest a practical first step, whether that’s billing software, a website, hiring help or AI.',
@@ -31,10 +32,13 @@ export default function ClosingCta({
             </a>
           </div>
         </div>
-        <p className="lg:col-span-4 lg:text-right">
-          <span lang="ta" className="block font-semibold text-marigold text-xl">வேரிலிருந்து வெற்றிவரை</span>
-          <span className="block text-slate-300">From Roots to Success</span>
-        </p>
+        <div className="lg:col-span-4 space-y-4 lg:text-right">
+          <RootsToNexus theme="dark" className="w-full max-w-md lg:ml-auto" />
+          <p>
+            <span lang="ta" className="block font-semibold text-marigold text-xl">வேரிலிருந்து வெற்றிவரை</span>
+            <span className="block text-slate-300">From Roots to Success</span>
+          </p>
+        </div>
       </div>
     </section>
   );
