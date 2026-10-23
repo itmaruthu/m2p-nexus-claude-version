@@ -1,0 +1,55 @@
+name: Import brand film
+
+# One-off helper: downloads the brand film exported from Moda, encodes web-sized copies and a poster
+# with ffmpeg, and commits them to public/media/ on the branch it runs on. Run it manually from the
+# Actions tab with the export link.
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: Moda mp4 export link (https://assets-cdn.moda.app/...)
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    if: github.repository == 'itmaruthu/m2p-nexus-claude-version'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download export
+        env:
+          FILM_URL: ${{ inputs.url }}
+        run: |
+          case "$FILM_URL" in
+            https://assets-cdn.moda.app/*) ;;
+            *) echo "Only assets-cdn.moda.app links are accepted"; exit 1 ;;
+          esac
+          curl -fsSL --max-filesize 200000000 -o "$RUNNER_TEMP/master.mp4" "$FILM_URL"
+          ffprobe -v error -show_entries format=duration:stream=codec_name,width,height "$RUNNER_TEMP/master.mp4"
+
+      - name: Encode web copies and poster
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          mkdir -p public/media
+          M="$RUNNER_TEMP/master.mp4"
+          # Silent, streaming-friendly H.264 at 1280x720 for every browser
+          ffmpeg -y -v error -i "$M" -an -vf "scale=1280:-2" -c:v libx264 -profile:v high -preset slow -crf 26 -pix_fmt yuv420p -movflags +faststart public/media/brand-film-720.mp4
+          # Smaller VP9 for browsers that support it
+          ffmpeg -y -v error -i "$M" -an -vf "scale=1280:-2" -c:v libvpx-vp9 -b:v 0 -crf 38 -row-mt 1 public/media/brand-film-720.webm
+          # Poster: the finished "one partner" network (end of scene 3)
+          ffmpeg -y -v error -ss 12.6 -i "$M" -frames:v 1 -vf "scale=1280:-2" -c:v libwebp -quality 78 public/media/brand-film-poster.webp
+          ls -la public/media
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add public/media
+          git diff --cached --quiet && { echo "No changes"; exit 0; }
+          git commit -m "Add brand film (imported from Moda export)"
+          git push
