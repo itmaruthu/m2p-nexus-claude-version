@@ -12,6 +12,7 @@ import {
   Check
 } from 'lucide-react';
 import Seo from '../components/Seo';
+import PageHero from '../components/PageHero';
 import { links } from '../config/site';
 
 // Reusable Case Study Card Component matching Technology Solutions design system exactly
@@ -180,13 +181,7 @@ function CaseStudyCard({ project, idx }) {
               to="/contact"
               className="font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1"
             >
-              View Project Details <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
-            </Link>
-            <Link
-              to="/contact"
-              className="font-bold text-brand-accent-strong hover:text-emerald-800 flex items-center gap-1"
-            >
-              Enquire About This Project <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+              Enquire about a similar project <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
           </div>
         </div>
@@ -294,7 +289,7 @@ function CaseStudyCard({ project, idx }) {
             to="/contact"
             className="font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1"
           >
-            Enquire about this case <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
+            Enquire about a similar project <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
           </Link>
         </div>
       </div>
@@ -507,18 +502,12 @@ export default function Portfolio() {
         description="See detailed case studies of projects built by M2P Nexus across Technology, AI, and Workforce Solutions. Real problems, engineered outcomes."
       />
 
-      {/* Hero Section */}
-      <section className="bg-brand-primary text-white py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/30 to-transparent"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-heading">
-            Our Detailed Portfolio
-          </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Real software systems and staffing frameworks engineered to solve critical operational bottlenecks.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Portfolio"
+        title="Our Detailed Portfolio"
+        crumb="Portfolio"
+        intro="Real software systems and staffing frameworks engineered to solve critical operational bottlenecks."
+      />
 
       {/* Section Quick Anchor Links */}
       <div className="bg-brand-section border-b border-brand-border sticky top-16 z-20 py-4">

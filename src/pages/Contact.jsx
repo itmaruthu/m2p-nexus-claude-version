@@ -1,5 +1,6 @@
 import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 import Seo from '../components/Seo';
+import PageHero from '../components/PageHero';
 import { links, site } from '../config/site';
 import { LinkedinIcon, WhatsAppIcon } from '../components/icons';
 
@@ -87,16 +88,32 @@ export default function Contact() {
         description="Get in touch with M2P Nexus. Call +91 99442 83316, email hello@m2pnexus.com, or visit us in Madurai, Tamil Nadu. Direct communication, no forms."
       />
 
-      {/* Hero Section */}
-      <section className="bg-brand-primary text-white py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/30 to-transparent" aria-hidden="true"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-heading">Contact M2P Nexus</h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Direct, transparent communication channels. Skip the contact forms and speak directly with our engineering office.
-          </p>
+      <PageHero
+        eyebrow="Contact"
+        title="Contact M2P Nexus"
+        crumb="Contact"
+        intro="Direct, transparent communication. Skip the contact forms and speak directly with our team."
+      >
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
+          <a
+            href={links.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-[#0F7A40] text-white hover:bg-[#0B6534] px-6 py-3 rounded-lg font-bold transition-colors inline-flex items-center justify-center gap-2"
+          >
+            <WhatsAppIcon className="w-5 h-5" />
+            Chat on WhatsApp
+            <span className="sr-only">(opens in a new tab)</span>
+          </a>
+          <a
+            href={links.call}
+            className="border border-slate-600 hover:border-slate-400 hover:bg-white/5 text-white px-6 py-3 rounded-lg font-bold transition-colors inline-flex items-center justify-center gap-2"
+          >
+            <Phone className="w-5 h-5" />
+            Call {site.phones[0].display}
+          </a>
         </div>
-      </section>
+      </PageHero>
 
       {/* Info grid */}
       <section className="py-16 md:py-24 bg-white">

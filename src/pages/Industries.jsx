@@ -14,6 +14,7 @@ import {
   Play
 } from 'lucide-react';
 import Seo from '../components/Seo';
+import PageHero from '../components/PageHero';
 
 // Client avatars
 import clientAvatar1 from '../assets/client_avatar_1.webp';
@@ -33,11 +34,6 @@ const AUTOPLAY_MS = 6000;
 const fadeInUp = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
-};
-
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1 } }
 };
 
 export default function Industries() {
@@ -288,29 +284,12 @@ export default function Industries() {
         description="Explore the industries M2P Nexus works in - manufacturing, agribusiness, retail, logistics and more - with the challenges we solve and the impact delivered."
       />
 
-      {/* Hero Section */}
-      <section className="bg-brand-primary text-white py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/30 to-transparent"></div>
-        <motion.div
-          initial={false}
-          animate="visible"
-          variants={staggerContainer}
-          className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4"
-        >
-          <motion.h1
-            variants={fadeInUp}
-            className="text-4xl md:text-5xl font-extrabold tracking-tight font-heading"
-          >
-            Our Worked Industries
-          </motion.h1>
-          <motion.p
-            variants={fadeInUp}
-            className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
-          >
-            Discover the sectors we have modernized and read verified feedback from business leaders we support.
-          </motion.p>
-        </motion.div>
-      </section>
+      <PageHero
+        eyebrow="Industries"
+        title="Industries We Serve"
+        crumb="Industries"
+        intro="The sectors we work in, the problems we solve there, and the business impact our systems deliver."
+      />
 
       {/* Industry Horizontal Blocks Section */}
       <section className="py-24 md:py-32 bg-white border-b border-brand-border">
@@ -636,7 +615,7 @@ export default function Industries() {
               to="/contact"
               className="inline-block bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors"
             >
-              Consult with our Architect
+              Book a Consultation
             </Link>
           </div>
         </div>

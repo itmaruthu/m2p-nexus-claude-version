@@ -132,7 +132,7 @@ export default function Header() {
               to="/contact"
               className="text-sm font-semibold bg-brand-secondary text-white hover:bg-brand-primary px-4 py-2.5 rounded-md transition-all shadow-sm hover:shadow-md flex items-center gap-1"
             >
-              Book Consultation
+              Book a Consultation
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
@@ -225,7 +225,7 @@ export default function Header() {
                 onClick={closeMenu}
                 className="w-full py-3 bg-brand-secondary text-white rounded-md font-semibold text-sm shadow hover:bg-brand-primary transition-colors flex items-center justify-center gap-1.5"
               >
-                Book Consultation
+                Book a Consultation
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

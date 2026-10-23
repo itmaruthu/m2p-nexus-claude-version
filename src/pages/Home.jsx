@@ -14,14 +14,22 @@ import {
   Rocket,
   ShieldCheck,
   ChevronRight,
+  ArrowRight,
   Phone,
-  Mail,
-  Cpu
+  Cpu,
+  Check,
+  Handshake,
+  Languages,
+  Search,
+  ClipboardList,
+  Wrench,
+  LifeBuoy,
 } from 'lucide-react';
 
 import StatCounter from '../components/StatCounter';
 import Seo from '../components/Seo';
 import { links } from '../config/site';
+import { clients } from '../config/clients';
 import { WhatsAppIcon } from '../components/icons';
 import founderPhoto from '../assets/founder_photo.webp';
 
@@ -43,27 +51,40 @@ const staggerContainer = {
   }
 };
 
+const services = [
+  { title: 'Technology Solutions', desc: 'Custom enterprise software, ERP development, billing software and business portals built on modern architectures.', icon: Laptop },
+  { title: 'AI Solutions', desc: 'Automated reporting, predictive analytics and AI assistants built into the tools your team already uses every day.', icon: Brain },
+  { title: 'Workforce Solutions', desc: 'Recruitment, technical screening and HR frameworks that help you build and keep a capable team.', icon: Users },
+  { title: 'Business Growth Solutions', desc: 'Market positioning, digital presence, lead generation and growth strategy for traders and manufacturers.', icon: TrendingUp },
+];
+
+const builtSolutions = [
+  { title: 'Tamil Billing Software', industry: 'Retail & Agribusiness', problem: 'Local traders struggle with complex English-only billing tools.', built: 'A bilingual Tamil / English billing system with GST compliance, offline mode and fast checkout.', tech: ['React', 'Node.js'] },
+  { title: 'Steel Industry ERP', industry: 'Heavy Manufacturing', problem: 'Separate inventory trackers led to raw-material discrepancies.', built: 'One resource planner for raw material, scrap calculations, logistics, client accounts and staff schedules.', tech: ['React', '.NET Core', 'SQL Server'] },
+  { title: 'Coconut Trader ERP', industry: 'Agribusiness & Trade', problem: 'Bulk weights, transport and farmer payments were recorded by hand.', built: 'A trading system for batch weights, transport tracking, regional pricing and commission settlement.', tech: ['React', 'Node.js', 'MongoDB'] },
+  { title: 'Business Websites', industry: 'Corporate & SMEs', problem: 'A weak digital presence and few enquiries from search.', built: 'Fast, search-friendly company websites with clear calls to action and professional branding.', tech: ['React', 'Next.js'] },
+  { title: 'AI Business Automation', industry: 'Enterprise Operations', problem: 'Staff time spent compiling the same reports and data every week.', built: 'Automation that summarises daily logs, compiles invoices and drafts routine client messages.', tech: ['Python', 'OpenAI API'] },
+];
+
+const steps = [
+  { title: 'Understand', desc: 'We learn how your business runs today: the people, the paperwork and where time and money leak.', icon: Search },
+  { title: 'Plan', desc: 'You get a clear scope, timeline and quotation before any work starts.', icon: ClipboardList },
+  { title: 'Build & train', desc: 'We build in short cycles, in Tamil and English where needed, and train your team on site or online.', icon: Wrench },
+  { title: 'Support & grow', desc: 'After launch we stay on to support, improve and scale the system with your business.', icon: LifeBuoy },
+];
+
+const reasons = [
+  { title: 'Business-first thinking', desc: 'Every system is shaped around your operations and your cash flow, not around technology for its own sake.', icon: ShieldCheck },
+  { title: 'Deep technology expertise', desc: '.NET, Node.js, React and Python experience behind ERPs that run daily manufacturing work.', icon: Laptop },
+  { title: 'Built for SMEs and startups', desc: 'No bloated enterprise contracts or long sales cycles; practical, cost-effective delivery.', icon: Rocket },
+  { title: 'Practical AI', desc: 'AI where it saves real time: report automation, data extraction and assistants for your team.', icon: Brain },
+  { title: 'Regional understanding', desc: 'Bilingual Tamil / English software and an understanding of local trade that teams adopt easily.', icon: Languages },
+  { title: 'Long-term partnership', desc: 'We act as your technology partner and grow with you, not a one-off vendor.', icon: Handshake },
+];
+
+const heroPoints = ['Bilingual Tamil / English systems', 'Offline-ready GST billing', '14+ years of engineering leadership'];
+
 export default function Home() {
-  const emailUrl = "mailto:hello@m2pnexus.com?subject=Business%20Enquiry%20from%20Website";
-
-  // Data mapping
-
-  const solutionsWeProvide = [
-    { title: 'Technology Solutions', desc: 'Custom enterprise software, ERP developments, high-traffic billing software, and custom business portals built with modern architectures.', icon: Laptop, link: '/services' },
-    { title: 'AI Solutions', desc: 'Integrate artificial intelligence, automated reporting pipelines, predictive business analytics, and machine learning systems into daily workflows.', icon: Brain, link: '/services' },
-    { title: 'Workforce Solutions', desc: 'Bridge staffing gaps with highly qualified talent, expert technical screening, and corporate onboarding programs for rapid team expansion.', icon: Users, link: '/services' },
-    { title: 'Business Growth Solutions', desc: 'Drive product positioning, digital presence, strategic growth consultancy, and comprehensive tech transformation strategies.', icon: TrendingUp, link: '/services' }
-  ];
-
-  const featuredSolutions = [
-    { title: 'Tamil Billing Software', industry: 'Retail & Agribusiness', problem: 'Local traders struggle with complex English billing tools.', tech: 'React, Node.js, Tailwind CSS', desc: 'Highly intuitive bilingual (Tamil/English) billing system supporting GST compliance, offline functionality, and fast checkout.' },
-    { title: 'Steel Industry ERP', industry: 'Heavy Manufacturing', problem: 'Fragmented inventory trackers lead to raw material discrepancies.', tech: 'React, .NET Core, SQL Server', desc: 'Comprehensive resource planner managing raw materials, scrap calculations, logistics, client accounts, and employee schedules.' },
-    { title: 'Coconut Trader ERP', industry: 'Agribusiness & Trade', problem: 'Manual recording of bulk weight, transport logistics, and farmer pay.', tech: 'React, Node.js, MongoDB', desc: 'Targeted agricultural commerce system optimizing logistics tracking, batch weights, regional pricing engines, and commission charts.' },
-    { title: 'Business Websites', industry: 'Corporate & SMEs', problem: 'Weak digital footprint and low authority online.', tech: 'Next.js, Tailwind CSS', desc: 'Premium, conversion-optimized corporate web systems built for maximum SEO rankings, fast load speeds, and professional branding.' },
-    { title: 'AI Business Automation', industry: 'Enterprise Operations', problem: 'Expensive labor spent on repetitive data compilation and analytics.', tech: 'Python, OpenAI API, LangChain', desc: 'Custom automation agents that analyze operational logs, generate daily summaries, compile invoices, and draft client communications.' }
-  ];
-
-
   return (
     <>
       <Seo
@@ -71,183 +92,183 @@ export default function Home() {
         description="Empowering enterprises, SMEs, and traders through custom software, Steel & Coconut ERPs, AI-driven automation, and workforce solutions. Modernizing tradition from root to success."
       />
 
-      {/* SECTION 1: Hero */}
-      <section className="relative overflow-hidden bg-white border-b border-brand-border py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            {/* Left: Content */}
-            {/* initial={false}: hero is visible in the pre-rendered HTML, not faded in after JavaScript loads. */}
-            <motion.div
-              initial={false}
-              animate="visible"
-              variants={fadeInUp}
-              className="lg:col-span-7 space-y-6 text-left"
-            >
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand-section border border-brand-border rounded-full text-brand-secondary text-xs font-semibold uppercase tracking-wider font-heading">
-                <span>M2P Nexus</span>
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent"></span>
-                <span>Corporate Technology Partner</span>
-              </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-primary leading-tight font-heading">
+      {/* Hero: rendered in its final state (initial={false}) so it is visible in the pre-rendered HTML. */}
+      <section className="relative overflow-hidden bg-white border-b border-brand-border">
+        <div aria-hidden="true" className="absolute inset-0 bg-[radial-gradient(#E2E8F0_1px,transparent_1px)] bg-[size:22px_22px] [mask-image:linear-gradient(to_bottom,#000,transparent_85%)]" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 md:pt-16 md:pb-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+            <motion.div initial={false} animate="visible" variants={fadeInUp} className="lg:col-span-7 space-y-6">
+              <p className="inline-flex items-center gap-2 px-3 py-1 bg-brand-section border border-brand-border rounded-full text-brand-secondary text-xs font-semibold uppercase tracking-wider font-heading">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-accent" aria-hidden="true" />
+                Technology partner · Madurai, India
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-primary leading-[1.08] tracking-tight font-heading">
                 Digital Solutions That Help Businesses Grow
               </h1>
-              <div className="space-y-2 border-l-4 border-brand-accent pl-4 py-1">
-                <p className="text-xl font-bold text-brand-secondary font-heading">
-                  Modernizing Tradition. Empowering Communities. Driving Innovation.
-                </p>
-                <p className="text-lg font-bold text-brand-accent-strong tracking-widest uppercase font-heading">
-                  வேரிலிருந்து வெற்றிவரை
-                </p>
-              </div>
-              <p className="text-lg text-brand-text max-w-xl leading-relaxed">
-                Bridging the gap between traditional businesses and modern technology through AI-powered solutions, workforce excellence, and digital transformation. We help you scale from the root up.
+              <p className="text-lg sm:text-xl text-brand-text max-w-xl leading-relaxed">
+                Bridging the gap between traditional businesses and modern technology through AI-powered solutions, workforce excellence, and digital transformation.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <p className="font-heading font-semibold text-brand-secondary">
+                Modernizing tradition. Empowering communities. Driving innovation.
+                <span lang="ta" className="block mt-1 text-brand-accent-strong">வேரிலிருந்து வெற்றிவரை</span>
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 pt-1">
                 <Link
                   to="/contact"
-                  className="bg-brand-secondary text-white hover:bg-brand-primary font-bold px-8 py-3.5 rounded-md shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center gap-2"
+                  className="bg-brand-secondary text-white hover:bg-brand-primary font-bold px-7 py-3.5 rounded-lg shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
-                  Request Consultation
-                  <ChevronRight className="w-5 h-5" />
+                  Book a Consultation
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
                 <a
                   href={links.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-emerald-500/40 text-emerald-700 hover:bg-emerald-500/10 font-bold px-8 py-3.5 rounded-md transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
+                  className="border border-brand-border bg-white text-[#0F7A40] hover:border-[#0F7A40]/40 hover:bg-emerald-50 font-bold px-7 py-3.5 rounded-lg transition-all flex items-center justify-center gap-2"
                 >
                   <WhatsAppIcon className="w-5 h-5" />
-                  WhatsApp Us
+                  Chat on WhatsApp
+                  <span className="sr-only">(opens in a new tab)</span>
                 </a>
               </div>
+              <ul className="flex flex-col sm:flex-row sm:flex-wrap gap-x-6 gap-y-2 pt-2 text-sm text-brand-text">
+                {heroPoints.map((point) => (
+                  <li key={point} className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-brand-accent-strong shrink-0" />
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </motion.div>
 
-            {/* Right: Founder Photo */}
-            <motion.div
-              initial={false}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="lg:col-span-5 flex justify-center relative"
-            >
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-2xl overflow-hidden border-4 border-white shadow-2xl bg-brand-section group">
-                <img
-                  src={founderPhoto}
-                  alt="Maruthu Pandi PT - Founder & Director of M2P Nexus"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-brand-primary/60 via-transparent to-transparent"></div>
-                <div className="absolute bottom-6 left-6 text-white text-left">
-                  <p className="text-lg font-bold font-heading">Maruthu Pandi PT</p>
-                  <p className="text-xs text-brand-accent font-semibold tracking-wider font-heading">Founder & Director</p>
+            {/* Illustration of a bilingual operations dashboard, plus the founder. */}
+            <div className="lg:col-span-5 relative">
+              <div aria-hidden="true" className="absolute -inset-6 bg-gradient-to-tr from-brand-secondary/10 via-transparent to-brand-accent/10 rounded-[2.5rem] blur-2xl" />
+              <div aria-hidden="true" className="relative rounded-2xl bg-brand-primary p-5 sm:pb-16 shadow-2xl shadow-brand-primary/20 border border-slate-800 font-mono text-slate-300">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                  </div>
+                  <span className="text-[11px] text-slate-400">இன்றைய நிலை · Today</span>
+                </div>
+                <div className="grid grid-cols-3 gap-3 pt-4">
+                  {[
+                    ['விற்பனை · Sales', '₹1,24,500', 'text-emerald-400'],
+                    ['Dispatches', '12', 'text-sky-300'],
+                    ['Stock alerts', '3', 'text-amber-300'],
+                  ].map(([label, value, tone]) => (
+                    <div key={label} className="rounded-xl bg-slate-900/70 border border-slate-800 p-3">
+                      <div className="text-[10px] text-slate-400 leading-tight">{label}</div>
+                      <div className={`text-base sm:text-lg font-bold mt-1 ${tone}`}>{value}</div>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-4 rounded-xl bg-slate-900/70 border border-slate-800 p-4">
+                  <div className="flex justify-between text-[10px] text-slate-400">
+                    <span>Weekly billing</span>
+                    <span className="text-emerald-400">↑ 18%</span>
+                  </div>
+                  <div className="mt-3 flex items-end gap-2 h-20">
+                    {[38, 52, 45, 63, 58, 74, 88].map((h, i) => (
+                      <div key={i} className="flex-1 rounded-t bg-gradient-to-t from-brand-secondary to-sky-400" style={{ height: `${h}%` }} />
+                    ))}
+                  </div>
+                </div>
+                <div className="mt-4 space-y-2 text-[11px]">
+                  <div className="flex justify-between rounded-lg bg-slate-900/50 px-3 py-2">
+                    <span>GST invoice #8842 · கம்பி</span>
+                    <span className="text-emerald-400">Paid</span>
+                  </div>
+                  <div className="flex justify-between rounded-lg bg-slate-900/50 px-3 py-2">
+                    <span>Weighbridge · Lot 27</span>
+                    <span className="text-sky-300">14,240 kg</span>
+                  </div>
                 </div>
               </div>
-              <div className="absolute -top-4 -left-4 w-12 h-12 bg-brand-accent rounded-lg -z-10 opacity-30 blur-xs"></div>
-              <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-brand-secondary rounded-lg -z-10 opacity-10 blur-xs"></div>
-            </motion.div>
+
+              <Link
+                to="/founder"
+                className="relative mt-4 sm:absolute sm:-bottom-6 sm:-left-6 sm:mt-0 flex items-center gap-3 rounded-2xl bg-white border border-brand-border shadow-lg px-4 py-3 hover:border-brand-secondary/40 transition-colors"
+              >
+                <img src={founderPhoto} alt="" width="48" height="48" className="w-12 h-12 rounded-full object-cover border-2 border-brand-accent/60" />
+                <span className="text-sm leading-snug">
+                  <span className="block text-brand-text">Led by</span>
+                  <span className="block font-bold text-brand-primary font-heading">Maruthu Pandi PT</span>
+                  <span className="block text-xs text-brand-text">Founder &amp; Director</span>
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* SECTION 2: Trust Bar */}
-      <section className="py-12 bg-brand-section border-b border-brand-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            <StatCounter target={50} suffix="+" label="Projects Delivered" />
-            <StatCounter target={9} suffix="+" label="Industries Served" />
-            <StatCounter target={5} suffix="+" label="ERP Systems Built" />
-          </div>
+      {/* Key numbers */}
+      <section aria-label="Key numbers" className="bg-brand-section border-b border-brand-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 grid grid-cols-3 divide-x divide-brand-border">
+          <StatCounter plain target={50} suffix="+" label="Projects delivered" />
+          <StatCounter plain target={9} suffix="+" label="Industries served" />
+          <StatCounter plain target={5} suffix="+" label="ERP systems built" />
         </div>
       </section>
 
-      {/* SECTION 3: Solutions We Provide */}
-      <section className="py-16 md:py-24 bg-white border-b border-brand-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
-          <div className="space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading">
-              Solutions We Provide
+      {clients.length > 0 && (
+        <section aria-labelledby="clients-heading" className="bg-white border-b border-brand-border">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+            <h2 id="clients-heading" className="text-center text-xs font-semibold uppercase tracking-widest text-brand-text font-heading">
+              Trusted by growing businesses
             </h2>
-            <p className="text-lg text-brand-text">
-              Our core capabilities cover the full technological spectrum needed to scale and manage modern companies.
-            </p>
+            <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+              {clients.map((c) => (
+                <li key={c.name} className="text-slate-500 font-heading font-bold text-lg">
+                  {c.logo ? <img src={c.logo} alt={c.name} className="h-9 w-auto grayscale opacity-80" loading="lazy" /> : c.name}
+                </li>
+              ))}
+            </ul>
           </div>
+        </section>
+      )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-            {solutionsWeProvide.map((sol, idx) => {
-              const Icon = sol.icon;
+      {/* What we do: split layout */}
+      <section className="bg-white border-b border-brand-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-4 lg:sticky lg:top-28 self-start space-y-4">
+            <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent-strong font-heading">What we do</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading leading-tight">
+              Four ways we help your business grow
+            </h2>
+            <p className="text-lg text-brand-text leading-relaxed">
+              Software, AI, people and growth strategy from one partner who understands how regional businesses really work.
+            </p>
+            <Link to="/services" className="inline-flex items-center gap-2 font-bold text-brand-secondary hover:text-brand-primary">
+              View all services <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <ol className="lg:col-span-8 grid sm:grid-cols-2 gap-px bg-brand-border rounded-2xl overflow-hidden border border-brand-border">
+            {services.map((s, i) => {
+              const Icon = s.icon;
               return (
-                <div
-                  key={idx}
-                  className="bg-brand-section border border-brand-border p-8 rounded-lg hover:border-brand-accent/50 transition-colors flex flex-col justify-between"
-                >
-                  <div className="space-y-4">
-                    <div className="w-14 h-14 bg-white border border-brand-border rounded-lg flex items-center justify-center text-brand-secondary shadow-xs">
-                      <Icon className="w-7 h-7" />
-                    </div>
-                    <h3 className="text-xl font-bold text-brand-primary font-heading">{sol.title}</h3>
-                    <p className="text-base text-brand-text leading-relaxed">{sol.desc}</p>
+                <li key={s.title} className="bg-white p-7 sm:p-8 flex flex-col gap-4 hover:bg-brand-section transition-colors">
+                  <div className="flex items-center justify-between">
+                    <span className="w-12 h-12 rounded-xl bg-brand-secondary/10 text-brand-secondary flex items-center justify-center">
+                      <Icon className="w-6 h-6" />
+                    </span>
+                    <span className="font-heading text-sm font-bold text-slate-500" aria-hidden="true">0{i + 1}</span>
                   </div>
-                  <Link
-                    to={sol.link}
-                    className="mt-6 text-sm font-bold text-brand-secondary hover:text-brand-primary flex items-center gap-1 w-fit"
-                  >
-                    Learn more details <ChevronRight className="w-4 h-4" />
+                  <h3 className="text-xl font-bold text-brand-primary font-heading">{s.title}</h3>
+                  <p className="text-brand-text leading-relaxed flex-1">{s.desc}</p>
+                  <Link to="/services" className="inline-flex items-center gap-1 text-sm font-bold text-brand-secondary hover:text-brand-primary w-fit">
+                    Learn more<span className="sr-only"> about {s.title}</span> <ChevronRight className="w-4 h-4" />
                   </Link>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ol>
         </div>
       </section>
 
-      {/* SECTION 4: Featured Solutions */}
-      <section className="py-16 md:py-24 bg-brand-section border-b border-brand-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
-          <div className="space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading">
-              Featured Solutions
-            </h2>
-            <p className="text-lg text-brand-text">
-              Highly specialized systems engineered by M2P Nexus to solve specific regional and industrial operational problems.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 text-left">
-            {featuredSolutions.map((sol, idx) => (
-              <div
-                key={idx}
-                className="bg-white border border-brand-border p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  <div className="flex justify-between items-start">
-                    <span className="text-xs font-semibold text-brand-accent-strong bg-brand-accent/10 px-2.5 py-1 rounded-full font-heading">
-                      {sol.industry}
-                    </span>
-                    <span className="text-[10px] font-mono text-slate-500">
-                      SYS-{idx + 101}
-                    </span>
-                  </div>
-                  <h3 className="text-xl font-bold text-brand-primary font-heading">{sol.title}</h3>
-                  <div className="space-y-2 text-sm leading-relaxed">
-                    <p className="text-brand-text"><strong className="text-brand-primary">Blocker:</strong> {sol.problem}</p>
-                    <p className="text-brand-text">{sol.desc}</p>
-                  </div>
-                </div>
-                <div className="mt-6 pt-4 border-t border-brand-border">
-                  <div className="flex justify-between items-center text-xs">
-                    <span className="font-mono text-slate-500 font-medium">{sol.tech}</span>
-                    <Link to="/portfolio" className="text-brand-secondary font-bold hover:underline flex items-center gap-0.5">
-                      Case details
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: Industries We Serve — Bento Grid 2.0 */}
+      {/* Industries We Serve — bento grid. The mini dashboards are illustrations, hidden from screen readers. */}
       <section className="py-24 md:py-32 bg-[#FAFAFC] border-b border-brand-border relative overflow-hidden">
         {/* Subtle radial grid pattern */}
         <div className="absolute inset-0 pointer-events-none opacity-[0.4]" style={{
@@ -291,7 +312,7 @@ export default function Home() {
                 to="/industries"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-brand-secondary/30 text-brand-secondary hover:bg-brand-secondary hover:text-white text-sm font-bold transition-all duration-300 whitespace-nowrap"
               >
-                All case studies <ChevronRight className="w-4 h-4" />
+                Explore industries <ChevronRight className="w-4 h-4" />
               </Link>
             </motion.div>
           </motion.div>
@@ -323,7 +344,7 @@ export default function Home() {
               </div>
 
               {/* Interactive Mini-UI: Live ERP Panel */}
-              <div className="relative z-10 mt-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 flex-1 flex flex-col justify-between font-mono text-[11px] text-slate-400 min-h-[160px]">
+              <div aria-hidden="true" className="max-sm:hidden relative z-10 mt-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 flex-1 flex flex-col justify-between font-mono text-[11px] text-slate-400 min-h-[160px]">
                 <div className="flex justify-between items-center border-b border-slate-800 pb-2 mb-2">
                   <span className="text-white font-semibold flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -386,7 +407,7 @@ export default function Home() {
               </div>
 
               {/* Interactive Mini-UI: Logistics tracking */}
-              <div className="mt-4 space-y-2">
+              <div aria-hidden="true" className="max-sm:hidden mt-4 space-y-2">
                 <div className="flex items-center justify-between p-2 bg-slate-50 border border-slate-100 rounded-xl text-[10px]">
                   <span className="font-semibold text-slate-700">Cement Batch #4</span>
                   <span className="px-2 py-0.5 bg-blue-100 text-blue-700 font-bold text-[8px] rounded-full uppercase">On-Site</span>
@@ -420,7 +441,7 @@ export default function Home() {
               </div>
 
               {/* Interactive Mini-UI: Weighbridge ticket info */}
-              <div className="mt-4 space-y-2 font-mono">
+              <div aria-hidden="true" className="max-sm:hidden mt-4 space-y-2 font-mono">
                 <div className="bg-slate-50 border border-slate-100 p-2.5 rounded-xl text-left">
                   <div className="text-[8px] text-slate-500 uppercase">Weighbridge Log</div>
                   <div className="text-[10px] font-bold text-slate-800 mt-0.5">NET WT: 14,240 KG</div>
@@ -455,7 +476,7 @@ export default function Home() {
                 </div>
 
                 {/* Interactive Mini-UI: Simulated code terminal */}
-                <div className="bg-slate-950 rounded-xl p-3 flex-1 font-mono text-[9px] text-slate-400 border border-slate-800 w-full sm:max-w-[240px] shrink-0 self-center">
+                <div aria-hidden="true" className="max-sm:hidden bg-slate-950 rounded-xl p-3 flex-1 font-mono text-[9px] text-slate-400 border border-slate-800 w-full sm:max-w-[240px] shrink-0 self-center">
                   <div className="flex items-center gap-1.5 mb-1.5 border-b border-slate-800 pb-1">
                     <span className="w-1.5 h-1.5 rounded-full bg-rose-500" />
                     <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
@@ -493,7 +514,7 @@ export default function Home() {
               </div>
 
               {/* Interactive Mini-UI: Student profile snippet */}
-              <div className="mt-4 space-y-2">
+              <div aria-hidden="true" className="max-sm:hidden mt-4 space-y-2">
                 <div className="flex items-center gap-2">
                   <div className="w-6 h-6 rounded-full bg-slate-100 flex items-center justify-center font-bold text-[9px] text-brand-secondary border border-slate-200">
                     MP
@@ -532,7 +553,7 @@ export default function Home() {
               </div>
 
               {/* Interactive Mini-UI: Live route schematic */}
-              <div className="mt-4 bg-slate-50 border border-slate-100 rounded-xl p-2 flex flex-col justify-center items-center relative overflow-hidden min-h-[50px]">
+              <div aria-hidden="true" className="max-sm:hidden mt-4 bg-slate-50 border border-slate-100 rounded-xl p-2 flex flex-col justify-center items-center relative overflow-hidden min-h-[50px]">
                 <svg className="w-full h-6 text-slate-300" viewBox="0 0 100 20" fill="none">
                   <path d="M10,10 C30,3 50,17 90,10" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 3" />
                   <circle cx="10" cy="10" r="2.5" fill="#1E3A8A" />
@@ -571,7 +592,7 @@ export default function Home() {
                 </div>
 
                 {/* Interactive Mini-UI: GST invoice mockup */}
-                <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex flex-col justify-between font-mono text-[9px] text-slate-600 w-full sm:max-w-[240px] shrink-0 self-center">
+                <div aria-hidden="true" className="max-sm:hidden bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex flex-col justify-between font-mono text-[9px] text-slate-600 w-full sm:max-w-[240px] shrink-0 self-center">
                   <div className="flex justify-between border-b border-dashed border-slate-200 pb-1 mb-1">
                     <span className="font-bold text-slate-800 text-[8px]">விற்பனை சீட்டு / GST</span>
                     <span className="text-slate-500">#8842</span>
@@ -622,7 +643,7 @@ export default function Home() {
               </div>
 
               {/* Right Mini-UI Layout */}
-              <div className="flex-1 flex flex-col md:flex-row gap-4 items-center w-full lg:w-auto">
+              <div aria-hidden="true" className="max-sm:hidden flex-1 flex flex-col md:flex-row gap-4 items-center w-full lg:w-auto">
                 {/* Tech badges */}
                 <div className="flex flex-wrap gap-1.5 justify-center md:justify-start">
                   {['React', 'Node.js', 'Python', '.NET Core', 'AWS', 'Docker'].map((tech) => (
@@ -655,79 +676,142 @@ export default function Home() {
         </div>
       </section>
 
-
-      {/* SECTION 6: Why Choose M2P Nexus */}
-      <section className="py-16 md:py-24 bg-white border-b border-brand-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
-          <div className="space-y-4 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading">
-              Why Choose M2P Nexus
-            </h2>
-            <p className="text-lg text-brand-text">
-              We combine enterprise expertise with a regional understanding to deliver high-yield partnership experiences.
-            </p>
+      {/* Solutions we've built: 2 large + 3 small, no gaps */}
+      <section className="bg-white border-b border-brand-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="space-y-4 max-w-2xl">
+              <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent-strong font-heading">Solutions we&rsquo;ve built</p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading leading-tight">
+                Built for real regional and industrial problems
+              </h2>
+            </div>
+            <Link
+              to="/portfolio"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-brand-secondary/30 text-brand-secondary hover:bg-brand-secondary hover:text-white text-sm font-bold transition-all whitespace-nowrap self-start md:self-auto"
+            >
+              See case studies <ChevronRight className="w-4 h-4" />
+            </Link>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-            {[
-              { title: 'Business First Thinking', desc: 'We do not build technology for technology’s sake. Our architectures are modeled strictly around your operations to protect your capital and generate tangible cashflow efficiency.', icon: ShieldCheck },
-              { title: 'Deep Technology Expertise', desc: 'With a foundation across .NET, Node.js, React, and Python, we build high-capacity databases and custom ERPs that support critical daily manufacturing pipelines.', icon: Laptop },
-              { title: 'Startup & SME Friendly', desc: 'No bloated enterprise billing or lengthy sales loops. We deliver rapid, cost-effective deployments tailored for SMEs and agile startup frameworks.', icon: Rocket },
-              { title: 'AI Innovation', desc: 'We help you stay ahead by implementing custom AI models, neural indexing, and operational report automation, unlocking insights hidden in logs.', icon: Brain },
-              { title: 'Regional Understanding', desc: 'We understand local languages and regional trade dynamics, enabling us to build bilingual software (Tamil/English) that workforce teams adopt effortlessly.', icon: Users },
-              { title: 'Long-Term Partnership', desc: 'We do not believe in transactional consultancies. M2P Nexus acts as your virtual CTO, supporting and scaling with your enterprise as your business expands.', icon: ShieldCheck }
-            ].map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <div
-                  key={idx}
-                  className="bg-brand-section border border-brand-border p-8 rounded-lg hover:border-brand-secondary/40 transition-colors space-y-4"
-                >
-                  <div className="w-12 h-12 bg-white border border-brand-border rounded flex items-center justify-center text-brand-secondary">
-                    <Icon className="w-6 h-6" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-6">
+            {builtSolutions.map((s, i) => (
+              <article
+                key={s.title}
+                className={`bg-white border border-brand-border rounded-2xl p-6 sm:p-7 flex flex-col gap-4 shadow-xs hover:shadow-md transition-shadow ${
+                  i < 2 ? 'lg:col-span-3' : 'lg:col-span-2'
+                } ${i === 4 ? 'md:col-span-2 lg:col-span-2' : ''}`}
+              >
+                <span className="w-fit text-xs font-semibold text-brand-accent-strong bg-brand-accent/10 px-2.5 py-1 rounded-full font-heading">
+                  {s.industry}
+                </span>
+                <h3 className={`${i < 2 ? 'text-2xl' : 'text-xl'} font-bold text-brand-primary font-heading`}>{s.title}</h3>
+                <dl className="space-y-3 text-sm leading-relaxed flex-1">
+                  <div>
+                    <dt className="font-semibold text-brand-primary">Problem</dt>
+                    <dd className="text-brand-text">{s.problem}</dd>
                   </div>
-                  <h3 className="text-lg font-bold text-brand-primary font-heading">{item.title}</h3>
-                  <p className="text-sm text-brand-text leading-relaxed">{item.desc}</p>
-                </div>
-              );
-            })}
+                  <div>
+                    <dt className="font-semibold text-brand-primary">What we built</dt>
+                    <dd className="text-brand-text">{s.built}</dd>
+                  </div>
+                </dl>
+                <ul className="flex flex-wrap gap-1.5 pt-4 border-t border-brand-border" aria-label="Technology">
+                  {s.tech.map((t) => (
+                    <li key={t} className="px-2 py-0.5 rounded-md bg-brand-section border border-brand-border text-xs font-mono text-brand-text">
+                      {t}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* SECTION 7: Call To Action */}
-      <section className="bg-brand-primary text-white py-16 md:py-20 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/40 to-transparent pointer-events-none"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
-          <h2 className="text-3xl md:text-5xl font-extrabold font-heading">
-            Ready to Transform Your Business?
-          </h2>
+      {/* How we work + why choose us */}
+      <section className="bg-brand-section border-b border-brand-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-16">
+          <div className="space-y-10">
+            <div className="max-w-2xl space-y-4">
+              <p className="text-xs font-semibold uppercase tracking-widest text-brand-accent-strong font-heading">How we work</p>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading leading-tight">
+                From first conversation to a system your team uses every day
+              </h2>
+            </div>
+            <ol className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+              {steps.map((step, i) => {
+                const Icon = step.icon;
+                return (
+                  <li key={step.title} className="relative space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="w-10 h-10 rounded-full bg-brand-secondary text-white font-heading font-bold flex items-center justify-center shrink-0">
+                        {i + 1}
+                      </span>
+                      <span aria-hidden="true" className="hidden lg:block h-px flex-1 bg-gradient-to-r from-brand-border to-transparent" />
+                      <Icon className="w-5 h-5 text-brand-secondary lg:hidden" />
+                    </div>
+                    <h3 className="text-lg font-bold text-brand-primary font-heading">{step.title}</h3>
+                    <p className="text-brand-text leading-relaxed">{step.desc}</p>
+                  </li>
+                );
+              })}
+            </ol>
+          </div>
+
+          <div className="rounded-3xl bg-white border border-brand-border p-8 md:p-12 space-y-10">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-brand-primary font-heading">Why businesses choose M2P Nexus</h2>
+            <ul className="grid gap-x-10 gap-y-8 md:grid-cols-2 lg:grid-cols-3">
+              {reasons.map((r) => {
+                const Icon = r.icon;
+                return (
+                  <li key={r.title} className="flex gap-4">
+                    <span className="w-10 h-10 rounded-lg bg-brand-secondary/10 text-brand-secondary flex items-center justify-center shrink-0">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <div className="space-y-1">
+                      <h3 className="font-bold text-brand-primary font-heading">{r.title}</h3>
+                      <p className="text-sm text-brand-text leading-relaxed">{r.desc}</p>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Call to action */}
+      <section className="bg-brand-primary text-white relative overflow-hidden">
+        <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-br from-brand-secondary/50 via-transparent to-transparent" />
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 text-center space-y-8">
+          <h2 className="text-3xl md:text-5xl font-extrabold font-heading leading-tight">Ready to transform your business?</h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Discuss your requirements directly with our technology team. Get custom consultations for steel ERPs, billing applications, AI automation, or technical talent recruitment.
+            Talk to our team about ERPs, billing software, AI automation or technical hiring. Tell us how your business runs today and we will suggest a practical next step.
           </p>
-          <div className="flex flex-wrap justify-center gap-4 pt-2">
-            <a
-              href="tel:+919944283316"
-              className="bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3.5 rounded-md font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+          <div className="flex flex-col sm:flex-row justify-center gap-3">
+            <Link
+              to="/contact"
+              className="bg-white text-brand-primary hover:bg-slate-100 px-7 py-3.5 rounded-lg font-bold shadow-md transition-colors flex items-center justify-center gap-2"
             >
-              <Phone className="w-4 h-4 text-brand-accent" />
-              Call Now
-            </a>
+              Book a Consultation
+              <ArrowRight className="w-5 h-5" />
+            </Link>
             <a
               href={links.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-[#0F7A40] text-white hover:bg-[#0B6534] px-8 py-3.5 rounded-md font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="bg-[#0F7A40] text-white hover:bg-[#0B6534] px-7 py-3.5 rounded-lg font-bold shadow-md transition-colors flex items-center justify-center gap-2"
             >
-              <WhatsAppIcon className="w-4 h-4" />
-              WhatsApp Us
+              <WhatsAppIcon className="w-5 h-5" />
+              Chat on WhatsApp
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
             <a
-              href={emailUrl}
-              className="border border-slate-700 hover:border-slate-500 hover:bg-slate-800 text-white px-8 py-3.5 rounded-md font-bold text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer"
+              href={links.call}
+              className="border border-slate-600 hover:border-slate-400 hover:bg-white/5 text-white px-7 py-3.5 rounded-lg font-bold transition-colors flex items-center justify-center gap-2"
             >
-              <Mail className="w-4 h-4 text-brand-accent" />
-              Email Us
+              <Phone className="w-5 h-5" />
+              Call us
             </a>
           </div>
         </div>

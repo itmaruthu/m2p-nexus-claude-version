@@ -22,6 +22,7 @@ import {
   Cpu
 } from 'lucide-react';
 import Seo from '../components/Seo';
+import PageHero from '../components/PageHero';
 import { links } from '../config/site';
 
 // Framer Motion Animation Variants
@@ -75,18 +76,12 @@ export default function About() {
         description="Learn about the purpose, vision, mission, and values behind M2P Nexus. Discover how our founder, Maruthu Pandi PT, leads regional technological transformations."
       />
 
-      {/* Hero Section */}
-      <section className="bg-brand-primary text-white py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/30 to-transparent"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-heading">
-            About M2P Nexus
-          </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            Bridging the gap between traditional operations and corporate-grade technology, scaling regional success from root to victory.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="About us"
+        title="About M2P Nexus"
+        crumb="About us"
+        intro="Bridging the gap between traditional operations and corporate-grade technology, and helping regional businesses grow from root to success."
+      />
 
       {/* Who We Are & Purpose */}
       <section className="py-16 md:py-24 bg-white border-b border-brand-border">
@@ -280,7 +275,7 @@ export default function About() {
               to="/contact"
               className="inline-block bg-brand-secondary text-white hover:bg-brand-primary font-bold px-8 py-3 rounded-md shadow transition-colors"
             >
-              Contact Our Office
+              Book a Consultation
             </Link>
             <a
               href={links.whatsapp}

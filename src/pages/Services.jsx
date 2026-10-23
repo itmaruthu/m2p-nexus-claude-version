@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Laptop, Brain, Users, TrendingUp, CheckCircle, Target } from 'lucide-react';
 import Seo from '../components/Seo';
+import PageHero from '../components/PageHero';
 import techIllustration from '../assets/tech_illustration.webp';
 import aiIllustration from '../assets/ai_illustration.webp';
 
@@ -110,18 +111,12 @@ export default function Services() {
         description="Explore the core capabilities of M2P Nexus: Custom ERP software, AI automation pipelines, technical workforce sourcing, and business growth strategies."
       />
 
-      {/* Hero Section */}
-      <section className="bg-brand-primary text-white py-16 md:py-24 text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/30 to-transparent"></div>
-        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight font-heading">
-            Our Strategic Services
-          </h1>
-          <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-            From coding steel-industry ERPs to placing technical workforce, we build systems designed for long-term operational success.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        eyebrow="Services"
+        title="Our Strategic Services"
+        crumb="Services"
+        intro="From steel-industry ERPs to placing technical talent, we build systems designed for long-term operational success."
+      />
 
       {/* Services List Section */}
       <section className="py-16 md:py-24 bg-white">
@@ -248,7 +243,7 @@ export default function Services() {
               to="/contact"
               className="inline-block bg-brand-secondary text-white hover:bg-slate-800 border border-slate-700 px-8 py-3 rounded-md text-sm font-semibold transition-colors"
             >
-              Get Custom Assessment
+              Book a Consultation
             </Link>
           </div>
         </div>

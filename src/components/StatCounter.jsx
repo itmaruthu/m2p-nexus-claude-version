@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 
 const DURATION = 1500;
 
-export default function StatCounter({ target, suffix = '', label }) {
+export default function StatCounter({ target, suffix = '', label, plain = false }) {
   const end = parseInt(target, 10);
   const isNumeric = !Number.isNaN(end);
   const [count, setCount] = useState(0);
@@ -44,14 +44,18 @@ export default function StatCounter({ target, suffix = '', label }) {
   return (
     <div
       ref={countRef}
-      className="text-center p-6 bg-white border border-brand-border rounded-lg shadow-sm hover:shadow-md transition-shadow"
+      className={
+        plain
+          ? 'text-center px-2'
+          : 'text-center p-6 bg-white border border-brand-border rounded-lg shadow-sm hover:shadow-md transition-shadow'
+      }
     >
-      <div className="text-3xl md:text-4xl font-bold mb-2 font-heading text-brand-secondary">
+      <div className={`${plain ? 'text-2xl sm:text-4xl mb-1' : 'text-3xl md:text-4xl mb-2'} font-bold font-heading text-brand-secondary`}>
         {/* Screen readers get the final figure, not every intermediate number. */}
         <span aria-hidden="true">{isNumeric ? `${count}${suffix}` : target}</span>
         <span className="sr-only">{isNumeric ? `${end}${suffix}` : target}</span>
       </div>
-      <p className="text-sm md:text-base font-medium text-brand-text">{label}</p>
+      <p className={`${plain ? 'text-xs sm:text-sm' : 'text-sm md:text-base'} font-medium text-brand-text`}>{label}</p>
     </div>
   );
 }
