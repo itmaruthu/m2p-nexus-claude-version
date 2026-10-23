@@ -320,7 +320,13 @@ export default function Home() {
         </div>
       </section>
 
-      <ClosingCta />
+      <ClosingCta
+        questions={[
+          'Can you move my paper bills to Tamil and English billing software?',
+          'Can AI read my supplier invoices for me?',
+          'How do I get more enquiries from Google?',
+        ]}
+      />
     </>
   );
 }

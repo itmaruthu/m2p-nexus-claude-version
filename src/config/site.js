@@ -1,6 +1,6 @@
 // Public business details used across the site. Change them here, not in individual pages.
 
-const waLink = (text) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
+export const waLink = (text) => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 
 export const site = {
   name: 'M2P Nexus',

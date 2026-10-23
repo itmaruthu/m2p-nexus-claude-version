@@ -21,8 +21,9 @@ export default function Contact() {
         description="Talk to M2P Nexus in Madurai. WhatsApp or call +91 99442 83316, email hello@m2pnexus.com. You speak directly with our team, no forms."
       />
 
-<section className="bg-white border-b border-rule overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 md:pt-10 md:pb-20 space-y-8">
+<section className="relative bg-white border-b border-rule overflow-hidden">
+        <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 md:pt-10 md:pb-20 space-y-8">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 text-sm text-body">
               <li>

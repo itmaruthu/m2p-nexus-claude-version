@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import RootsToNexus from '../components/RootsToNexus';
 import ClosingCta from '../components/ClosingCta';
-import BrandFilm from '../components/BrandFilm';
+import Roadmap from '../components/Roadmap';
 import { h2Class, sectionPad, textLink } from '../components/styles';
 
 // All content here comes from the M2P Nexus brand guide (story, mission, vision, direction, differentiators).
@@ -16,8 +16,6 @@ const differences = [
   'Business first, technology second',
 ];
 
-const nextUp = ['Tamil-first billing software', 'Business automation platforms', 'AI-powered tools for enterprises', 'HR technology'];
-
 export default function About() {
   return (
     <>
@@ -27,8 +25,9 @@ export default function About() {
       />
 
 {/* Signature hero: the tagline, and the roots-to-network drawing labelled with what we connect. */}
-      <section className="bg-white border-b border-rule overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10 md:pt-10 space-y-6">
+      <section className="relative bg-white border-b border-rule overflow-hidden">
+        <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0" />
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-10 md:pt-10 space-y-6">
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-2 text-sm text-body">
               <li>
@@ -83,11 +82,6 @@ export default function About() {
         </div>
       </section>
 
-      <BrandFilm
-        headingId="about-film-heading"
-        title="The idea behind M2P Nexus, in one short film."
-        text="Every business deserves the systems big companies have, from one partner who understands how it really runs."
-      />
 
       {/* Mission and vision */}
       <section className="bg-[#F4F6FA] border-b border-rule">
@@ -137,38 +131,35 @@ export default function About() {
         </div>
       </section>
 
-      {/* Where we're going */}
+      {/* Where we're going: today's services leading to our own products */}
       <section className="bg-white border-b border-rule">
-        <div className={`${sectionPad} grid gap-10 lg:grid-cols-12`}>
-          <div className="lg:col-span-5 space-y-4">
-            <h2 className={h2Class}>Where we&rsquo;re going</h2>
-            <p className="text-lg text-body leading-relaxed">
-              Alongside our consulting and implementation work, we are growing from a services company into a technology company, building industry-specific products for the businesses we already serve.
-            </p>
-            <p className="text-body">
-              Led by Maruthu Pandi PT and Priyanka M.{' '}
-              <Link to="/founder" className={textLink}>
-                Meet the founders
-              </Link>
-            </p>
+        <div className={`${sectionPad} space-y-12`}>
+          <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
+            <h2 className={`${h2Class} lg:col-span-5`}>Where we&rsquo;re going</h2>
+            <div className="lg:col-span-7 space-y-3">
+              <p className="text-lg text-body leading-relaxed">
+                Alongside our consulting and implementation work, we are growing from a services company into a technology company, building industry-specific products for the businesses we already serve.
+              </p>
+              <p className="text-body">
+                Led by Maruthu Pandi PT and Priyanka M.{' '}
+                <Link to="/founder" className={textLink}>
+                  Meet the founders
+                </Link>
+              </p>
+            </div>
           </div>
-          <div className="lg:col-span-7">
-            <h3 className="font-heading font-semibold text-ink">What we&rsquo;re working towards</h3>
-            <ul className="mt-4 divide-y divide-rule border-y border-rule">
-              {nextUp.map((item) => (
-                <li key={item} className="flex items-center gap-4 py-4">
-                  <span aria-hidden="true" className="h-2 w-2 shrink-0 rotate-45 bg-marigold" />
-                  <span className="font-heading font-semibold text-ink text-xl">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <Roadmap />
         </div>
       </section>
 
       <ClosingCta
         title="We don’t just build software. We build business success."
         text="M2P Nexus exists to help businesses move from traditional operations to intelligent, technology-driven growth. Tell us where you are today."
+        questions={[
+          'We are a small business. How would you work with us?',
+          'Can you stay with us as we grow, not just for one project?',
+          'How would Tamil-first billing software help my shop?',
+        ]}
       />
     </>
   );

@@ -135,6 +135,11 @@ export default function Services() {
       <ClosingCta
         title="Not sure where to start?"
         text="Tell us what slows your business down today. We’ll suggest a sensible first step and what it would take."
+        questions={[
+          'Which service should my business start with?',
+          'Can you connect my billing, stock and WhatsApp orders?',
+          'Can you help me hire a good billing executive?',
+        ]}
       />
     </>
   );

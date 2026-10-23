@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
-import { DigitalInvoice, PaperBill } from './BillIllustration';
 
 // Animated scenes for the Services switchboard. Each one replays when it mounts (the parent keys it by tab).
 // Illustrations only: figures and messages are examples, and the parent renders them aria-hidden.
@@ -11,16 +10,91 @@ const rise = (delay) => ({
   transition: { delay, duration: 0.45, ease: [0.2, 0.7, 0.2, 1] },
 });
 
-/** Run your business: the handwritten bill becomes a digital invoice. */
+const STOCK = [
+  { item: 'Coconut', level: 82 },
+  { item: 'Rice 25 kg', level: 64 },
+  { item: 'Groundnut oil 5 L', level: 16, low: true },
+];
+
+/** Run your business: one live view of sales, invoices and stock, with an alert before oil runs out. */
 export function RunScene() {
+  const sales = useMotionValue(0);
+  const salesText = useTransform(sales, (v) => `₹${Math.round(v).toLocaleString('en-IN')}`);
+  const invoices = useMotionValue(0);
+  const invoicesText = useTransform(invoices, (v) => Math.round(v));
+  useEffect(() => {
+    const ease = [0.2, 0.7, 0.2, 1];
+    const a = animate(sales, 48250, { duration: 2, delay: 0.3, ease });
+    const b = animate(invoices, 36, { duration: 2, delay: 0.3, ease });
+    return () => {
+      a.stop();
+      b.stop();
+    };
+  }, [sales, invoices]);
+
   return (
-    <div className="relative mx-auto w-full max-w-[30rem] py-4">
-      <div className="w-[88%] sm:w-[82%]">
-        <PaperBill />
+    <div className="grid w-full gap-4 sm:grid-cols-5">
+      <div className="sm:col-span-3 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg">
+        <div className="flex items-center justify-between">
+          <p className="font-heading font-bold text-ink">Today</p>
+          <span className="flex items-center gap-1.5 text-xs font-semibold text-leaf">
+            <span className="h-2 w-2 rounded-full bg-leaf animate-pulse" />
+            Live
+          </span>
+        </div>
+        <div className="mt-3 grid grid-cols-2 gap-3">
+          <div>
+            <p className="text-sm text-body">Sales</p>
+            <motion.p className="font-display font-extrabold text-ink text-2xl tabular-nums">{salesText}</motion.p>
+          </div>
+          <div>
+            <p className="text-sm text-body">Invoices on WhatsApp</p>
+            <motion.p className="font-display font-extrabold text-ink text-2xl tabular-nums">{invoicesText}</motion.p>
+          </div>
+        </div>
+        <svg viewBox="0 0 300 70" className="mt-3 w-full" fill="none">
+          <motion.path
+            d="M0 60 L30 52 L60 56 L90 40 L120 44 L150 30 L180 34 L210 20 L240 24 L270 12 L300 8"
+            stroke="#1F6B3A"
+            strokeWidth="3"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 2, delay: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
+          />
+        </svg>
       </div>
-      <div className="relative -mt-20 ml-auto w-full sm:-mt-28 sm:w-[72%]">
-        <DigitalInvoice />
+
+      <div className="sm:col-span-2 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg space-y-3">
+        <p className="font-heading font-bold text-ink">Stock</p>
+        {STOCK.map((s, i) => (
+          <div key={s.item}>
+            <div className="flex justify-between text-sm">
+              <span className="text-ink">{s.item}</span>
+              <span className={`tabular-nums font-semibold ${s.low ? 'text-[#B42318]' : 'text-body'}`}>{s.level}%</span>
+            </div>
+            <div className="mt-1 h-2 rounded-full bg-[#EEF2F8]">
+              <motion.div
+                className={`h-2 rounded-full ${s.low ? 'bg-marigold' : 'bg-leaf'}`}
+                initial={{ width: '100%' }}
+                animate={{ width: `${s.level}%` }}
+                transition={{ duration: 1.4, delay: 0.5 + i * 0.15, ease: [0.2, 0.7, 0.2, 1] }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
+
+      <motion.div
+        {...rise(2.2)}
+        className="sm:col-span-5 flex items-start gap-3 rounded-2xl bg-ink p-4 text-white shadow-lg"
+      >
+        <span className="ask-orb mt-0.5 h-7 w-7 shrink-0 rounded-full" />
+        <p className="text-sm leading-relaxed">
+          <span className="font-semibold text-marigold">Suggestion: </span>
+          Groundnut oil sells fastest on Fridays. Reorder 12 tins by Thursday so you don&rsquo;t run out.
+        </p>
+      </motion.div>
     </div>
   );
 }
