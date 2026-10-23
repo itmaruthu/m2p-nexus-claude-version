@@ -118,7 +118,7 @@ export default function Founder() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand-secondary/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
         <motion.div
-          initial="hidden"
+          initial={false}
           animate="visible"
           variants={staggerContainer}
           className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6"

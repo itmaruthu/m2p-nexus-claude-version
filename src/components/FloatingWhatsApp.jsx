@@ -1,10 +1,11 @@
-import { useLocation } from 'react-router-dom';
 import { links } from '../config/site';
 import { WhatsAppIcon } from './icons';
+import { useIsConnectPage } from './useIsConnectPage';
 
 export default function FloatingWhatsApp() {
+  const isConnectPage = useIsConnectPage();
   // Desktop only: phones get the MobileContactBar. The Connect card has its own WhatsApp button.
-  if (useLocation().pathname === '/connect') return null;
+  if (isConnectPage) return null;
 
   return (
     <a

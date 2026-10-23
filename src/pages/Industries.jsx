@@ -46,7 +46,7 @@ export default function Industries() {
   const [isPaused, setIsPaused] = useState(false);
   // Explicit pause from the Pause/Play button; hover and focus pauses are temporary.
   const [isStopped, setIsStopped] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    () => typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
   );
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
@@ -292,7 +292,7 @@ export default function Industries() {
       <section className="bg-brand-primary text-white py-16 md:py-24 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-brand-secondary/30 to-transparent"></div>
         <motion.div
-          initial="hidden"
+          initial={false}
           animate="visible"
           variants={staggerContainer}
           className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4"

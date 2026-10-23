@@ -76,8 +76,9 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             {/* Left: Content */}
+            {/* initial={false}: hero is visible in the pre-rendered HTML, not faded in after JavaScript loads. */}
             <motion.div
-              initial="hidden"
+              initial={false}
               animate="visible"
               variants={fadeInUp}
               className="lg:col-span-7 space-y-6 text-left"
@@ -123,7 +124,7 @@ export default function Home() {
 
             {/* Right: Founder Photo */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
+              initial={false}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="lg:col-span-5 flex justify-center relative"

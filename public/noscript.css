@@ -1,0 +1,5 @@
+/* Loaded only when JavaScript is off: reveal elements that framer-motion renders hidden until they scroll into view. */
+[style*="opacity:0"] {
+  opacity: 1 !important;
+  transform: none !important;
+}

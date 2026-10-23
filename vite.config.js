@@ -14,6 +14,9 @@ const csp = [
   "default-src 'self'",
   "script-src 'self'",
   "style-src 'self'",
+  // Pre-rendered HTML carries framer-motion's start positions as style="" attributes. This allows inline
+  // style attributes only; <style> elements and all inline scripts stay blocked.
+  "style-src-attr 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
   "connect-src 'self'",
@@ -46,7 +49,7 @@ const seoFiles = {
     this.emitFile({
       type: 'asset',
       fileName: 'robots.txt',
-      source: `User-agent: *\nAllow: /\nDisallow: /connect\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
+      source: `User-agent: *\nAllow: /\nDisallow: ${base}connect\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
     })
   },
 }

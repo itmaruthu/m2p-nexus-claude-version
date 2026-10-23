@@ -12,6 +12,7 @@ export default function Connect() {
       <Seo
         title="Connect with Maruthu Pandi PT"
         description="Digital Business Card for Maruthu Pandi PT, Founder & Director of M2P Nexus. Get instant links to call, WhatsApp, email, or view our profile."
+        noindex
       />
 
       <div className="relative min-h-dvh w-full bg-brand-primary text-white flex flex-col items-center justify-between gap-8 p-6 overflow-x-hidden font-sans">

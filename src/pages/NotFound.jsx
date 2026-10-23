@@ -1,21 +1,12 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import Seo from '../components/Seo';
 
 export default function NotFound() {
-  // Keep unknown URLs out of search results.
-  useEffect(() => {
-    const meta = document.createElement('meta');
-    meta.name = 'robots';
-    meta.content = 'noindex';
-    document.head.appendChild(meta);
-    return () => meta.remove();
-  }, []);
-
   return (
     <>
-      <Seo title="Page Not Found" description="The page you are looking for does not exist." />
+      {/* noindex keeps unknown URLs out of search results. */}
+      <Seo title="Page Not Found" description="The page you are looking for does not exist." noindex />
       <section className="min-h-[60vh] flex flex-col items-center justify-center text-center px-4 py-24 space-y-6">
         <p className="text-7xl font-extrabold text-brand-border font-heading">404</p>
         <h1 className="text-3xl font-extrabold text-brand-primary font-heading">Page not found</h1>

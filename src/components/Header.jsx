@@ -5,6 +5,7 @@ import { Menu, X, ArrowRight } from 'lucide-react';
 import m2pLogo from '../assets/m2p_nexus_logo.webp';
 import { links } from '../config/site';
 import { WhatsAppIcon } from './icons';
+import { useIsConnectPage } from './useIsConnectPage';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -17,6 +18,7 @@ const navLinks = [
 ];
 
 export default function Header() {
+  const isConnectPage = useIsConnectPage();
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   // The menu remembers the page it was opened on, so any navigation (links, back button) closes it.
@@ -68,7 +70,7 @@ export default function Header() {
   const closeMenu = () => setMenuOpenOn(null);
 
   // The Connect QR landing page is a standalone digital business card.
-  if (location.pathname === '/connect') return null;
+  if (isConnectPage) return null;
 
   return (
     <header

@@ -1,14 +1,15 @@
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
 import m2pLogo from '../assets/m2p_nexus_logo.webp';
 import { links, site } from '../config/site';
 import { LinkedinIcon } from './icons';
+import { useIsConnectPage } from './useIsConnectPage';
 
 export default function Footer() {
-  const location = useLocation();
+  const isConnectPage = useIsConnectPage();
 
   // Exclude footer render on the Connect page
-  if (location.pathname === '/connect') return null;
+  if (isConnectPage) return null;
 
   return (
     <footer className="bg-brand-primary text-slate-300 border-t border-slate-800 pb-24 md:pb-0">

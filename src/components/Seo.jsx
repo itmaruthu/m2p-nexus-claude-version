@@ -1,36 +1,31 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
+import { SeoContext, seoTags } from './seoContext';
 
-export default function Seo({ title, description }) {
+function setMeta(attr, key, content) {
+  let el = document.head.querySelector(`meta[${attr}="${key}"]`);
+  if (!el) {
+    el = document.createElement('meta');
+    el.setAttribute(attr, key);
+    document.head.appendChild(el);
+  }
+  el.setAttribute('content', content);
+  return el;
+}
+
+export default function Seo({ title, description, noindex = false }) {
+  const collect = useContext(SeoContext);
+  if (collect) collect(seoTags({ title, description, noindex }));
+
+  // Client-side navigation: keep <head> in sync with the current page.
   useEffect(() => {
-    // Dynamic page title
-    document.title = `${title} | M2P Nexus - From Root to Success`;
-    
-    // Dynamic page description
-    let metaDescription = document.querySelector('meta[name="description"]');
-    if (!metaDescription) {
-      metaDescription = document.createElement('meta');
-      metaDescription.name = 'description';
-      document.head.appendChild(metaDescription);
-    }
-    metaDescription.content = description || 'Bridging the gap between traditional businesses and modern technology through AI-powered solutions, workforce excellence, and digital transformation.';
-    
-    // Dynamic Open Graph tags
-    let ogTitle = document.querySelector('meta[property="og:title"]');
-    if (!ogTitle) {
-      ogTitle = document.createElement('meta');
-      ogTitle.setAttribute('property', 'og:title');
-      document.head.appendChild(ogTitle);
-    }
-    ogTitle.content = `${title} | M2P Nexus`;
-
-    let ogDesc = document.querySelector('meta[property="og:description"]');
-    if (!ogDesc) {
-      ogDesc = document.createElement('meta');
-      ogDesc.setAttribute('property', 'og:description');
-      document.head.appendChild(ogDesc);
-    }
-    ogDesc.content = description || 'Bridging the gap between traditional businesses and modern technology through AI-powered solutions, workforce excellence, and digital transformation.';
-  }, [title, description]);
+    const tags = seoTags({ title, description, noindex });
+    document.title = tags.title;
+    setMeta('name', 'description', tags.description);
+    setMeta('property', 'og:title', tags.ogTitle);
+    setMeta('property', 'og:description', tags.description);
+    const robots = noindex ? setMeta('name', 'robots', 'noindex') : document.head.querySelector('meta[name="robots"]');
+    if (!noindex) robots?.remove();
+  }, [title, description, noindex]);
 
   return null;
 }

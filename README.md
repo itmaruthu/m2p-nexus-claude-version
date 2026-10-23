@@ -14,7 +14,7 @@ Company website for **M2P Nexus** (Sithalangudi, Madurai): technology solutions,
 npm install
 npm run dev       # http://localhost:5173
 npm run lint
-npm run build     # production build in dist/
+npm run build     # production build in dist/, every page pre-rendered to static HTML
 npm run preview   # serve dist/ locally
 ```
 
@@ -52,5 +52,15 @@ Use WebP, sized for how large the image is shown (about 2× the display size), a
 
 ## Deploying
 
-- **Vercel:** connect the repo; `vercel.json` adds the SPA rewrite and the full security-header set.
-- **GitHub Pages:** `.github/workflows/deploy-pages.yml` builds with the repo sub-path (`VITE_BASE`) and publishes on every push to `fix/nexus-security-a11y` (or run it manually from the Actions tab). In the repo, set **Settings → Pages → Source** to **GitHub Actions** once. Pages cannot send HTTP headers, so production builds also carry the CSP as a `<meta>` tag (see `vite.config.js`). Direct links such as `/about` are served through `404.html`, which works for visitors but returns HTTP 404 to search engines — use Vercel or a custom domain with proper hosting for the public launch.
+- **Vercel:** connect the repo; `vercel.json` adds trailing-slash URLs and the full security-header set; pre-rendered pages and `404.html` are served as static files.
+- **GitHub Pages:** `.github/workflows/deploy-pages.yml` builds with the repo sub-path (`VITE_BASE`, `VITE_SITE_URL`) and publishes on every push to `fix/nexus-security-a11y` (or run it manually from the Actions tab). In the repo, set **Settings → Pages → Source** to **GitHub Actions** once. Pages cannot send HTTP headers, so production builds also carry the CSP as a `<meta>` tag (see `vite.config.js`).
+
+### How the build works
+
+`npm run build` runs three steps:
+
+1. `vite build`: the normal browser bundle in `dist/`.
+2. `vite build --ssr src/entry-server.jsx`: a temporary renderer in `dist-ssr/`.
+3. `scripts/prerender.mjs`: renders every route in `src/config/routes.js` to `dist/<route>/index.html` (plus `404.html`) with that page's own title, description and canonical URL, then deletes `dist-ssr/`.
+
+Visitors get real HTML immediately (faster first paint, better SEO and link previews); React then attaches to it in the browser. When you add a page, add its `<Route>` in `src/App.jsx` **and** its path in `src/config/routes.js`. Code that touches `window` or `document` must run inside `useEffect` (or check `typeof window`), because pages are also rendered at build time in Node.
