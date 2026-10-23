@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import m2pLogo from '../assets/m2p_nexus_logo.webp';
@@ -151,9 +152,10 @@ export default function Header() {
         </div>
       </div>
 
-      {/* MOBILE HEADER - Slide-in navigation drawer */}
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden flex">
+      {/* MOBILE HEADER - Slide-in navigation drawer. Portalled to <body> so it stacks above the
+          floating call/WhatsApp buttons instead of being trapped in the sticky header's z-40 layer. */}
+      {isMenuOpen && createPortal(
+        <div className="fixed inset-0 z-[60] lg:hidden flex">
           {/* Overlay */}
           <div
             className="fixed inset-0 bg-brand-primary/50 backdrop-blur-sm transition-opacity"
@@ -226,7 +228,8 @@ export default function Header() {
               </Link>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </header>
   );

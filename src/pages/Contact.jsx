@@ -62,7 +62,7 @@ export default function Contact() {
     },
     {
       title: 'Office Location',
-      desc: 'Sithalangudi, Madurai, Tamil Nadu, India.',
+      desc: 'Our office in the Madurai region. Call ahead to arrange a meeting.',
       icon: MapPin,
       details: (
         <address className="not-italic text-sm mt-2 text-brand-primary font-medium leading-relaxed">
