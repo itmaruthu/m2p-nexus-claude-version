@@ -116,7 +116,7 @@ function CaseStudyCard({ project, idx }) {
 
             {/* Key Features */}
             <div className="space-y-2">
-              <span className="text-[10px] font-bold uppercase text-brand-accent font-heading block">Key Features</span>
+              <span className="text-[10px] font-bold uppercase text-brand-accent-strong font-heading block">Key Features</span>
               <div className="grid grid-cols-2 gap-x-4 gap-y-1.5 pl-1">
                 {[
                   "Lightning-fast billing",
@@ -184,7 +184,7 @@ function CaseStudyCard({ project, idx }) {
             </Link>
             <Link
               to="/contact"
-              className="font-bold text-brand-accent hover:text-emerald-600 flex items-center gap-1"
+              className="font-bold text-brand-accent-strong hover:text-emerald-800 flex items-center gap-1"
             >
               Enquire About This Project <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1.5" />
             </Link>
@@ -584,7 +584,7 @@ export default function Portfolio() {
                 {/* Case Studies Grid */}
                 <div className="space-y-8">
                   <div className="space-y-1">
-                    <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">Case Studies</span>
+                    <span className="text-xs font-semibold text-brand-accent-strong uppercase tracking-widest font-heading">Case Studies</span>
                     <h3 className="text-xl font-bold text-brand-primary font-heading">Proven Work & Case Histories</h3>
                   </div>
 
@@ -639,7 +639,7 @@ export default function Portfolio() {
 
             {/* Case Studies Header */}
             <div className="space-y-2">
-              <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">
+              <span className="text-xs font-semibold text-brand-accent-strong uppercase tracking-widest font-heading">
                 CASE STUDIES
               </span>
               <h3 className="text-2xl md:text-3xl font-extrabold text-brand-primary font-heading">

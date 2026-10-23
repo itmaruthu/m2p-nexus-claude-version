@@ -11,7 +11,7 @@ export default function Footer() {
   if (location.pathname === '/connect') return null;
 
   return (
-    <footer className="bg-brand-primary text-slate-300 border-t border-slate-800">
+    <footer className="bg-brand-primary text-slate-300 border-t border-slate-800 pb-24 md:pb-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
           {/* Column 1: Company Info & Links */}
@@ -75,9 +75,9 @@ export default function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-2.5">
                 <Phone className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
-                <div className="flex flex-col">
+                <div className="flex flex-col -my-1.5">
                   {site.phones.map((p) => (
-                    <a key={p.tel} href={`tel:${p.tel}`} className="hover:text-white transition-colors font-medium">
+                    <a key={p.tel} href={`tel:${p.tel}`} className="inline-block py-1.5 hover:text-white transition-colors font-medium">
                       {p.display}
                     </a>
                   ))}

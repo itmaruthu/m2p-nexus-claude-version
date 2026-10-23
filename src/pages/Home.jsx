@@ -94,7 +94,7 @@ export default function Home() {
                 <p className="text-xl font-bold text-brand-secondary font-heading">
                   Modernizing Tradition. Empowering Communities. Driving Innovation.
                 </p>
-                <p className="text-lg font-bold text-brand-accent tracking-widest uppercase font-heading">
+                <p className="text-lg font-bold text-brand-accent-strong tracking-widest uppercase font-heading">
                   வேரிலிருந்து வெற்றிவரை
                 </p>
               </div>
@@ -113,7 +113,7 @@ export default function Home() {
                   href={links.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="border border-emerald-500/40 text-emerald-600 hover:bg-emerald-500/10 font-bold px-8 py-3.5 rounded-md transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
+                  className="border border-emerald-500/40 text-emerald-700 hover:bg-emerald-500/10 font-bold px-8 py-3.5 rounded-md transition-all text-center flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <WhatsAppIcon className="w-5 h-5" />
                   WhatsApp Us
@@ -219,10 +219,10 @@ export default function Home() {
               >
                 <div className="space-y-4">
                   <div className="flex justify-between items-start">
-                    <span className="text-xs font-semibold text-brand-accent bg-brand-accent/10 px-2.5 py-1 rounded-full font-heading">
+                    <span className="text-xs font-semibold text-brand-accent-strong bg-brand-accent/10 px-2.5 py-1 rounded-full font-heading">
                       {sol.industry}
                     </span>
-                    <span className="text-[10px] font-mono text-slate-400">
+                    <span className="text-[10px] font-mono text-slate-500">
                       SYS-{idx + 101}
                     </span>
                   </div>
@@ -396,7 +396,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-between items-center text-slate-400 group-hover:text-brand-secondary">
+              <div className="mt-4 flex justify-between items-center text-slate-500 group-hover:text-brand-secondary">
                 <span className="text-[9px] font-bold uppercase tracking-wider">Site Sync</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-all duration-200" />
               </div>
@@ -421,16 +421,16 @@ export default function Home() {
               {/* Interactive Mini-UI: Weighbridge ticket info */}
               <div className="mt-4 space-y-2 font-mono">
                 <div className="bg-slate-50 border border-slate-100 p-2.5 rounded-xl text-left">
-                  <div className="text-[8px] text-slate-400 uppercase">Weighbridge Log</div>
+                  <div className="text-[8px] text-slate-500 uppercase">Weighbridge Log</div>
                   <div className="text-[10px] font-bold text-slate-800 mt-0.5">NET WT: 14,240 KG</div>
                   <div className="flex justify-between items-center text-[8px] text-slate-500 mt-1">
                     <span>Grade: Coir A</span>
-                    <span className="text-emerald-600 font-bold">Verified ✓</span>
+                    <span className="text-emerald-700 font-bold">Verified ✓</span>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-between items-center text-slate-400 group-hover:text-brand-secondary">
+              <div className="mt-4 flex justify-between items-center text-slate-500 group-hover:text-brand-secondary">
                 <span className="text-[9px] font-bold uppercase tracking-wider">Trading Platform</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-all duration-200" />
               </div>
@@ -469,7 +469,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-between items-center text-slate-400 group-hover:text-brand-secondary">
+              <div className="mt-4 flex justify-between items-center text-slate-500 group-hover:text-brand-secondary">
                 <span className="text-[9px] font-bold uppercase tracking-wider">MVP Deployment</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-all duration-200" />
               </div>
@@ -499,16 +499,16 @@ export default function Home() {
                   </div>
                   <div>
                     <div className="text-[9px] font-bold text-slate-800">Maruthu P.</div>
-                    <div className="text-[8px] text-slate-400">ID #4829</div>
+                    <div className="text-[8px] text-slate-500">ID #4829</div>
                   </div>
                 </div>
                 <div className="flex justify-between items-center text-[9px] bg-slate-50 border border-slate-100 p-1 rounded-lg">
                   <span className="text-slate-600">Attendance</span>
-                  <span className="font-bold text-emerald-600">98.5% (A+)</span>
+                  <span className="font-bold text-emerald-700">98.5% (A+)</span>
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-between items-center text-slate-400 group-hover:text-brand-secondary">
+              <div className="mt-4 flex justify-between items-center text-slate-500 group-hover:text-brand-secondary">
                 <span className="text-[9px] font-bold uppercase tracking-wider">Institution Portal</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-all duration-200" />
               </div>
@@ -539,14 +539,14 @@ export default function Home() {
                   <circle cx="50" cy="10" r="3" fill="#10B981" className="animate-ping" />
                   <circle cx="50" cy="10" r="2.5" fill="#10B981" />
                 </svg>
-                <div className="flex justify-between w-full text-[8px] text-slate-400 px-1 mt-0.5">
+                <div className="flex justify-between w-full text-[8px] text-slate-500 px-1 mt-0.5">
                   <span>Start</span>
                   <span className="text-brand-secondary font-bold">Transit</span>
                   <span>End</span>
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-between items-center text-slate-400 group-hover:text-brand-secondary">
+              <div className="mt-4 flex justify-between items-center text-slate-500 group-hover:text-brand-secondary">
                 <span className="text-[9px] font-bold uppercase tracking-wider">Fleet Tracking</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-all duration-200" />
               </div>
@@ -573,14 +573,14 @@ export default function Home() {
                 <div className="bg-slate-50 border border-slate-100 rounded-xl p-3 flex-1 flex flex-col justify-between font-mono text-[9px] text-slate-600 w-full sm:max-w-[240px] shrink-0 self-center">
                   <div className="flex justify-between border-b border-dashed border-slate-200 pb-1 mb-1">
                     <span className="font-bold text-slate-800 text-[8px]">விற்பனை சீட்டு / GST</span>
-                    <span className="text-slate-400">#8842</span>
+                    <span className="text-slate-500">#8842</span>
                   </div>
                   <div className="space-y-0.5">
                     <div className="flex justify-between">
                       <span>Rods / கம்பி</span>
                       <span className="font-semibold">₹14,500</span>
                     </div>
-                    <div className="flex justify-between text-[8px] text-slate-400">
+                    <div className="flex justify-between text-[8px] text-slate-500">
                       <span>GST @ 18%</span>
                       <span>₹2,610</span>
                     </div>
@@ -592,7 +592,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mt-4 flex justify-between items-center text-slate-400 group-hover:text-brand-secondary">
+              <div className="mt-4 flex justify-between items-center text-slate-500 group-hover:text-brand-secondary">
                 <span className="text-[9px] font-bold uppercase tracking-wider">POS Systems</span>
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-all duration-200" />
               </div>
@@ -644,7 +644,7 @@ export default function Home() {
               </div>
 
               {/* Bottom indicators absolute-like layout or footer */}
-              <div className="lg:hidden w-full flex justify-between items-center text-slate-400 border-t border-slate-100 pt-4 mt-2">
+              <div className="lg:hidden w-full flex justify-between items-center text-slate-500 border-t border-slate-100 pt-4 mt-2">
                 <span className="text-[9px] font-bold uppercase tracking-wider">Digital Transformation</span>
                 <ChevronRight className="w-4 h-4" />
               </div>

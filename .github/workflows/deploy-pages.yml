@@ -37,6 +37,7 @@ jobs:
       - run: npm run build
         env:
           VITE_BASE: ${{ steps.pages.outputs.base_path }}/
+          VITE_SITE_URL: ${{ steps.pages.outputs.base_url }}
 
       # Single-page app: GitHub Pages serves 404.html for unknown paths, so deep links such as
       # /about load the app and React Router renders the right page (or the app's own 404).

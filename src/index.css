@@ -5,6 +5,8 @@
   --color-brand-primary: #0F172A;
   --color-brand-secondary: #1E3A8A;
   --color-brand-accent: #10B981;
+  /* Accent for text on light backgrounds: #10B981 on white is only ~2.5:1, this is ~5.5:1 (WCAG AA). */
+  --color-brand-accent-strong: #047857;
   --color-brand-bg: #FFFFFF;
   --color-brand-section: #F8FAFC;
   --color-brand-text: #1E293B;

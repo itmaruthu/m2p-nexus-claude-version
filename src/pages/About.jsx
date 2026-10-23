@@ -94,7 +94,7 @@ export default function About() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-left">
               <div className="space-y-2">
-                <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">Who We Are</span>
+                <span className="text-xs font-semibold text-brand-accent-strong uppercase tracking-widest font-heading">Who We Are</span>
                 <h2 className="text-3xl font-extrabold text-brand-primary font-heading">
                   Empowering Regional Businesses with Corporate-Grade Software
                 </h2>
@@ -116,7 +116,7 @@ export default function About() {
                 Many traditional businesses operate on fragmented paper trails, vulnerable spreadsheets, and manual tracking systems. Our purpose is to engineer intuitive, localized, and resilient cloud systems that allow traditional business leaders to govern their operations transparently, optimize costs, and scale into new markets.
               </p>
               <div className="border-t border-brand-border pt-4">
-                <span className="font-heading font-bold text-brand-accent tracking-widest uppercase text-xs">
+                <span className="font-heading font-bold text-brand-accent-strong tracking-widest uppercase text-xs">
                   வேரிலிருந்து வெற்றிவரை
                 </span>
               </div>
@@ -172,7 +172,7 @@ export default function About() {
               const Icon = val.icon;
               return (
                 <div key={idx} className="bg-brand-section border border-brand-border p-6 rounded-lg space-y-4">
-                  <div className="w-10 h-10 bg-white border border-brand-border rounded flex items-center justify-center text-brand-accent">
+                  <div className="w-10 h-10 bg-white border border-brand-border rounded flex items-center justify-center text-brand-accent-strong">
                     <Icon className="w-5 h-5" />
                   </div>
                   <h3 className="text-lg font-bold text-brand-primary font-heading">{val.title}</h3>
@@ -228,7 +228,7 @@ export default function About() {
       <section className="py-16 md:py-24 bg-white border-b border-brand-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-12">
           <div className="space-y-4 max-w-3xl mx-auto">
-            <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">Our Focus</span>
+            <span className="text-xs font-semibold text-brand-accent-strong uppercase tracking-widest font-heading">Our Focus</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading">
               Operational Challenges We Solve
             </h2>

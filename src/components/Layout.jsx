@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
 import FloatingWhatsApp from './FloatingWhatsApp';
-import MobileCallButton from './MobileCallButton';
+import MobileContactBar from './MobileContactBar';
 
 export default function Layout({ children }) {
   const { pathname } = useLocation();
@@ -21,7 +21,7 @@ export default function Layout({ children }) {
       </main>
       <Footer />
       <FloatingWhatsApp />
-      <MobileCallButton />
+      <MobileContactBar />
     </div>
   );
 }

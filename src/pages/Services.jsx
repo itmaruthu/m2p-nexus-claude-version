@@ -157,9 +157,9 @@ export default function Services() {
                         <div className="w-12 h-12 bg-white border border-brand-border rounded flex items-center justify-center text-brand-secondary shadow-xs">
                           <Icon className="w-6 h-6" />
                         </div>
-                        <h4 className="text-lg font-bold text-brand-primary font-heading">
+                        <h3 className="text-lg font-bold text-brand-primary font-heading">
                           {service.leftCard.title}
-                        </h4>
+                        </h3>
                         <p className="text-sm text-brand-text leading-relaxed">
                           {service.leftCard.description}
                         </p>
@@ -197,9 +197,9 @@ export default function Services() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
                       {/* Benefits */}
                       <div className="space-y-3">
-                        <h4 className="text-sm font-bold uppercase text-brand-secondary tracking-wider font-heading">
+                        <h3 className="text-sm font-bold uppercase text-brand-secondary tracking-wider font-heading">
                           Key Capabilities
-                        </h4>
+                        </h3>
                         <ul className="space-y-2 text-sm text-brand-text">
                           {service.benefits.map((benefit, i) => (
                             <li key={i} className="flex items-start gap-2">
@@ -212,10 +212,10 @@ export default function Services() {
 
                       {/* Outcomes */}
                       <div className="space-y-3 bg-brand-section border border-brand-border p-4 rounded-lg">
-                        <h4 className="text-sm font-bold uppercase text-brand-primary tracking-wider font-heading flex items-center gap-1.5">
+                        <h3 className="text-sm font-bold uppercase text-brand-primary tracking-wider font-heading flex items-center gap-1.5">
                           <Target className="w-4 h-4 text-brand-accent" />
                           Target Outcomes
-                        </h4>
+                        </h3>
                         <ul className="space-y-2.5 text-xs font-medium text-brand-primary">
                           {service.outcomes.map((outcome, i) => (
                             <li key={i} className="flex items-start gap-2">

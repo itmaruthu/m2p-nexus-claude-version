@@ -343,7 +343,7 @@ export default function Industries() {
                 >
                   {/* Column 1: Industry */}
                   <div className="lg:col-span-2 md:col-span-2 space-y-1">
-                    <span className="font-mono text-[10px] text-slate-400 font-semibold tracking-wider block leading-none mb-1">
+                    <span className="font-mono text-[10px] text-slate-500 font-semibold tracking-wider block leading-none mb-1">
                       {ind.index} /
                     </span>
                     <h3 className="text-lg font-bold text-brand-primary tracking-tight font-heading uppercase">
@@ -353,7 +353,7 @@ export default function Industries() {
 
                   {/* Column 2: Challenge */}
                   <div className="lg:col-span-3 space-y-2">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-heading block">
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-heading block">
                       Challenge
                     </span>
                     <p className="text-slate-600 text-sm font-light leading-relaxed">
@@ -373,7 +373,7 @@ export default function Industries() {
 
                   {/* Column 4: Business Impact */}
                   <div className="lg:col-span-2 space-y-2">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest font-heading block">
+                    <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest font-heading block">
                       Business Impact
                     </span>
                     <p className="text-slate-600 text-sm font-light leading-relaxed">
@@ -386,7 +386,7 @@ export default function Industries() {
                     <div className="text-4xl md:text-5xl font-extralight text-brand-secondary tracking-tight font-heading leading-none">
                       {ind.metricValue}
                     </div>
-                    <span className="text-[9px] font-bold text-slate-400 uppercase tracking-wider block">
+                    <span className="text-[9px] font-bold text-slate-500 uppercase tracking-wider block">
                       {ind.metricLabel}
                     </span>
                   </div>
@@ -403,7 +403,7 @@ export default function Industries() {
       <section aria-roledescription="carousel" aria-label="Client testimonials" className="py-16 md:py-24 bg-brand-section border-b border-brand-border overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">Testimonials</span>
+            <span className="text-xs font-semibold text-brand-accent-strong uppercase tracking-widest font-heading">Testimonials</span>
             <h2 className="text-3xl md:text-4xl font-extrabold text-brand-primary font-heading">
               Feedback from Business Owners
             </h2>

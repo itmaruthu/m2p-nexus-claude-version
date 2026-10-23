@@ -21,7 +21,8 @@ export default function App() {
       {/* basename keeps routes working when the site is served from a sub-path (GitHub Pages). */}
       <Router basename={import.meta.env.BASE_URL}>
         <Layout>
-          <Suspense fallback={<div className="min-h-[60vh]" aria-busy="true" />}>
+          {/* Full-height placeholder keeps the footer below the fold while a page chunk loads (no layout shift). */}
+          <Suspense fallback={<div className="min-h-screen" aria-busy="true" />}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/about" element={<About />} />

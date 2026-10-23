@@ -189,15 +189,15 @@ export default function Founder() {
                         <div className="w-12 h-12 rounded-xl bg-white border border-brand-border flex items-center justify-center text-brand-secondary shadow-xs group-hover:bg-brand-secondary transition-colors">
                           <Icon className="w-5 h-5 text-brand-accent" />
                         </div>
-                        <span className="text-xs font-bold font-mono text-slate-400 bg-white border border-brand-border px-2.5 py-0.5 rounded-full">
+                        <span className="text-xs font-bold font-mono text-slate-500 bg-white border border-brand-border px-2.5 py-0.5 rounded-full">
                           {pt.year}
                         </span>
                       </div>
 
                       <div className="space-y-2">
-                        <h4 className="font-extrabold text-brand-primary text-base font-heading leading-snug">
+                        <h3 className="font-extrabold text-brand-primary text-base font-heading leading-snug">
                           {pt.title}
-                        </h4>
+                        </h3>
                         <p className="text-xs text-brand-text leading-relaxed">
                           {pt.summary}
                         </p>
@@ -230,7 +230,7 @@ export default function Founder() {
       <section className="py-16 md:py-24 bg-brand-section border-b border-brand-border text-center">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="space-y-4 max-w-3xl mx-auto">
-            <span className="text-xs font-semibold text-brand-accent uppercase tracking-widest font-heading">Spotlight</span>
+            <span className="text-xs font-semibold text-brand-accent-strong uppercase tracking-widest font-heading">Spotlight</span>
             <h2 className="text-3xl font-extrabold text-brand-primary font-heading">
               Our Founding Leadership
             </h2>
@@ -267,7 +267,7 @@ export default function Founder() {
                     <h3 className="text-2xl font-extrabold text-brand-primary font-heading">
                       Maruthu Pandi PT
                     </h3>
-                    <p className="text-xs text-brand-accent font-semibold tracking-wider uppercase font-heading">
+                    <p className="text-xs text-brand-accent-strong font-semibold tracking-wider uppercase font-heading">
                       Founder & Director
                     </p>
                     <p className="text-xs text-brand-text font-medium pt-2 max-w-sm leading-relaxed">
@@ -278,7 +278,7 @@ export default function Founder() {
 
                 {/* Checkmarked Badges */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-heading">Focus Areas</h4>
+                  <h4 className="text-[11px] font-bold uppercase text-slate-500 tracking-wider font-heading">Focus Areas</h4>
                   <div className="flex flex-wrap gap-2">
                     {[
                       '14+ Years Experience',
@@ -298,7 +298,7 @@ export default function Founder() {
 
                 {/* Experience Bullet Highlights */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-heading">Experience Highlights</h4>
+                  <h4 className="text-[11px] font-bold uppercase text-slate-500 tracking-wider font-heading">Experience Highlights</h4>
                   <ul className="grid grid-cols-2 gap-3 text-xs font-semibold text-brand-primary">
                     {[
                       'Enterprise Software Development',
@@ -378,7 +378,7 @@ export default function Founder() {
                     <h3 className="text-2xl font-extrabold text-brand-primary font-heading">
                       Priyanka M
                     </h3>
-                    <p className="text-xs text-brand-accent font-semibold tracking-wider uppercase font-heading">
+                    <p className="text-xs text-brand-accent-strong font-semibold tracking-wider uppercase font-heading">
                       Co-Founder
                     </p>
                     <p className="text-xs text-brand-text font-medium pt-2 max-w-sm leading-relaxed">
@@ -389,7 +389,7 @@ export default function Founder() {
 
                 {/* Checkmarked Badges */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-heading">Focus Areas</h4>
+                  <h4 className="text-[11px] font-bold uppercase text-slate-500 tracking-wider font-heading">Focus Areas</h4>
                   <div className="flex flex-wrap gap-2">
                     {[
                       'Talent Acquisition',
@@ -409,7 +409,7 @@ export default function Founder() {
 
                 {/* Experience Bullet Highlights */}
                 <div className="space-y-3">
-                  <h4 className="text-[11px] font-bold uppercase text-slate-400 tracking-wider font-heading">Experience Highlights</h4>
+                  <h4 className="text-[11px] font-bold uppercase text-slate-500 tracking-wider font-heading">Experience Highlights</h4>
                   <ul className="grid grid-cols-2 gap-3 text-xs font-semibold text-brand-primary">
                     {[
                       'Recruitment Strategy',
@@ -479,7 +479,7 @@ export default function Founder() {
                 M2P Nexus was founded on the belief that business success requires more than technology alone. By combining deep technical expertise with talent and workforce solutions, we help organizations build stronger foundations for long-term growth.
               </p>
               <div className="border-t border-brand-border pt-4">
-                <span className="font-heading font-bold text-brand-accent tracking-widest uppercase text-xs">
+                <span className="font-heading font-bold text-brand-accent-strong tracking-widest uppercase text-xs">
                   வேரிலிருந்து வெற்றிவரை
                 </span>
               </div>
@@ -499,7 +499,7 @@ export default function Founder() {
                   <span className="text-xs font-bold font-heading text-brand-primary mt-2">Technology</span>
                 </div>
 
-                <div className="text-brand-accent font-bold text-xl select-none shrink-0">+</div>
+                <div className="text-brand-accent-strong font-bold text-xl select-none shrink-0">+</div>
 
                 {/* Node 2: People */}
                 <div className="flex flex-col items-center">
@@ -509,7 +509,7 @@ export default function Founder() {
                   <span className="text-xs font-bold font-heading text-brand-primary mt-2">People</span>
                 </div>
 
-                <div className="text-brand-accent font-bold text-xl select-none shrink-0">+</div>
+                <div className="text-brand-accent-strong font-bold text-xl select-none shrink-0">+</div>
 
                 {/* Node 3: Growth */}
                 <div className="flex flex-col items-center">
@@ -523,7 +523,7 @@ export default function Founder() {
               {/* Connections indicator */}
               <div className="w-full flex justify-center items-center py-6">
                 <div className="h-0.5 w-16 bg-brand-accent animate-pulse"></div>
-                <div className="text-xs font-extrabold text-brand-accent tracking-widest uppercase font-heading px-2">Equals</div>
+                <div className="text-xs font-extrabold text-brand-accent-strong tracking-widest uppercase font-heading px-2">Equals</div>
                 <div className="h-0.5 w-16 bg-brand-accent animate-pulse"></div>
               </div>
 
