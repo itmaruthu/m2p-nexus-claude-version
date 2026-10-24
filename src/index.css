@@ -108,6 +108,21 @@
   }
 }
 
+/* Footer wordmark: faint by default; a marigold light follows the pointer across the letters (useSpotlight
+   sets --spot-x/--spot-y on .mark-spot). The light starts off-screen, so touch screens see the base fade. */
+.mark-spot {
+  --spot-x: -999px;
+  --spot-y: -999px;
+}
+.footer-mark {
+  color: transparent;
+  background-image:
+    radial-gradient(340px circle at var(--spot-x) var(--spot-y), #f2a900 0%, rgba(242, 169, 0, 0.45) 35%, transparent 70%),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.03) 85%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 /* "Ask M2P Nexus" prompt: a slowly turning brand-colour orb and a blinking caret. */
 @keyframes orb-turn {
   to {
