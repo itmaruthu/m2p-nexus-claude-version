@@ -29,4 +29,6 @@ jobs:
             --data-urlencode 'page=/setup-test' \
             "$URL"
           echo "--- status and CORS headers"; grep -iE '^HTTP/|access-control-allow-origin|content-type' headers.txt
-          echo "--- body"; head -c 400 body.txt; echo
+          echo "--- redirects"; grep -iE '^location' headers.txt | sed 's/?.*//' || true
+          echo "--- page title"; grep -o '<title>[^<]*</title>' body.txt || true
+          echo "--- visible text"; sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<style[^>]*>.*<\/style>//g' -e 's/<[^>]*>/ /g' body.txt | tr -s ' \n' | head -c 600; echo
