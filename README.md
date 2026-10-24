@@ -77,3 +77,23 @@ Visitors get real HTML immediately (faster first paint, better SEO and link prev
   with ffmpeg and commits them here.
 
 Scenes: paper bills, five vendors, roots becoming one connected system, the M2P Nexus tagline.
+
+## Consultation form
+
+Every "Book a consultation" button opens a short form (a dialog; the same form is inline on
+`/contact/#book`). Each submission is added as a row to a Google Sheet, with Status, Follow-up date,
+Owner and Notes columns for follow-ups (File > Download > Microsoft Excel gives an .xlsx copy), and is
+emailed to hello@m2pnexus.com. Until the endpoint below is set, the form opens WhatsApp with the
+visitor's details written out instead, so no enquiry is lost.
+
+One-time setup (about 5 minutes, in the Google account that should own the leads):
+
+1. Create a Google Sheet, e.g. "M2P Nexus: consultation requests".
+2. Extensions > Apps Script. Replace the code with `docs/consultation-apps-script.gs` and save.
+3. Choose the `setup` function and press Run (approve the permissions). This creates the "Enquiries" tab.
+4. Deploy > New deployment > Web app. Execute as: **Me**. Who has access: **Anyone**. Copy the web app URL.
+5. In GitHub: Settings > Secrets and variables > Actions > Variables > New repository variable
+   `CONSULT_ENDPOINT` = that URL. Re-run the "Deploy to GitHub Pages" workflow.
+
+Spam protection: a hidden honeypot field and a minimum time on the form; the script also caps field
+lengths and neutralises spreadsheet formulas. Change `NOTIFY_TO` in the script to email someone else.

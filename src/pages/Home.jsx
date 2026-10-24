@@ -8,6 +8,7 @@ import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
 import { CallIcon } from '../components/CallIcon';
+import BookButton from '../components/consultation/BookButton';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
 
 // Content follows the M2P Nexus brand guide: problem first, plain language, one partner instead of five
@@ -93,12 +94,7 @@ export default function Home() {
                 Chat with us on WhatsApp
                 <span className="sr-only">(opens in a new tab)</span>
               </a>
-              <Link
-                to="/contact"
-                className={outlineButton}
-              >
-                Book a consultation
-              </Link>
+              <BookButton className={outlineButton} />
             </div>
             <p className="flex items-center gap-3 text-body">
               Or call us

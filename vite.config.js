@@ -19,10 +19,12 @@ const csp = [
   "style-src-attr 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  "connect-src 'self'",
+  // The "Book a consultation" form posts to a Google Apps Script web app (script.google.com, which
+  // redirects the response to script.googleusercontent.com).
+  "connect-src 'self' https://script.google.com https://script.googleusercontent.com",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://script.google.com",
   'upgrade-insecure-requests',
 ].join('; ')
 

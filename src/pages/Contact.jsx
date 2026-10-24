@@ -1,6 +1,7 @@
 import Seo from '../components/Seo';
 import { Link } from 'react-router-dom';
 import ChatDemo from '../components/ChatDemo';
+import ConsultationForm from '../components/consultation/ConsultationForm';
 import { CallIcon, WhatsAppIconLink } from '../components/CallIcon';
 import { links, site } from '../config/site';
 import { WhatsAppIcon } from '../components/icons';
@@ -58,6 +59,23 @@ export default function Contact() {
             <div className="lg:col-span-5">
               <ChatDemo />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Book a consultation: the same form as the header dialog, inline. Target of every "Book" link. */}
+      <section id="book" aria-labelledby="book-title" className="scroll-mt-24 border-b border-rule bg-white">
+        <div className={`${sectionPad} grid gap-12 lg:grid-cols-12`}>
+          <div className="lg:col-span-4 space-y-4">
+            <h2 id="book-title" className={h2Class}>
+              Book a consultation
+            </h2>
+            <p className="text-lg text-body leading-relaxed">
+              Tell us a little about your business. We&rsquo;ll come back with questions and a sensible first step.
+            </p>
+          </div>
+          <div className="lg:col-span-8 rounded-3xl bg-[#F8FAFD] p-5 ring-1 ring-rule sm:p-8">
+            <ConsultationForm />
           </div>
         </div>
       </section>

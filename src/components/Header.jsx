@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import m2pLogo from '../assets/m2p_nexus_logo.webp';
 import { links } from '../config/site';
 import { WhatsAppIcon } from './icons';
+import BookButton from './consultation/BookButton';
 import { useIsConnectPage } from './useIsConnectPage';
 
 const navLinks = [
@@ -128,12 +129,7 @@ export default function Header() {
               <WhatsAppIcon />
               WhatsApp Us
             </a>
-            <Link
-              to="/contact"
-              className="text-sm font-semibold bg-brand-secondary text-white hover:bg-brand-primary px-4 py-2.5 rounded-md transition-all shadow-sm hover:shadow-md flex items-center gap-1"
-            >
-              Book a consultation
-            </Link>
+            <BookButton className="text-sm font-semibold bg-brand-secondary text-white hover:bg-brand-primary px-4 py-2.5 rounded-md transition-all shadow-sm hover:shadow-md flex items-center gap-1" />
           </div>
 
           {/* Hamburger Menu Icon (Mobile/Tablet) */}
@@ -219,13 +215,10 @@ export default function Header() {
                 <WhatsAppIcon />
                 WhatsApp Us
               </a>
-              <Link
-                to="/contact"
-                onClick={closeMenu}
+              <BookButton
+                onOpen={closeMenu}
                 className="w-full py-3 bg-brand-secondary text-white rounded-md font-semibold text-sm shadow hover:bg-brand-primary transition-colors flex items-center justify-center gap-1.5"
-              >
-                Book a consultation
-              </Link>
+              />
             </div>
           </div>
         </div>,

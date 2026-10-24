@@ -38,6 +38,8 @@ jobs:
         env:
           VITE_BASE: ${{ steps.pages.outputs.base_path }}/
           VITE_SITE_URL: ${{ steps.pages.outputs.base_url }}
+          # Google Apps Script web app URL for the consultation form (Settings > Variables > Actions)
+          VITE_CONSULT_ENDPOINT: ${{ vars.CONSULT_ENDPOINT }}
 
       # Every page is pre-rendered to its own folder (about/index.html, ...) plus 404.html, so GitHub
       # Pages serves real HTML for each URL. .nojekyll stops Pages from post-processing the files.
