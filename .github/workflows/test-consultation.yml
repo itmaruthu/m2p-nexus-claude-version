@@ -31,4 +31,4 @@ jobs:
           echo "--- status and CORS headers"; grep -iE '^HTTP/|access-control-allow-origin|content-type' headers.txt
           echo "--- redirects"; grep -iE '^location' headers.txt | sed 's/?.*//' || true
           echo "--- page title"; grep -o '<title>[^<]*</title>' body.txt || true
-          echo "--- visible text"; sed -e 's/<script[^>]*>.*<\/script>//g' -e 's/<style[^>]*>.*<\/style>//g' -e 's/<[^>]*>/ /g' body.txt | tr -s ' \n' | head -c 600; echo
+          echo "--- script error"; grep -oE '(TypeError|ReferenceError|SyntaxError|Exception|Error:)[^<]{0,240}' body.txt | head -5 || true
