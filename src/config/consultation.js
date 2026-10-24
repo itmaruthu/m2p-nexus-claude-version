@@ -1,10 +1,12 @@
 import { industries } from './industries';
 
 // "Book a consultation" form. Submissions go to a Google Apps Script web app (docs/consultation-apps-script.gs)
-// that appends a row to the follow-up sheet and emails the team. Set the web app URL at build time with
-// VITE_CONSULT_ENDPOINT (the Pages workflow reads the CONSULT_ENDPOINT repository variable). Until it is
-// set, the form hands the details to WhatsApp instead, so no enquiry is lost.
-export const consultEndpoint = import.meta.env.VITE_CONSULT_ENDPOINT || '';
+// that appends a row to the follow-up sheet and emails the team. If sending fails, the form offers to hand
+// the details to WhatsApp instead, so no enquiry is lost.
+// Public by nature: browsers post to it. VITE_CONSULT_ENDPOINT overrides it (e.g. for a test sheet).
+const DEFAULT_ENDPOINT =
+  'https://script.google.com/macros/s/AKfycbyOD5-xgjDQchGJfX9HkxTOPo3ycJcv7nk1Po0BglEQxUZtasQCbZf0Ms2fic4vX79RIQ/exec';
+export const consultEndpoint = import.meta.env.VITE_CONSULT_ENDPOINT || DEFAULT_ENDPOINT;
 
 export const needOptions = [
   'Billing or business software',
