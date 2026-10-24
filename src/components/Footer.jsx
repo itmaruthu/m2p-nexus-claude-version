@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin, ExternalLink } from 'lucide-react';
+import { Mail, MapPin, ExternalLink } from 'lucide-react';
+import { CallIcon, WhatsAppIconLink } from './CallIcon';
 import m2pLogo from '../assets/m2p_nexus_logo.webp';
 import { links, site } from '../config/site';
 import { LinkedinIcon } from './icons';
@@ -66,15 +67,10 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-heading font-semibold text-base mb-4">Contact details</h3>
             <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-2.5">
-                <Phone className="w-5 h-5 text-brand-accent shrink-0 mt-0.5" />
-                <div className="flex flex-col -my-1.5">
-                  {site.phones.map((p) => (
-                    <a key={p.tel} href={`tel:${p.tel}`} className="inline-block py-1.5 hover:text-white transition-colors font-medium">
-                      {p.display}
-                    </a>
-                  ))}
-                </div>
+              <li className="flex items-center gap-3">
+                <CallIcon line={0} tone="dark" />
+                <CallIcon line={1} tone="dark" />
+                <WhatsAppIconLink href={links.whatsapp} tone="dark" />
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-5 h-5 text-brand-accent shrink-0" />

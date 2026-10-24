@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
-import { links, site } from '../config/site';
+import { links } from '../config/site';
 import { clients } from '../config/clients';
 import { WhatsAppIcon } from '../components/icons';
 import ClosingCta from '../components/ClosingCta';
 import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
+import { CallIcon } from '../components/CallIcon';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
 
 // Content follows the M2P Nexus brand guide: problem first, plain language, one partner instead of five
@@ -99,11 +100,9 @@ export default function Home() {
                 Book a consultation
               </Link>
             </div>
-            <p className="text-body">
-              Or call{' '}
-              <a href={links.call} className={textLink}>
-                {site.phones[0].display}
-              </a>
+            <p className="flex items-center gap-3 text-body">
+              Or call us
+              <CallIcon />
             </p>
           </div>
 

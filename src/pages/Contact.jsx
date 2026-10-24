@@ -1,9 +1,10 @@
 import Seo from '../components/Seo';
 import { Link } from 'react-router-dom';
 import ChatDemo from '../components/ChatDemo';
+import { CallIcon, WhatsAppIconLink } from '../components/CallIcon';
 import { links, site } from '../config/site';
 import { WhatsAppIcon } from '../components/icons';
-import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
+import { h2Class, sectionPad, textLink, whatsappButton } from '../components/styles';
 
 const NEW_TAB = <span className="sr-only"> (opens in a new tab)</span>;
 
@@ -18,7 +19,7 @@ export default function Contact() {
     <>
       <Seo
         title="Contact M2P Nexus: WhatsApp, Phone & Email"
-        description="Talk to M2P Nexus in Madurai. WhatsApp or call +91 99442 83316, email hello@m2pnexus.com. You speak directly with our team, no forms."
+        description="Talk to M2P Nexus in Madurai on WhatsApp, by phone or by email at hello@m2pnexus.com. You speak directly with our team, in Tamil or English, with no forms."
       />
 
 <section className="relative bg-white border-b border-rule overflow-hidden">
@@ -45,15 +46,13 @@ export default function Contact() {
               <p className="text-lg sm:text-xl text-body leading-relaxed max-w-xl">
                 Message, call or email. You&rsquo;ll speak directly with our team, in Tamil or English, with no forms and no call centre.
               </p>
-              <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex items-center gap-3">
                 <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" className={whatsappButton}>
                   <WhatsAppIcon className="w-5 h-5" />
                   Chat with us on WhatsApp
                   {NEW_TAB}
                 </a>
-                <a href={links.call} className={outlineButton}>
-                  Call {site.phones[0].display}
-                </a>
+                <CallIcon />
               </div>
             </div>
             <div className="lg:col-span-5">
@@ -70,23 +69,15 @@ export default function Contact() {
             <dl className="divide-y divide-rule border-y-2 border-ink">
               <div className="grid gap-1 py-5 sm:grid-cols-3">
                 <dt className="font-heading font-semibold text-ink">Phone</dt>
-                <dd className="sm:col-span-2 space-y-1">
-                  {site.phones.map((p) => (
-                    <p key={p.tel}>
-                      <a href={`tel:${p.tel}`} className={textLink}>
-                        {p.display}
-                      </a>
-                    </p>
-                  ))}
+                <dd className="sm:col-span-2 flex gap-3">
+                  <CallIcon line={0} />
+                  <CallIcon line={1} />
                 </dd>
               </div>
               <div className="grid gap-1 py-5 sm:grid-cols-3">
                 <dt className="font-heading font-semibold text-ink">WhatsApp</dt>
                 <dd className="sm:col-span-2">
-                  <a href={links.whatsapp} target="_blank" rel="noopener noreferrer" className={textLink}>
-                    {site.phones[0].display}
-                    {NEW_TAB}
-                  </a>
+                  <WhatsAppIconLink href={links.whatsapp} />
                 </dd>
               </div>
               <div className="grid gap-1 py-5 sm:grid-cols-3">

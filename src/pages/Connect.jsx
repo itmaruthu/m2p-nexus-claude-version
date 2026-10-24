@@ -68,7 +68,6 @@ export default function Connect() {
                 <Phone className="w-4 h-4 text-brand-accent" />
                 <span>Call Now</span>
               </div>
-              <span className="text-xs text-slate-300 font-mono font-medium">{site.phones[0].display}</span>
             </a>
 
             {/* WhatsApp */}

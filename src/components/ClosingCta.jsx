@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
-import { links, site, waLink } from '../config/site';
+import { waLink } from '../config/site';
+import { CallIcon } from './CallIcon';
 import { WhatsAppIcon } from './icons';
 import useSpotlight from './useSpotlight';
 
@@ -57,11 +58,9 @@ export default function ClosingCta({
         <div className="lg:col-span-6 space-y-5">
           <h2 className="font-display font-extrabold text-4xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">{title}</h2>
           <p className="text-lg text-slate-300 leading-relaxed max-w-xl">{text}</p>
-          <p className="text-slate-300">
-            Prefer to talk?{' '}
-            <a href={links.call} className="font-semibold text-white underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-white">
-              Call {site.phones[0].display}
-            </a>
+          <p className="flex items-center gap-3 text-slate-300">
+            Prefer to talk?
+            <CallIcon tone="dark" />
           </p>
         </div>
 

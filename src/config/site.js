@@ -7,8 +7,8 @@ export const site = {
   email: 'hello@m2pnexus.com',
   whatsapp: '919944283316',
   phones: [
-    { tel: '+919944283316', display: '+91 99442 83316', label: 'Primary' },
-    { tel: '+916380465605', display: '+91 63804 65605', label: 'Secondary' },
+    { tel: '+919944283316', label: 'Primary' },
+    { tel: '+916380465605', label: 'Secondary' },
   ],
   linkedin: 'https://www.linkedin.com/company/m2p-nexus/',
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=Sithalangudi%2C%20Madurai%2C%20Tamil%20Nadu',
