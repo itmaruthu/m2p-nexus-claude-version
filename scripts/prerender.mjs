@@ -1,7 +1,7 @@
 // Pre-renders every route to static HTML after `vite build` (client) and `vite build --ssr` (renderer).
 // Each page then has real content and its own <title>/description/canonical before any JavaScript runs,
 // which helps load speed, search engines and link previews (WhatsApp, LinkedIn).
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { routes, unlistedRoutes } from '../src/config/routes.js'
@@ -14,6 +14,14 @@ const siteUrl = (process.env.VITE_SITE_URL || 'https://m2pnexus.com').replace(/\
 const { render } = await import(pathToFileURL(ssrEntry).href)
 const template = await readFile(path.join(dist, 'index.html'), 'utf8')
 
+// Tamil pages: preload the Tamil subsets of the body (400) and headline (700) fonts, so the large Tamil
+// headline does not re-wrap (and shift the page) when the web font arrives.
+const assets = await readdir(path.join(dist, 'assets'))
+const tamilFonts = ['hind-madurai-tamil-400-normal', 'hind-madurai-tamil-700-normal']
+  .map((name) => assets.find((f) => f.startsWith(name) && f.endsWith('.woff2')))
+  .filter(Boolean)
+  .map((f) => `<link rel="preload" as="font" type="font/woff2" href="${base}/assets/${f}" crossorigin />`)
+
 const escapeHtml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
 
@@ -24,8 +32,13 @@ function page(appHtml, seo, canonical) {
     canonical && `<meta property="og:url" content="${canonical}" />`,
     canonical && `<link rel="canonical" href="${canonical}" />`,
     seo.noindex && '<meta name="robots" content="noindex" />',
+    ...(seo.lang === 'ta' ? tamilFonts : []),
+    ...(canonical ? seo.alternates : []).map(
+      (a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${siteUrl}${a.path}" />`,
+    ),
   ].filter(Boolean)
   const out = template
+    .replace('<html lang="en">', `<html lang="${seo.lang}">`)
     .replace(/<title>.*?<\/title>/s, `<title>${escapeHtml(seo.title)}</title>`)
     .replace(/<meta name="description" content=".*?"\s*\/?>/s, `<meta name="description" content="${escapeHtml(seo.description)}" />`)
     .replace('</head>', `    ${head.join('\n    ')}\n  </head>`)

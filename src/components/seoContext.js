@@ -10,11 +10,17 @@ const DEFAULT_DESCRIPTION =
  */
 export const SeoContext = createContext(null);
 
-export function seoTags({ title, description, noindex }) {
+/**
+ * `lang` is the page language (written to <html lang>). `alternates` lists the same page in other
+ * languages as { hreflang, path } (paths without the site base, e.g. '/ta/'), written as hreflang links.
+ */
+export function seoTags({ title, description, noindex, lang = 'en', alternates = [] }) {
   return {
     title: `${title} | ${SITE_NAME} - From Root to Success`,
     ogTitle: `${title} | ${SITE_NAME}`,
     description: description || DEFAULT_DESCRIPTION,
     noindex: Boolean(noindex),
+    lang,
+    alternates,
   };
 }

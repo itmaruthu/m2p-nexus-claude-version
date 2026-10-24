@@ -100,3 +100,14 @@ One-time setup (about 5 minutes, in the Google account that should own the leads
 
 Spam protection: a hidden honeypot field and a minimum time on the form; the script also caps field
 lengths and neutralises spreadsheet formulas. Change `NOTIFY_TO` in the script to email someone else.
+
+## Starter packs and the Tamil page
+
+- **Starter packs** ("Start small" on Home): edit names, inclusions and typical times in
+  `src/config/starters.js` (English and Tamil side by side). Each "Book this starter" button opens the
+  consultation form with that service ticked, so the lead arrives tagged in the sheet.
+- **Tamil** (`/ta/`): a Tamil landing page with a Tamil consultation form and closing band; the header
+  switches between English and தமிழ். Form options are shown in Tamil but saved in English, and the
+  Page column reads `/ta/`, so those leads can be answered in Tamil. Tamil strings live in
+  `src/pages/Tamil.jsx`, `src/config/starters.js` and `src/config/consultation.js` (`formText.ta`).
+  Have a native speaker review any copy changes.

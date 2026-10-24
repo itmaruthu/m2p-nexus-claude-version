@@ -1,7 +1,9 @@
 import { useCallback, useMemo, useRef, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { ConsultationContext } from './consultationContext';
 import ConsultationForm from './ConsultationForm';
+import { formText } from '../../config/consultation';
 
 /**
  * Hosts the "Book a consultation" dialog for the whole site. Uses the native <dialog> element: showModal()
@@ -11,14 +13,20 @@ import ConsultationForm from './ConsultationForm';
 export default function ConsultationProvider({ children }) {
   const ref = useRef(null);
   const [round, setRound] = useState(0);
+  const [preset, setPreset] = useState(null);
+  // Tamil pages (/ta/...) get the Tamil dialog.
+  const { pathname } = useLocation();
+  const lang = /\/ta(\/|$)/.test(pathname) ? 'ta' : 'en';
+  const t = formText[lang];
 
-  const open = useCallback(() => {
+  const open = useCallback((nextPreset = null) => {
     const dialog = ref.current;
     // Browsers without <dialog> support (e.g. iOS 15.3 and older) go to the form on the Contact page.
     if (!dialog || typeof dialog.showModal !== 'function') {
       window.location.assign(`${import.meta.env.BASE_URL}contact/#book`);
       return;
     }
+    setPreset(nextPreset);
     setRound((r) => r + 1);
     dialog.showModal();
   }, []);
@@ -31,29 +39,33 @@ export default function ConsultationProvider({ children }) {
       <dialog
         ref={ref}
         aria-labelledby="consult-title"
+        lang={lang}
         onClick={(e) => e.target === ref.current && close()}
         className="consult-dialog m-auto w-[calc(100%-1.5rem)] max-w-2xl overflow-visible rounded-3xl bg-transparent p-0 text-left"
       >
         <div className="max-h-[calc(100dvh-1.5rem)] overflow-y-auto rounded-3xl bg-[#F8FAFD] shadow-2xl ring-1 ring-rule">
           <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-rule bg-[#F8FAFD]/95 px-5 py-5 backdrop-blur sm:px-8">
             <div>
-              <h2 id="consult-title" className="font-display text-2xl font-extrabold text-ink sm:text-3xl">
-                Book a consultation
+              <h2
+                id="consult-title"
+                className={`${lang === 'ta' ? 'font-sans font-bold' : 'font-display font-extrabold'} text-2xl text-ink sm:text-3xl`}
+              >
+                {t.title}
               </h2>
-              <p className="mt-1 text-body">A few details so our first call is useful. It takes about a minute.</p>
+              <p className="mt-1 text-body">{t.intro}</p>
             </div>
             <button
               type="button"
               onClick={close}
-              aria-label="Close"
-              title="Close"
+              aria-label={t.close}
+              title={t.close}
               className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-ink ring-1 ring-rule transition-colors hover:bg-ink hover:text-white"
             >
               <X className="h-5 w-5" aria-hidden="true" />
             </button>
           </div>
           <div className="px-5 py-6 sm:px-8">
-            <ConsultationForm key={round} onDone={close} />
+            <ConsultationForm key={round} onDone={close} lang={lang} preset={preset} />
           </div>
         </div>
       </dialog>

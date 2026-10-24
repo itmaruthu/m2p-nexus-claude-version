@@ -18,6 +18,19 @@ const navLinks = [
   { name: 'Contact', path: '/contact' },
 ];
 
+/** Switches between the English site and the Tamil page (/ta/). */
+function LangSwitch({ tamil, className, onClick }) {
+  return tamil ? (
+    <Link to="/" lang="en" hrefLang="en" onClick={onClick} className={className}>
+      English
+    </Link>
+  ) : (
+    <Link to="/ta" lang="ta" hrefLang="ta" onClick={onClick} className={className} aria-label="தமிழ் (Read in Tamil)">
+      தமிழ்
+    </Link>
+  );
+}
+
 export default function Header() {
   const isConnectPage = useIsConnectPage();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -25,6 +38,7 @@ export default function Header() {
   // The menu remembers the page it was opened on, so any navigation (links, back button) closes it.
   const [menuOpenOn, setMenuOpenOn] = useState(null);
   const isMenuOpen = menuOpenOn === location.pathname;
+  const onTamil = /^\/ta(\/|$)/.test(location.pathname);
   const toggleRef = useRef(null);
   const drawerRef = useRef(null);
 
@@ -120,6 +134,7 @@ export default function Header() {
 
           {/* RIGHT: Actions */}
           <div className="hidden lg:flex items-center space-x-4">
+            <LangSwitch tamil={onTamil} className="text-sm font-semibold text-brand-text hover:text-brand-secondary px-2 py-2" />
             <a
               href={links.whatsapp}
               target="_blank"
@@ -206,6 +221,11 @@ export default function Header() {
             </div>
 
             <div className="px-4 py-6 border-t border-brand-border flex flex-col gap-3">
+              <LangSwitch
+                tamil={onTamil}
+                onClick={closeMenu}
+                className="w-full text-center py-3 rounded-md font-semibold text-sm text-brand-text ring-1 ring-brand-border hover:bg-brand-section"
+              />
               <a
                 href={links.whatsapp}
                 target="_blank"

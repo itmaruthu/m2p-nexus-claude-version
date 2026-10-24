@@ -7,6 +7,7 @@ import ClosingCta from '../components/ClosingCta';
 import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
+import StarterOffers from '../components/StarterOffers';
 import { CallIcon } from '../components/CallIcon';
 import BookButton from '../components/consultation/BookButton';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
@@ -71,6 +72,11 @@ export default function Home() {
       <Seo
         title="Software, AI, Hiring & Marketing for Growing Businesses"
         description="M2P Nexus, Madurai: one partner for software, websites, AI, HR and digital marketing, helping shops, traders and manufacturers move from paper and Excel to systems that save time."
+        alternates={[
+          { hreflang: 'en', path: '/' },
+          { hreflang: 'ta', path: '/ta/' },
+          { hreflang: 'x-default', path: '/' },
+        ]}
       />
 
       {/* Hero: the customer's problem in words, beside the paper bill it describes. */}
@@ -189,6 +195,12 @@ export default function Home() {
           </Link>
         </div>
       </section>
+
+      {/* Start small: fixed-scope starter packs, each opening the booking form pre-filled */}
+      <StarterOffers
+        title="Start small. See the difference first."
+        intro="Not ready for a big project? Pick a fixed-scope starter. It’s the quickest way to see how we work, with a clear quotation before anything begins."
+      />
 
       {/* Who we work with, and the problems they bring */}
       <section className="bg-[#F4F6FA] border-b border-rule">

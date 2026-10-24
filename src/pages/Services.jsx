@@ -90,6 +90,11 @@ export default function Services() {
               </a>
             </li>
           ))}
+          <li className="sm:ml-auto">
+            <a href={`${import.meta.env.BASE_URL}#start-small`} className={textLink}>
+              New to us? See the starter packs
+            </a>
+          </li>
         </ul>
       </nav>
 

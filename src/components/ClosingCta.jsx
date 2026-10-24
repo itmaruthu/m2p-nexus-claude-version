@@ -15,12 +15,19 @@ import useSpotlight from './useSpotlight';
 const TYPE_MS = 34;
 const HOLD_MS = 2600;
 
+const copy = {
+  en: { talk: 'Prefer to talk?', ask: 'Ask M2P Nexus', replies: 'Replies in Tamil or English', choose: 'Choose a question', send: 'Ask this on WhatsApp', newTab: '(opens in a new tab)' },
+  ta: { talk: 'நேரில் பேச விருப்பமா?', ask: 'M2P Nexus-இடம் கேளுங்கள்', replies: 'தமிழ் அல்லது ஆங்கிலத்தில் பதில்', choose: 'ஒரு கேள்வியைத் தேர்ந்தெடுக்கவும்', send: 'இதை WhatsApp-இல் கேளுங்கள்', newTab: '(புதிய தாவலில் திறக்கும்)' },
+};
+
 export default function ClosingCta({
+  lang = 'en',
   title = 'Tell us how your business runs today.',
   text = 'We’ll listen first, then suggest a practical first step, whether that’s billing software, a website, hiring help or AI.',
   questions = ['Where should my business start with technology?'],
 }) {
   const spotlight = useSpotlight();
+  const c = copy[lang] || copy.en;
   const reduce = useReducedMotion();
   const [active, setActive] = useState(0);
   const [typed, setTyped] = useState(questions[0].length);
@@ -56,10 +63,10 @@ export default function ClosingCta({
     <section ref={spotlight} className="relative overflow-hidden bg-ink text-white grain spotlight">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid gap-12 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-6 space-y-5">
-          <h2 className="font-display font-extrabold text-4xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">{title}</h2>
+          <h2 className={`${lang === 'ta' ? 'font-sans font-bold leading-snug' : 'font-display font-extrabold leading-[1.05] tracking-[-0.02em]'} text-4xl sm:text-5xl`}>{title}</h2>
           <p className="text-lg text-slate-300 leading-relaxed max-w-xl">{text}</p>
           <p className="flex items-center gap-3 text-slate-300">
-            Prefer to talk?
+            {c.talk}
             <CallIcon tone="dark" />
           </p>
         </div>
@@ -69,8 +76,8 @@ export default function ClosingCta({
             <div className="rounded-[calc(1.5rem-1px)] bg-[#111C45]/95 p-5 sm:p-7 space-y-5">
               <div className="flex items-center gap-3">
                 <span aria-hidden="true" className="ask-orb h-9 w-9 shrink-0 rounded-full" />
-                <span className="font-heading font-semibold">Ask M2P Nexus</span>
-                <span className="ml-auto text-xs text-slate-300">Replies in Tamil or English</span>
+                <span className="font-heading font-semibold">{c.ask}</span>
+                <span className="ml-auto text-xs text-slate-300">{c.replies}</span>
               </div>
 
               <div className="min-h-[6.5rem] rounded-2xl bg-white/[0.06] ring-1 ring-white/10 px-4 py-4 sm:px-5">
@@ -81,7 +88,7 @@ export default function ClosingCta({
               </div>
 
               {questions.length > 1 && (
-                <div role="group" aria-label="Choose a question" className="flex flex-wrap gap-2">
+                <div role="group" aria-label={c.choose} className="flex flex-wrap gap-2">
                   {questions.map((q, i) => (
                     <button
                       key={q}
@@ -105,8 +112,10 @@ export default function ClosingCta({
                 className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#1F7A45] px-6 py-3.5 font-semibold text-white hover:bg-[#18663A] transition-colors"
               >
                 <WhatsAppIcon className="w-5 h-5" />
-                Ask this on WhatsApp
-                <span className="sr-only">: {question} (opens in a new tab)</span>
+                {c.send}
+                <span className="sr-only">
+                  : {question} {c.newTab}
+                </span>
               </a>
             </div>
           </div>

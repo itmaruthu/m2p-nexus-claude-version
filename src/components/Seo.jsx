@@ -12,9 +12,9 @@ function setMeta(attr, key, content) {
   return el;
 }
 
-export default function Seo({ title, description, noindex = false }) {
+export default function Seo({ title, description, noindex = false, lang = 'en', alternates = [] }) {
   const collect = useContext(SeoContext);
-  if (collect) collect(seoTags({ title, description, noindex }));
+  if (collect) collect(seoTags({ title, description, noindex, lang, alternates }));
 
   // Client-side navigation: keep <head> in sync with the current page.
   useEffect(() => {
@@ -25,7 +25,8 @@ export default function Seo({ title, description, noindex = false }) {
     setMeta('property', 'og:description', tags.description);
     const robots = noindex ? setMeta('name', 'robots', 'noindex') : document.head.querySelector('meta[name="robots"]');
     if (!noindex) robots?.remove();
-  }, [title, description, noindex]);
+    document.documentElement.lang = lang;
+  }, [title, description, noindex, lang]);
 
   return null;
 }

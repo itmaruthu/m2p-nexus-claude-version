@@ -1,5 +1,5 @@
 import { useId, useRef, useState } from 'react';
-import { consultEndpoint, contactOptions, industryOptions, needOptions } from '../../config/consultation';
+import { consultEndpoint, contactOptions, formText, industryOptions, needOptions, optionLabelsTa } from '../../config/consultation';
 import { waLink } from '../../config/site';
 import { WhatsAppIcon } from '../icons';
 
@@ -18,14 +18,14 @@ const empty = { name: '', phone: '', email: '', business: '', industry: '', need
 const phoneOk = (v) => /^\+?[\d\s-]{10,16}$/.test(v.trim()) && v.replace(/\D/g, '').length >= 10;
 const emailOk = (v) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
 
-function validate(f) {
+function validate(f, t) {
   const e = {};
-  if (!f.name.trim()) e.name = 'Please tell us your name.';
-  if (!f.phone.trim()) e.phone = 'Please add a phone or WhatsApp number so we can reach you.';
-  else if (!phoneOk(f.phone)) e.phone = 'This number looks incomplete. Use 10 digits, with +91 if you like.';
-  if (f.email.trim() && !emailOk(f.email)) e.email = 'This email address looks incomplete.';
-  if (!f.needs.length && !f.message.trim()) e.needs = 'Pick at least one area, or tell us about your requirement below.';
-  if (!f.consent) e.consent = 'Please confirm we can contact you about this request.';
+  if (!f.name.trim()) e.name = t.errName;
+  if (!f.phone.trim()) e.phone = t.errPhoneMissing;
+  else if (!phoneOk(f.phone)) e.phone = t.errPhoneBad;
+  if (f.email.trim() && !emailOk(f.email)) e.email = t.errEmail;
+  if (!f.needs.length && !f.message.trim()) e.needs = t.errNeeds;
+  if (!f.consent) e.consent = t.errConsent;
   return e;
 }
 
@@ -58,15 +58,21 @@ function FieldError({ id, msg }) {
   ) : null;
 }
 
-export default function ConsultationForm({ onDone }) {
+/**
+ * `lang` ('en' | 'ta') switches every label and message; option values sent to the sheet stay English.
+ * `preset` ({ needs, message }) pre-fills the form, e.g. when a starter pack's button opened it.
+ */
+export default function ConsultationForm({ onDone, lang = 'en', preset }) {
+  const t = formText[lang] || formText.en;
+  const label = (v) => (lang === 'ta' ? optionLabelsTa[v] || v : v);
   const uid = useId();
   const id = (k) => `${uid}-${k}`;
-  const [form, setForm] = useState(empty);
+  const [form, setForm] = useState(() => ({ ...empty, needs: preset?.needs || [], message: preset?.message || '' }));
   const [touched, setTouched] = useState({});
   const [status, setStatus] = useState('idle'); // idle | sending | sent | whatsapp | error
   const started = useRef(0);
 
-  const errors = validate(form);
+  const errors = validate(form, t);
   const show = (k) => (touched[k] ? errors[k] : undefined);
 
   const set = (k) => (e) => {
@@ -83,7 +89,7 @@ export default function ConsultationForm({ onDone }) {
 
   const submit = async (e) => {
     e.preventDefault();
-    const errs = validate(form);
+    const errs = validate(form, t);
     if (Object.keys(errs).length) {
       setTouched({ name: true, phone: true, email: true, needs: true, consent: true });
       const firstBad = ['name', 'phone', 'email', 'needs', 'consent'].find((k) => errs[k]);
@@ -114,15 +120,13 @@ export default function ConsultationForm({ onDone }) {
     return (
       <div role="status" className="space-y-4 py-6 text-center">
         <span aria-hidden="true" className="ask-orb mx-auto block h-14 w-14 rounded-full" />
-        <h3 className="font-display text-2xl font-bold text-ink">Thank you, {form.name.split(' ')[0]}.</h3>
+        <h3 className="font-display text-2xl font-bold text-ink">{t.thanks.replace('{name}', form.name.split(' ')[0])}</h3>
         <p className="mx-auto max-w-sm text-body leading-relaxed">
-          {status === 'sent'
-            ? `We have your details and will get back to you ${{ WhatsApp: 'on WhatsApp', 'Phone call': 'with a call', Email: 'by email' }[form.contact]} soon.`
-            : 'WhatsApp has opened with your details filled in. Press send there and we will take it from here.'}
+          {status === 'sent' ? t.sent.replace('{via}', t.via[form.contact]) : t.waSent}
         </p>
         {onDone && (
           <button type="button" onClick={onDone} className="font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4">
-            Close
+            {t.close}
           </button>
         )}
       </div>
@@ -151,7 +155,7 @@ export default function ConsultationForm({ onDone }) {
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor={id('name')} className={labelCls}>
-            Your name
+            {t.name}
           </label>
           <input
             id={id('name')}
@@ -168,7 +172,7 @@ export default function ConsultationForm({ onDone }) {
         </div>
         <div>
           <label htmlFor={id('phone')} className={labelCls}>
-            Phone or WhatsApp
+            {t.phone}
           </label>
           <input
             id={id('phone')}
@@ -176,7 +180,7 @@ export default function ConsultationForm({ onDone }) {
             type="tel"
             inputMode="tel"
             autoComplete="tel"
-            placeholder="e.g. 98765 43210"
+            placeholder={t.phonePh}
             value={form.phone}
             onChange={set('phone')}
             onBlur={blur('phone')}
@@ -188,7 +192,7 @@ export default function ConsultationForm({ onDone }) {
         </div>
         <div>
           <label htmlFor={id('email')} className={labelCls}>
-            Email <span className="font-normal text-body">(optional)</span>
+            {t.email} <span className="font-normal text-body">{t.optional}</span>
           </label>
           <input
             id={id('email')}
@@ -206,18 +210,20 @@ export default function ConsultationForm({ onDone }) {
         </div>
         <div>
           <label htmlFor={id('business')} className={labelCls}>
-            Business name <span className="font-normal text-body">(optional)</span>
+            {t.business} <span className="font-normal text-body">{t.optional}</span>
           </label>
           <input id={id('business')} name="business" autoComplete="organization" value={form.business} onChange={set('business')} className={input} />
         </div>
         <div className="sm:col-span-2">
           <label htmlFor={id('industry')} className={labelCls}>
-            Industry <span className="font-normal text-body">(optional)</span>
+            {t.industry} <span className="font-normal text-body">{t.optional}</span>
           </label>
           <select id={id('industry')} name="industry" value={form.industry} onChange={set('industry')} className={input}>
-            <option value="">Choose your industry</option>
+            <option value="">{t.industryPh}</option>
             {industryOptions.map((o) => (
-              <option key={o}>{o}</option>
+              <option key={o} value={o}>
+                {label(o)}
+              </option>
             ))}
           </select>
         </div>
@@ -225,7 +231,7 @@ export default function ConsultationForm({ onDone }) {
 
       <fieldset aria-describedby={show('needs') ? id('needs-err') : undefined}>
         <legend id={id('needs')} tabIndex={-1} className={`${labelCls} outline-none`}>
-          What do you need help with?
+          {t.needs}
         </legend>
         <div className="mt-2 flex flex-wrap gap-2">
           {needOptions.map((n) => {
@@ -238,7 +244,7 @@ export default function ConsultationForm({ onDone }) {
                 }`}
               >
                 <input type="checkbox" name="needs" value={n} checked={on} onChange={() => toggleNeed(n)} className="sr-only" />
-                {n}
+                {label(n)}
               </label>
             );
           })}
@@ -248,14 +254,14 @@ export default function ConsultationForm({ onDone }) {
 
       <div>
         <label htmlFor={id('message')} className={labelCls}>
-          Tell us about your business and what slows you down <span className="font-normal text-body">(optional)</span>
+          {t.message} <span className="font-normal text-body">{t.optional}</span>
         </label>
         <textarea
           id={id('message')}
           name="message"
           rows={3}
           maxLength={1500}
-          placeholder="e.g. We bill about 80 customers a day on paper and take orders on WhatsApp."
+          placeholder={t.messagePh}
           value={form.message}
           onChange={set('message')}
           className={input}
@@ -263,12 +269,12 @@ export default function ConsultationForm({ onDone }) {
       </div>
 
       <fieldset>
-        <legend className={labelCls}>Best way to reach you</legend>
+        <legend className={labelCls}>{t.contact}</legend>
         <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2">
           {contactOptions.map((c) => (
             <label key={c} className="inline-flex cursor-pointer items-center gap-2 py-1 text-ink">
               <input type="radio" name="contact" value={c} checked={form.contact === c} onChange={set('contact')} className="h-4 w-4 accent-[#172554]" />
-              {c}
+              {label(c)}
             </label>
           ))}
         </div>
@@ -288,17 +294,17 @@ export default function ConsultationForm({ onDone }) {
             aria-describedby={show('consent') ? id('consent-err') : undefined}
             className="mt-0.5 h-5 w-5 shrink-0 accent-[#172554]"
           />
-          M2P Nexus may contact me about this request. My details are used only to reply and follow up, and are never sold or shared.
+          {t.consent}
         </label>
         <FieldError id={id('consent-err')} msg={show('consent')} />
       </div>
 
       {status === 'error' && (
         <div role="alert" className="rounded-xl bg-[#FEF3F2] p-4 text-sm text-[#7A271A]">
-          We couldn&rsquo;t send your details just now. Your answers are still here: try again, or send them to us on WhatsApp in one tap.
+          {t.error}
           <button type="button" onClick={toWhatsApp} className="mt-3 flex items-center gap-2 font-semibold text-leaf underline underline-offset-4">
             <WhatsAppIcon className="h-4 w-4" />
-            Send these details on WhatsApp
+            {t.errorWa}
           </button>
         </div>
       )}
@@ -308,7 +314,7 @@ export default function ConsultationForm({ onDone }) {
         disabled={status === 'sending'}
         className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-semibold text-white transition-colors hover:bg-[#0E173A] disabled:cursor-wait disabled:opacity-80"
       >
-        {status === 'sending' ? 'Sending your details…' : consultEndpoint ? 'Book my consultation' : 'Send my details on WhatsApp'}
+        {status === 'sending' ? t.sending : consultEndpoint ? t.submit : t.submitWa}
       </button>
     </form>
   );
