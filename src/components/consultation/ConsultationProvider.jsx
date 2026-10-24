@@ -13,8 +13,14 @@ export default function ConsultationProvider({ children }) {
   const [round, setRound] = useState(0);
 
   const open = useCallback(() => {
+    const dialog = ref.current;
+    // Browsers without <dialog> support (e.g. iOS 15.3 and older) go to the form on the Contact page.
+    if (!dialog || typeof dialog.showModal !== 'function') {
+      window.location.assign(`${import.meta.env.BASE_URL}contact/#book`);
+      return;
+    }
     setRound((r) => r + 1);
-    ref.current?.showModal();
+    dialog.showModal();
   }, []);
   const close = useCallback(() => ref.current?.close(), []);
   const value = useMemo(() => ({ open }), [open]);
