@@ -3,5 +3,9 @@
 // src/assets/clients/, trimmed of empty margins, about 240px tall, and import it here); without one the
 // name is shown as text.
 import liyaTraders from '../assets/clients/liya-traders.webp';
+import jrkEngineering from '../assets/clients/jrk-engineering.webp';
 
-export const clients = [{ name: 'Liya Traders', logo: liyaTraders, width: 335, height: 240 }];
+export const clients = [
+  { name: 'Liya Traders', logo: liyaTraders, width: 335, height: 240 },
+  { name: 'JRK Engineering', logo: jrkEngineering, width: 396, height: 240 },
+];
