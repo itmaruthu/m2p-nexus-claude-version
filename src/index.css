@@ -212,3 +212,14 @@ dialog.consult-dialog:not([open]) {
     transform: translateY(16px) scale(0.98);
   }
 }
+
+/* Contact page: the inline consultation form only appears when #book is the URL target. */
+.book-inline {
+  display: none;
+}
+#book:target .book-inline {
+  display: block;
+}
+#book:target .book-cta {
+  display: none;
+}

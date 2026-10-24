@@ -2,6 +2,7 @@ import Seo from '../components/Seo';
 import { Link } from 'react-router-dom';
 import ChatDemo from '../components/ChatDemo';
 import ConsultationForm from '../components/consultation/ConsultationForm';
+import BookButton from '../components/consultation/BookButton';
 import { CallIcon, WhatsAppIconLink } from '../components/CallIcon';
 import { links, site } from '../config/site';
 import { WhatsAppIcon } from '../components/icons';
@@ -63,18 +64,26 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Book a consultation: the same form as the header dialog, inline. Target of every "Book" link. */}
+      {/* Book a consultation: a button that opens the dialog. The form itself shows here only when this
+          section is the URL target (#book): links opened in a new tab, browsers without <dialog>, no JS. */}
       <section id="book" aria-labelledby="book-title" className="scroll-mt-24 border-b border-rule bg-white">
-        <div className={`${sectionPad} grid gap-12 lg:grid-cols-12`}>
-          <div className="lg:col-span-4 space-y-4">
-            <h2 id="book-title" className={h2Class}>
-              Book a consultation
-            </h2>
-            <p className="text-lg text-body leading-relaxed">
-              Tell us a little about your business. We&rsquo;ll come back with questions and a sensible first step.
-            </p>
+        <div className={`${sectionPad} space-y-10`}>
+          <div className="grid gap-6 rounded-3xl bg-ink p-6 text-white sm:p-10 lg:grid-cols-12 lg:items-center">
+            <div className="space-y-3 lg:col-span-8">
+              <h2 id="book-title" className="font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+                Book a consultation
+              </h2>
+              <p className="text-lg leading-relaxed text-slate-300">
+                Tell us a little about your business. We&rsquo;ll come back with questions and a sensible first step. It takes about a minute.
+              </p>
+            </div>
+            <div className="book-cta lg:col-span-4 lg:text-right">
+              <BookButton className="inline-flex w-full items-center justify-center rounded-xl bg-white px-8 py-4 font-semibold text-ink transition-colors hover:bg-marigold sm:w-auto">
+                Book now
+              </BookButton>
+            </div>
           </div>
-          <div className="lg:col-span-8 rounded-3xl bg-[#F8FAFD] p-5 ring-1 ring-rule sm:p-8">
+          <div className="book-inline rounded-3xl bg-[#F8FAFD] p-5 ring-1 ring-rule sm:p-8">
             <ConsultationForm />
           </div>
         </div>
