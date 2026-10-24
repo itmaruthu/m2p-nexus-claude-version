@@ -11,7 +11,8 @@ export const site = {
     { tel: '+916380465605', label: 'Secondary' },
   ],
   linkedin: 'https://www.linkedin.com/company/m2p-nexus/',
-  mapUrl: 'https://www.google.com/maps/search/?api=1&query=Sithalangudi%2C%20Madurai%2C%20Tamil%20Nadu',
+  // Exact office pin (shared from Google Maps). Swap for the Google Business Profile link once verified.
+  mapUrl: 'https://maps.app.goo.gl/vZyZ2siSRqLpwvC3A',
 };
 
 export const links = {
