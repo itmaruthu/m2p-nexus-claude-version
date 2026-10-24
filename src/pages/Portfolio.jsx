@@ -9,8 +9,8 @@ export default function Portfolio() {
   return (
     <>
       <Seo
-        title="Portfolio: Billing Systems, ERPs, AI Automation, Growth & HR Projects"
-        description="Projects by M2P Nexus: billing and inventory software, a steel plant ERP, an agribusiness supply chain portal, AI invoice reading, lead generation and HR transformation."
+        title="Portfolio: Billing Systems, AI Automation, Growth & Hiring Projects"
+        description="Projects by M2P Nexus: billing and inventory software, an agribusiness supply chain portal, AI invoice reading, a stock chat assistant, lead generation and talent acquisition."
       />
 
       <section className="relative overflow-hidden border-b border-rule bg-[#F4F6FA]">

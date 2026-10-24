@@ -13,7 +13,7 @@ const leads = [
     area: 'Technology',
     points: [
       { title: 'Systems built around the shop floor', text: 'Designing databases that prevent stock mismatches, and connecting weighing scales, transport meters and billing to one central system.' },
-      { title: 'International delivery standards', text: 'Onsite work with clients in Tokyo, Japan, bringing disciplined coding standards, clean architecture and structured delivery home to Madurai.' },
+      { title: 'International delivery standards', text: 'Onsite project delivery in Japan, bringing disciplined coding standards, clean architecture and structured delivery home to Madurai.' },
       { title: 'Practical AI', text: 'AI pipelines that read raw receipt logs and write daily inventory reports, so teams stop compiling them by hand.' },
     ],
   },

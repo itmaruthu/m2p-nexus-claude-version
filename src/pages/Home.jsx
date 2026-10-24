@@ -52,7 +52,7 @@ const pains = [
 
 const projects = [
   { forWhom: 'Retail and traders', problem: 'English-only billing tools that staff found hard to use.', built: 'Tamil / English billing software with GST, offline mode and fast checkout.' },
-  { forWhom: 'Steel manufacturing', problem: 'Separate registers for scrap, stock and dispatch that never matched.', built: 'One ERP for raw material, scrap calculations, logistics and client accounts.' },
+  { forWhom: 'Logistics', problem: 'Staff spent hours every week reading and checking freight billing slips.', built: 'AI that reads shipping receipts, matches them to trips and flags anything unusual.' },
   { forWhom: 'Coconut trading', problem: 'Bulk weights, transport and farmer payments recorded by hand.', built: 'A trading system for batch weights, transport tracking and commission settlement.' },
 ];
 

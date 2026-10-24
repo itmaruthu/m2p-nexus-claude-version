@@ -3,6 +3,6 @@
 // src/assets/clients/ and import it here); without one the name is shown as text.
 //
 // Example:
-//   import jrkLogo from '../assets/clients/jrk.webp';
-//   export const clients = [{ name: 'JRK Engineering', logo: jrkLogo }];
+//   import acmeLogo from '../assets/clients/acme.webp';
+//   export const clients = [{ name: 'Acme Traders', logo: acmeLogo }];
 export const clients = [];

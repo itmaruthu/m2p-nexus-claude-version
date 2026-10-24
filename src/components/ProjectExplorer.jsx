@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion, useInView, useReducedMotion } from 'framer-motion';
-import { projectGroups, projects, SHOW_CLIENT_NAMES } from '../config/projects';
+import { projectGroups, projects } from '../config/projects';
 import ProjectBlueprint from './ProjectBlueprint';
 
 /**
@@ -10,14 +10,12 @@ import ProjectBlueprint from './ProjectBlueprint';
  */
 
 function Detail({ project, draw, live }) {
-  const showClient = SHOW_CLIENT_NAMES || project.public;
   return (
     <div className="space-y-6">
       <ProjectBlueprint project={project} draw={draw} live={live} />
       <div className="space-y-4">
         <p className="font-heading text-sm font-semibold text-leaf">
           {project.sector}
-          {showClient && project.client ? `, ${project.client}` : ''}
         </p>
         <h2 className="font-display text-2xl font-bold leading-tight text-ink">{project.title}</h2>
         <p className="text-body leading-relaxed">
