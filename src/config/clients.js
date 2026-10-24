@@ -5,10 +5,14 @@
 import liyaTraders from '../assets/clients/liya-traders.webp';
 import jrkEngineering from '../assets/clients/jrk-engineering.webp';
 import chiccoInteriors from '../assets/clients/chicco-interiors.webp';
+import ontwikkelCorp from '../assets/clients/ontwikkel-corp.webp';
 
 export const clients = [
   { name: 'Liya Traders', logo: liyaTraders, width: 335, height: 240 },
   { name: 'JRK Engineering', logo: jrkEngineering, width: 396, height: 240 },
   // Square, finely lettered logo: shown a size up so it reads as clearly as the wide ones.
   { name: 'Chicco Interiors', logo: chiccoInteriors, width: 250, height: 240, large: true },
+  // Recruitment services client. White-on-blue original recoloured to its blue on transparent; very wide, so
+  // shown shorter.
+  { name: 'Ontwikkel Corp Advertising', logo: ontwikkelCorp, width: 801, height: 240, wide: true },
 ];
