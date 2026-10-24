@@ -52,7 +52,7 @@ export const optionLabelsTa = {
 export const formText = {
   en: {
     title: 'Book a consultation',
-    intro: 'A few details so our first call is useful. It takes about a minute.',
+    intro: 'Your first consultation is free. A few details help us make it useful, and we reply within one working day.',
     close: 'Close',
     name: 'Your name',
     phone: 'Phone or WhatsApp',
@@ -88,7 +88,7 @@ export const formText = {
   },
   ta: {
     title: 'ஆலோசனைக்கு முன்பதிவு',
-    intro: 'முதல் அழைப்பு பயனுள்ளதாக இருக்க சில விவரங்கள். ஒரு நிமிடம் போதும்.',
+    intro: 'முதல் ஆலோசனை இலவசம். சில விவரங்கள் தந்தால் அதைப் பயனுள்ளதாக்கலாம்; ஒரு வேலை நாளுக்குள் பதிலளிப்போம்.',
     close: 'மூடு',
     name: 'உங்கள் பெயர்',
     phone: 'தொலைபேசி / WhatsApp எண்',

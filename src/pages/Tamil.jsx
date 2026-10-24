@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import ClosingCta from '../components/ClosingCta';
 import StarterOffers from '../components/StarterOffers';
+import Promises from '../components/Promises';
 import BookButton from '../components/consultation/BookButton';
 import { CallIcon } from '../components/CallIcon';
 import { WhatsAppIcon } from '../components/icons';
@@ -173,6 +174,8 @@ export default function Tamil() {
           </ol>
         </div>
       </section>
+
+      <Promises lang="ta" headingId="ta-promise-title" />
 
       <ClosingCta
         lang="ta"

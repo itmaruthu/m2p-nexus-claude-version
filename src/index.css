@@ -123,6 +123,16 @@
   background-clip: text;
 }
 
+/* Promise card seal: the ring of text turns slowly (stopped by the reduced-motion rule below). */
+@keyframes seal-turn {
+  to {
+    transform: rotate(1turn);
+  }
+}
+.seal-spin {
+  animation: seal-turn 24s linear infinite;
+}
+
 /* "Ask M2P Nexus" prompt: a slowly turning brand-colour orb and a blinking caret. */
 @keyframes orb-turn {
   to {

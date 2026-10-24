@@ -74,7 +74,7 @@ export default function Contact() {
                 Book a consultation
               </h2>
               <p className="text-lg leading-relaxed text-slate-300">
-                Tell us a little about your business. We&rsquo;ll come back with questions and a sensible first step. It takes about a minute.
+                Your first consultation is free. Tell us a little about your business and we&rsquo;ll reply within one working day with questions and a sensible first step.
               </p>
             </div>
             <div className="book-cta lg:col-span-4 lg:text-right">

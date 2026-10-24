@@ -8,6 +8,7 @@ import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
 import StarterOffers from '../components/StarterOffers';
+import Promises from '../components/Promises';
 import { CallIcon } from '../components/CallIcon';
 import BookButton from '../components/consultation/BookButton';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
@@ -304,6 +305,9 @@ export default function Home() {
           </ol>
         </div>
       </section>
+
+      {/* The founders' commitments, as a signed pledge */}
+      <Promises />
 
       {/* Why we exist, from the brand story */}
       <section className="bg-white border-b border-rule">

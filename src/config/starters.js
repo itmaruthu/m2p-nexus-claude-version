@@ -116,13 +116,15 @@ export const starterText = {
     get: 'What you get',
     time: 'Typical time',
     book: 'Book this starter',
-    promise: 'Every starter comes with a fixed scope and a written quotation before any work begins.',
+    promise:
+      'Every starter comes with a fixed scope and a written quotation before any work begins. You own what we build, your team is trained, and a month of support is included.',
   },
   ta: {
     for: 'யாருக்கு',
     get: 'உங்களுக்குக் கிடைப்பவை',
     time: 'வழக்கமான காலம்',
     book: 'இந்தத் திட்டத்தை முன்பதிவு செய்ய',
-    promise: 'ஒவ்வொரு திட்டத்திற்கும், வேலை தொடங்கும் முன்பே தெளிவான வேலை வரம்பும் எழுத்துப்பூர்வ விலைப்பட்டியலும் (quotation) தருவோம்.',
+    promise:
+      'ஒவ்வொரு திட்டத்திற்கும், வேலை தொடங்கும் முன்பே தெளிவான வேலை வரம்பும் எழுத்துப்பூர்வ விலைப்பட்டியலும் (quotation) தருவோம். நாங்கள் உருவாக்குவது உங்களுக்கே சொந்தம்; ஊழியர்களுக்குப் பயிற்சியும் ஒரு மாத ஆதரவும் அடங்கும்.',
   },
 };
