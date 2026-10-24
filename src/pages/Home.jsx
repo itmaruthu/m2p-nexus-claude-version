@@ -123,7 +123,7 @@ export default function Home() {
         <section aria-labelledby="clients-heading" className="bg-white border-b border-rule">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
             <h2 id="clients-heading" className="text-center text-body font-medium">Businesses we work with</h2>
-            <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
+            <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-6 sm:gap-x-12">
               {clients.map((c) => (
                 <li key={c.name} className="font-heading font-bold text-lg text-body">
                   {c.logo ? (
@@ -133,7 +133,7 @@ export default function Home() {
                       width={c.width}
                       height={c.height}
                       loading="lazy"
-                      className="h-16 w-auto opacity-90 transition-opacity hover:opacity-100 sm:h-24"
+                      className={`${c.large ? 'h-20 sm:h-28' : 'h-16 sm:h-24'} w-auto opacity-90 transition-opacity hover:opacity-100`}
                     />
                   ) : (
                     c.name

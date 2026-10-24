@@ -4,8 +4,11 @@
 // name is shown as text.
 import liyaTraders from '../assets/clients/liya-traders.webp';
 import jrkEngineering from '../assets/clients/jrk-engineering.webp';
+import chiccoInteriors from '../assets/clients/chicco-interiors.webp';
 
 export const clients = [
   { name: 'Liya Traders', logo: liyaTraders, width: 335, height: 240 },
   { name: 'JRK Engineering', logo: jrkEngineering, width: 396, height: 240 },
+  // Square, finely lettered logo: shown a size up so it reads as clearly as the wide ones.
+  { name: 'Chicco Interiors', logo: chiccoInteriors, width: 250, height: 240, large: true },
 ];
