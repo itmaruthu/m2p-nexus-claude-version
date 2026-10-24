@@ -133,7 +133,7 @@ export default function Home() {
                       width={c.width}
                       height={c.height}
                       loading="lazy"
-                      className={`${c.large ? 'h-20 sm:h-28' : c.wide ? 'h-10 sm:h-14' : 'h-16 sm:h-24'} w-auto opacity-90 transition-opacity hover:opacity-100`}
+                      className={`${c.large ? 'h-20 sm:h-28' : c.wide ? 'h-10 sm:h-14' : c.medium ? 'h-12 sm:h-[4.5rem]' : 'h-16 sm:h-24'} w-auto opacity-90 transition-opacity hover:opacity-100`}
                     />
                   ) : (
                     c.name
