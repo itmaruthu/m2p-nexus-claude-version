@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { GrowScene, RunScene, SmarterScene } from './ServiceScenes';
+import { CustomersScene, RunScene, SmarterScene, TeamScene } from './ServiceScenes';
 
 const TABS = [
   {
@@ -19,11 +19,20 @@ const TABS = [
     describe: 'Example: orders that arrive as WhatsApp messages, in Tamil and English, are sorted into an order book automatically.',
   },
   {
-    id: 'grow',
-    title: 'Grow',
-    line: 'Digital marketing, hiring and HR.',
-    scene: GrowScene,
-    describe: 'Example: weekly enquiries rise from 12 to 47 while new leads and shortlisted candidates arrive.',
+    id: 'customers',
+    title: 'Win more customers',
+    line: 'Google, social media, SEO, branding and lead generation.',
+    scene: CustomersScene,
+    describe:
+      'Example: weekly enquiries rise from 12 to 47, mostly from Google search and Instagram, while a new enquiry and a 5-star review arrive.',
+  },
+  {
+    id: 'team',
+    title: 'Build your team',
+    line: 'Recruitment, hiring strategy and HR set up properly.',
+    scene: TeamScene,
+    describe:
+      'Example: 24 applicants for a billing executive role are screened to 8, interviewed to 3, and one is hired with an onboarding plan.',
   },
 ];
 
@@ -97,7 +106,7 @@ export default function ServiceSwitchboard() {
               onMouseLeave={() => setHovered(false)}
               onFocus={() => setHovered(true)}
               onBlur={() => setHovered(false)}
-              className="grid grid-cols-3 gap-2 lg:block lg:space-y-3"
+              className="grid grid-cols-2 gap-2 lg:block lg:space-y-3"
             >
               {TABS.map((t, i) => {
                 const selected = i === active;

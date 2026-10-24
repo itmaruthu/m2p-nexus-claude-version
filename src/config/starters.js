@@ -39,7 +39,7 @@ export const starters = [
       get: [
         'A fast business website that works on every phone',
         'WhatsApp and call buttons for enquiries',
-        'Your Google Business Profile set up',
+        'An enquiry form with alerts on your phone',
         'The basics for showing up in Google search',
       ],
       time: 'About 10 working days',
@@ -50,10 +50,36 @@ export const starters = [
       get: [
         'எல்லா மொபைலிலும் வேகமாக இயங்கும் வணிக இணையதளம்',
         'விசாரணைகளுக்கு WhatsApp மற்றும் அழைப்பு பட்டன்கள்',
-        'உங்கள் Google Business Profile அமைப்பு',
+        'விசாரணை படிவம், உங்கள் மொபைலுக்கு உடனடி அறிவிப்பு',
         'Google தேடலில் தெரிய அடிப்படை அமைப்புகள்',
       ],
       time: 'சுமார் 10 வேலை நாட்கள்',
+    },
+  },
+  {
+    id: 'customers',
+    need: 'Digital marketing',
+    en: {
+      name: 'Local customers starter',
+      for: 'Businesses that want more enquiries nearby',
+      get: [
+        'Your Google Business Profile set up and polished',
+        'A month of social media posts, designed for you',
+        'WhatsApp Business catalogue and quick replies',
+        'A simple report of enquiries and where they came from',
+      ],
+      time: 'About 1 month',
+    },
+    ta: {
+      name: 'உள்ளூர் வாடிக்கையாளர் தொடக்கத் திட்டம்',
+      for: 'அருகிலிருந்து அதிக விசாரணைகள் வேண்டும் வணிகங்களுக்கு',
+      get: [
+        'உங்கள் Google Business Profile அமைத்து, மெருகேற்றுதல்',
+        'உங்களுக்காக வடிவமைக்கப்பட்ட ஒரு மாத சமூக ஊடகப் பதிவுகள்',
+        'WhatsApp Business பட்டியல் (catalogue) மற்றும் விரைவு பதில்கள்',
+        'விசாரணைகள் எங்கிருந்து வந்தன என்ற எளிய அறிக்கை',
+      ],
+      time: 'சுமார் 1 மாதம்',
     },
   },
   {
@@ -116,6 +142,9 @@ export const starterText = {
     get: 'What you get',
     time: 'Typical time',
     book: 'Book this starter',
+    mixTitle: 'Need a mix?',
+    mixText: 'Combine starters, or tell us what your business needs and we’ll suggest a sensible first step.',
+    mixButton: 'Tell us what you need',
     promise:
       'Every starter comes with a fixed scope and a written quotation before any work begins. You own what we build, your team is trained, and a month of support is included.',
   },
@@ -124,6 +153,9 @@ export const starterText = {
     get: 'உங்களுக்குக் கிடைப்பவை',
     time: 'வழக்கமான காலம்',
     book: 'இந்தத் திட்டத்தை முன்பதிவு செய்ய',
+    mixTitle: 'வேறு தேவையா?',
+    mixText: 'தொடக்கத் திட்டங்களை இணைக்கலாம், அல்லது உங்கள் தேவையைச் சொல்லுங்கள்; பொருத்தமான முதல் படியைப் பரிந்துரைப்போம்.',
+    mixButton: 'உங்கள் தேவையைச் சொல்லுங்கள்',
     promise:
       'ஒவ்வொரு திட்டத்திற்கும், வேலை தொடங்கும் முன்பே தெளிவான வேலை வரம்பும் எழுத்துப்பூர்வ விலைப்பட்டியலும் (quotation) தருவோம். நாங்கள் உருவாக்குவது உங்களுக்கே சொந்தம்; ஊழியர்களுக்குப் பயிற்சியும் ஒரு மாத ஆதரவும் அடங்கும்.',
   },

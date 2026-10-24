@@ -24,7 +24,7 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
           <p className="lg:col-span-5 text-lg text-body leading-relaxed">{intro}</p>
         </div>
 
-        <ul className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {starters.map((s) => {
             const c = s[lang];
             return (
@@ -76,6 +76,22 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
               </li>
             );
           })}
+          {/* Sixth tile: a custom request, which also completes the 3-column grid */}
+          <li className="flex">
+            <div className="relative flex w-full flex-col justify-between gap-6 overflow-hidden rounded-3xl bg-ink p-6 text-white grain">
+              <div className="relative z-10 space-y-3">
+                <span aria-hidden="true" className="ask-orb block h-10 w-10 rounded-full" />
+                <h3 className={`text-xl leading-snug ${ta ? 'font-sans font-bold' : 'font-display font-bold'}`}>{t.mixTitle}</h3>
+                <p className="leading-relaxed text-slate-300">{t.mixText}</p>
+              </div>
+              <BookButton
+                preset={{ needs: [], message: '' }}
+                className="relative z-10 flex w-full items-center justify-center rounded-xl bg-marigold px-5 py-3 text-center font-semibold text-ink transition-colors hover:bg-[#FFC233]"
+              >
+                {t.mixButton}
+              </BookButton>
+            </div>
+          </li>
         </ul>
 
         <p className="flex items-start gap-3 text-body">

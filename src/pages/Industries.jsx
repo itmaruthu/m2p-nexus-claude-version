@@ -13,7 +13,7 @@ export default function Industries() {
     <>
       <Seo
         title="Industries We Serve: Retail, Trading, Manufacturing & More"
-        description="How M2P Nexus helps retail shops, traders, manufacturers, construction, agriculture, logistics, clinics, schools, finance firms and service businesses move from paper to connected systems."
+        description="How M2P Nexus helps retail shops, traders, manufacturers, construction, agriculture, logistics, clinics, schools, finance firms and service businesses run better, win more customers and hire the right people."
       />
 
       <section className="relative overflow-hidden border-b border-rule bg-white">
@@ -25,7 +25,7 @@ export default function Industries() {
               Every business has a notebook somewhere. We turn it into a system.
             </h1>
             <p className="lg:col-span-3 text-lg text-body leading-relaxed">
-              Pick your industry to see what usually runs on paper today, and what replaces it.
+              Pick your industry to see what still runs on paper or word of mouth, and how we help you run it, win customers and hire.
             </p>
           </div>
           <IndustryLens />
@@ -57,8 +57,8 @@ export default function Industries() {
         text="Most of our work starts with the same question: where does paper or guesswork slow you down? Tell us how your business runs."
         questions={[
           'We are a wholesale trader. Can you organise our WhatsApp orders?',
-          'Can you connect our weighbridge to billing?',
-          'Do you work with clinics and schools too?',
+          'Can you help our clinic get more patients from Google?',
+          'Can you hire skilled workers for our factory?',
         ]}
       />
     </>

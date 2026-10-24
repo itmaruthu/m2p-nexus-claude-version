@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion';
 
 // Animated scenes for the Services switchboard. Each one replays when it mounts (the parent keys it by tab).
@@ -154,14 +154,21 @@ export function SmarterScene() {
   );
 }
 
-const TOASTS = [
-  'New enquiry from Google: “coconut wholesale near me”',
-  'Instagram post reached 4,200 people',
-  'Candidate shortlisted: billing executive',
+const CHANNELS = [
+  { name: 'Google search', value: 18 },
+  { name: 'Instagram', value: 12 },
+  { name: 'Website', value: 10 },
+  { name: 'WhatsApp', value: 7 },
 ];
 
-/** Grow: weekly enquiries climb while new leads and hires arrive. */
-export function GrowScene() {
+const TOASTS = [
+  'New enquiry from Google: “coconut wholesale near me”',
+  'New 5-star review on your Google profile',
+  'Instagram post reached 4,200 people',
+];
+
+/** Win more customers: weekly enquiries climb, split by where they came from, while new leads arrive. */
+export function CustomersScene() {
   const count = useMotionValue(12);
   const rounded = useTransform(count, (v) => Math.round(v));
   useEffect(() => {
@@ -170,8 +177,8 @@ export function GrowScene() {
   }, [count]);
 
   return (
-    <div className="grid gap-4 w-full">
-      <div className="rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg">
+    <div className="grid w-full gap-4 sm:grid-cols-5">
+      <div className="sm:col-span-3 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg">
         <div className="flex items-end justify-between">
           <div>
             <p className="font-heading font-semibold text-ink">Enquiries this week</p>
@@ -194,16 +201,34 @@ export function GrowScene() {
             animate={{ pathLength: 1 }}
             transition={{ duration: 2.2, delay: 0.3, ease: [0.2, 0.7, 0.2, 1] }}
           />
-          <motion.circle cx="400" cy="12" r="7" fill="#F2A900" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.4 }} style={{ originX: '400px', originY: '12px' }} />
         </svg>
       </div>
-      <div className="space-y-2.5">
+      <div className="sm:col-span-2 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg space-y-3">
+        <p className="font-heading font-bold text-ink">Where they came from</p>
+        {CHANNELS.map((c, i) => (
+          <div key={c.name}>
+            <div className="flex justify-between text-sm">
+              <span className="text-ink">{c.name}</span>
+              <span className="tabular-nums font-semibold text-body">{c.value}</span>
+            </div>
+            <div className="mt-1 h-2 rounded-full bg-[#EEF2F8]">
+              <motion.div
+                className="h-2 rounded-full bg-marigold"
+                initial={{ width: 0 }}
+                animate={{ width: `${(c.value / 18) * 100}%` }}
+                transition={{ duration: 1.2, delay: 0.6 + i * 0.15, ease: [0.2, 0.7, 0.2, 1] }}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className="sm:col-span-5 space-y-2.5">
         {TOASTS.map((t, i) => (
           <motion.p
             key={t}
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.1 + i * 0.7, type: 'spring', stiffness: 220, damping: 22 }}
+            transition={{ delay: 1.4 + i * 0.6, type: 'spring', stiffness: 220, damping: 22 }}
             className="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-sm text-ink ring-1 ring-rule shadow-sm"
           >
             <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-marigold" />
@@ -211,6 +236,73 @@ export function GrowScene() {
           </motion.p>
         ))}
       </div>
+    </div>
+  );
+}
+
+const STAGES = ['Applied', 'Screened', 'Interview', 'Hired'];
+const STAGE_COUNTS = [24, 8, 3, 1];
+const POOL = [
+  { initials: 'SK', role: 'Billing executive' },
+  { initials: 'RM', role: 'Billing executive' },
+  { initials: 'AP', role: 'Billing executive' },
+];
+
+/** Build your team: a candidate moves through the hiring pipeline, from application to offer. */
+export function TeamScene() {
+  const [stage, setStage] = useState(0);
+  useEffect(() => {
+    const timers = [1, 2, 3].map((n) => setTimeout(() => setStage(n), 700 + n * 900));
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  return (
+    <div className="w-full space-y-4">
+      <div className="rounded-2xl bg-white p-4 ring-1 ring-rule shadow-lg sm:p-5">
+        <div className="flex items-center justify-between">
+          <p className="font-heading font-bold text-ink">Hiring: billing executive</p>
+          <span className="rounded-full bg-leaf/10 px-2.5 py-0.5 text-xs font-semibold text-leaf">Screened by us</span>
+        </div>
+        <div className="mt-4 grid grid-cols-4 gap-2 sm:gap-3">
+          {STAGES.map((name, i) => (
+            <div key={name} className={`min-h-[9.5rem] rounded-xl p-2 sm:p-3 ${i === 3 ? 'bg-leaf/10' : 'bg-[#F4F6FA]'}`}>
+              <p className="text-[11px] font-semibold text-body sm:text-xs">{name}</p>
+              <p className="font-display text-lg font-extrabold text-ink tabular-nums sm:text-2xl">{STAGE_COUNTS[i]}</p>
+              <div className="mt-2 space-y-1.5">
+                {i === 0 &&
+                  POOL.slice(1).map((c) => (
+                    <div key={c.initials} className="flex items-center gap-1.5 rounded-lg bg-white p-1.5 ring-1 ring-rule">
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D6E0F0] text-[9px] font-bold text-ink">{c.initials}</span>
+                      <span className="hidden truncate text-[10px] text-body sm:block">{c.role}</span>
+                    </div>
+                  ))}
+                {stage === i && (
+                  <motion.div
+                    layoutId="moving-candidate"
+                    transition={{ type: 'spring', stiffness: 260, damping: 26 }}
+                    className={`flex items-center gap-1.5 rounded-lg p-1.5 shadow-md ${i === 3 ? 'bg-leaf text-white' : 'bg-ink text-white'}`}
+                  >
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-marigold text-[9px] font-bold text-ink">{POOL[0].initials}</span>
+                    <span className="hidden truncate text-[10px] sm:block">{POOL[0].role}</span>
+                  </motion.div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={stage === 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ delay: stage === 3 ? 0.5 : 0, duration: 0.4 }}
+        className="flex items-center gap-3 rounded-2xl bg-ink p-4 text-sm text-white shadow-lg"
+      >
+        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#7CC793]" />
+        <span>
+          <span className="font-semibold text-marigold">Offer accepted. </span>
+          Joining date fixed and an onboarding plan sent to the new hire.
+        </span>
+      </motion.p>
     </div>
   );
 }

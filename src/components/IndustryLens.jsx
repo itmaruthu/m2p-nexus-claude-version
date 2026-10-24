@@ -1,17 +1,25 @@
 import { useRef, useState } from 'react';
 import { motion, useInView, useReducedMotion } from 'framer-motion';
-import { industries } from '../config/industries';
+import { industries, rowKinds } from '../config/industries';
 import { waLink } from '../config/site';
 import { WhatsAppIcon } from './icons';
 
 /**
- * Industries hero: pick an industry and a marigold scanner sweeps down its handwritten "today" page. As the
+ * Industries hero: pick an industry and a marigold scanner sweeps down its handwritten "today" page. Each
+ * industry has rows for running the business, winning customers and building the team. As the
  * beam passes each paper habit, it is highlighted and its digital replacement lights up on the ink side.
  * The first panel renders complete on the server (no flash, works without JavaScript); the sweep runs when
  * the lens is first seen, and again for every industry the visitor picks. Reduced motion: no sweep.
  */
 
-const ROW_DELAY = (i) => 0.35 + i * 0.75;
+const ROW_DELAY = (i) => 0.35 + i * 0.62;
+
+// Solid tags with dark or white text, so every label passes WCAG AA contrast on the ink panel.
+const KIND_STYLE = {
+  run: 'bg-white/15 text-white',
+  customers: 'bg-marigold text-ink',
+  team: 'bg-[#7CC793] text-ink',
+};
 
 function Panel({ ind, play, enter }) {
   return (
@@ -34,8 +42,8 @@ function Panel({ ind, play, enter }) {
           With M2P Nexus
         </p>
 
-        {ind.paper.map((item, i) => (
-          <div key={item} className="contents">
+        {ind.rows.map((row, i) => (
+          <div key={row.paper} className="contents">
             <div className="relative border-t border-dashed border-[#E3D9C2] bg-[#FBF6EA] px-4 py-4 sm:px-7 sm:py-5">
               <span className="relative inline font-[family-name:var(--font-hand)] text-[15px] leading-snug text-[#2B3A8C] sm:text-xl">
                 {play && (
@@ -47,7 +55,7 @@ function Panel({ ind, play, enter }) {
                     transition={{ delay: ROW_DELAY(i), duration: 0.4 }}
                   />
                 )}
-                <span className="relative">{item}</span>
+                <span className="relative">{row.paper}</span>
               </span>
             </div>
             <div className="relative border-t border-white/10 bg-ink px-4 py-4 sm:px-7 sm:py-5">
@@ -58,17 +66,23 @@ function Panel({ ind, play, enter }) {
                 animate={play ? { scale: [1, 1.8, 1] } : { scale: 1 }}
                 transition={{ delay: ROW_DELAY(i) + 0.1, duration: 0.5 }}
               />
-              <motion.p
-                className="relative flex items-start gap-2 rounded-xl bg-white/[0.07] px-3 py-2.5 text-sm leading-snug text-white ring-1 ring-white/10 sm:text-base"
+              <motion.div
+                className="relative rounded-xl bg-white/[0.07] px-3 py-2.5 text-sm leading-snug text-white ring-1 ring-white/10 sm:text-base"
                 initial={enter ? { opacity: 0, x: -18 } : false}
                 animate={play ? { opacity: 1, x: 0, boxShadow: ['0 0 0 0 rgba(242,169,0,0)', '0 0 0 4px rgba(242,169,0,0.45)', '0 0 0 0 rgba(242,169,0,0)'] } : { opacity: 1, x: 0 }}
                 transition={{ delay: ROW_DELAY(i) + 0.15, duration: 0.7 }}
               >
-                <svg viewBox="0 0 20 20" aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[#7CC793]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M4 10.5l4 4 8-9" />
-                </svg>
-                {ind.system[i]}
-              </motion.p>
+                {/* What this row changes: running the business, winning customers or building the team */}
+                <span className={`mb-1.5 inline-block rounded-full px-2 py-0.5 text-[11px] font-semibold ${KIND_STYLE[row.kind]}`}>
+                  {rowKinds[row.kind]}
+                </span>
+                <span className="flex items-start gap-2">
+                  <svg viewBox="0 0 20 20" aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-[#7CC793]" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4 10.5l4 4 8-9" />
+                  </svg>
+                  {row.system}
+                </span>
+              </motion.div>
             </div>
           </div>
         ))}
@@ -80,7 +94,7 @@ function Panel({ ind, play, enter }) {
           {ind.start}
         </p>
         <a
-          href={waLink(`Hello, I run a business in ${ind.name.toLowerCase()}. ${ind.paper[0]}. Where should we start?`)}
+          href={waLink(`Hello, I run a business in ${ind.name.toLowerCase()}. ${ind.rows[0].paper}. Where should we start?`)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-leaf px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#185730] transition-colors"

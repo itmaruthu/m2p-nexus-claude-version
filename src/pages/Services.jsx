@@ -53,17 +53,41 @@ const groups = [
   {
     id: 'grow',
     title: 'Grow',
-    intro: 'Bring in more customers and build the team to serve them.',
+    intro: 'Bring in more customers and build the team to serve them. Both run the same way as our software work: a clear plan, regular reports and one point of contact.',
     services: [
       {
         name: 'Digital marketing',
         when: 'For when you need more enquiries, not just more posts.',
         includes: ['Social media marketing', 'SEO', 'Content marketing', 'Branding', 'Lead generation', 'Performance marketing'],
+        signs: [
+          'Customers say they could not find you on Google',
+          'You post on social media, but enquiries don’t follow',
+          'Most new business still comes only by word of mouth',
+        ],
+        steps: [
+          { title: 'Audit', text: 'Where customers look for you today, and what competitors do.' },
+          { title: 'Plan', text: 'Channels, messages and a monthly budget you agree to.' },
+          { title: 'Set up', text: 'Google profile, website basics, social pages and tracking.' },
+          { title: 'Run', text: 'Posts, campaigns and replies, in Tamil and English.' },
+          { title: 'Report', text: 'Every month: how many enquiries, where they came from, what next.' },
+        ],
       },
       {
         name: 'HR & talent acquisition',
         when: 'For when hiring the right people takes too long, or goes wrong.',
         includes: ['Recruitment', 'Talent acquisition', 'HR consulting', 'Hiring strategy', 'Employer branding', 'Workforce planning'],
+        signs: [
+          'Good people leave within months of joining',
+          'Hiring depends on referrals and takes weeks',
+          'Roles, salaries and HR policies aren’t written down',
+        ],
+        steps: [
+          { title: 'Brief', text: 'The role, skills, salary range and the kind of person who fits.' },
+          { title: 'Source', text: 'Job posts, our network and referrals, reached in one go.' },
+          { title: 'Screen', text: 'Calls and checks, so you only meet people worth meeting.' },
+          { title: 'Interview', text: 'Questions, scheduling and honest feedback on every candidate.' },
+          { title: 'Onboard', text: 'Offer, joining and a first-month plan, so they stay.' },
+        ],
       },
     ],
   },
@@ -130,6 +154,39 @@ export default function Services() {
                       ))}
                     </ul>
                   </div>
+                  {s.steps && (
+                    <div className="md:col-span-2 space-y-7 rounded-2xl bg-white p-5 ring-1 ring-rule sm:p-7">
+                      <div>
+                        <p className="font-heading font-semibold text-ink">Signs you need this</p>
+                        <ul className="mt-3 grid gap-2.5 sm:grid-cols-3 sm:gap-5">
+                          {s.signs.map((sign) => (
+                            <li key={sign} className="flex gap-3 font-[family-name:var(--font-hand)] text-lg leading-snug text-[#2B3A8C]">
+                              <span aria-hidden="true" className="mt-2 h-2 w-2 shrink-0 rounded-full bg-marigold" />
+                              {sign}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="border-t border-dashed border-rule pt-6">
+                        <p className="font-heading font-semibold text-ink">How it works</p>
+                        {/* A real sequence, so it is numbered; a line joins the steps on wide screens. */}
+                        <ol className="relative mt-4 grid gap-4 sm:grid-cols-5 sm:gap-3">
+                          <span aria-hidden="true" className="absolute left-4 right-[18%] top-4 hidden h-0.5 bg-[linear-gradient(90deg,#1F6B3A,#F2A900)] sm:block" />
+                          {s.steps.map((step, i) => (
+                            <li key={step.title} className="relative flex gap-3 sm:block">
+                              <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink font-display text-sm font-bold text-marigold ring-4 ring-white">
+                                {i + 1}
+                              </span>
+                              <div className="sm:mt-3">
+                                <p className="font-heading font-semibold text-ink">{step.title}</p>
+                                <p className="mt-0.5 text-sm leading-relaxed text-body">{step.text}</p>
+                              </div>
+                            </li>
+                          ))}
+                        </ol>
+                      </div>
+                    </div>
+                  )}
                 </article>
               ))}
             </div>
