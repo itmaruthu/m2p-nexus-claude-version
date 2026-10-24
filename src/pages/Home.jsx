@@ -126,7 +126,18 @@ export default function Home() {
             <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-6">
               {clients.map((c) => (
                 <li key={c.name} className="font-heading font-bold text-lg text-body">
-                  {c.logo ? <img src={c.logo} alt={c.name} className="h-9 w-auto grayscale" loading="lazy" /> : c.name}
+                  {c.logo ? (
+                    <img
+                      src={c.logo}
+                      alt={c.name}
+                      width={c.width}
+                      height={c.height}
+                      loading="lazy"
+                      className="h-16 w-auto opacity-90 transition-opacity hover:opacity-100 sm:h-24"
+                    />
+                  ) : (
+                    c.name
+                  )}
                 </li>
               ))}
             </ul>
