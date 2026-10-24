@@ -159,6 +159,8 @@ export default function Tamil() {
         intro="பெரிய திட்டத்திற்குத் தயாராக இல்லையா? ஒரு தொடக்கத் திட்டத்தைத் தேர்ந்தெடுங்கள். நாங்கள் எப்படி வேலை செய்கிறோம் என்பதைப் பார்க்க இதுவே எளிய வழி."
       />
 
+      <Promises lang="ta" headingId="ta-promise-title" />
+
       {/* How we work */}
       <section className="border-b border-rule bg-white">
         <div className={`${sectionPad} space-y-10`}>
@@ -174,8 +176,6 @@ export default function Tamil() {
           </ol>
         </div>
       </section>
-
-      <Promises lang="ta" headingId="ta-promise-title" />
 
       <ClosingCta
         lang="ta"
