@@ -1,0 +1,75 @@
+// Industries from the M2P Nexus brand guide. For each: what still runs on paper today, what replaces it,
+// and where we would usually start. Examples of typical situations, not results or client claims.
+
+export const industries = [
+  {
+    id: 'retail',
+    name: 'Retail shops',
+    paper: ['Bills written by hand at the counter', 'Stock counted by eye', 'Regular customers remembered, not recorded'],
+    system: ['Tamil and English billing with GST', 'Low-stock alerts before shelves run empty', 'Customer history and offers on WhatsApp'],
+    start: 'Billing software your counter staff can use from day one.',
+  },
+  {
+    id: 'trading',
+    name: 'Traders',
+    paper: ['Orders arrive as WhatsApp messages', 'Credit tracked in a notebook', 'Rate lists sent as photos'],
+    system: ['Orders sorted into one order book', 'Outstanding payments with reminders', 'Rate lists shared from one place'],
+    start: 'An order book that collects your WhatsApp orders.',
+  },
+  {
+    id: 'manufacturing',
+    name: 'Manufacturing',
+    paper: ['Separate registers for material and scrap', 'Dispatch details on paper slips', 'Month-end stock that never matches'],
+    system: ['One ERP for material, scrap and dispatch', 'Weighbridge readings straight into the system', 'Live stock figures you can trust'],
+    start: 'One register for raw material, production and dispatch.',
+  },
+  {
+    id: 'construction',
+    name: 'Construction',
+    paper: ['Site deliveries noted in a diary', 'Sub-contractor bills checked by hand', 'Progress shared over phone calls'],
+    system: ['Deliveries logged with weights and photos', 'Contractor accounts and bills in one place', 'Every site’s progress in one view'],
+    start: 'A material and contractor ledger for every site.',
+  },
+  {
+    id: 'agriculture',
+    name: 'Agriculture',
+    paper: ['Batch weights written at the scale', 'Transport and driver logs on paper', 'Farmer payments worked out by hand'],
+    system: ['Weights recorded straight from the scale', 'Trips and fuel tracked per vehicle', 'Commission and settlements calculated for you'],
+    start: 'A trading system for weights, transport and settlements.',
+  },
+  {
+    id: 'logistics',
+    name: 'Logistics',
+    paper: ['Trip sheets filled in by drivers', 'Fuel bills checked one by one', 'Freight invoices typed in again'],
+    system: ['Digital trip sheets on a phone', 'Fuel and mileage matched to each trip', 'Invoices read and checked by AI'],
+    start: 'Digital trip sheets, then AI that reads freight invoices.',
+  },
+  {
+    id: 'healthcare',
+    name: 'Clinics',
+    paper: ['Appointments in a register', 'Patient history in paper files', 'Follow-ups that slip through'],
+    system: ['Online appointments and a live queue', 'Patient records in one secure place', 'WhatsApp reminders for follow-ups'],
+    start: 'Appointments and reminders, then patient records.',
+  },
+  {
+    id: 'education',
+    name: 'Schools and colleges',
+    paper: ['Attendance on paper registers', 'Marks compiled in spreadsheets', 'Fee dues chased by phone'],
+    system: ['Attendance marked on a phone', 'Report cards generated automatically', 'Fee reminders sent to parents'],
+    start: 'Attendance and fee reminders that parents actually see.',
+  },
+  {
+    id: 'finance',
+    name: 'Finance and accounting firms',
+    paper: ['Client documents arrive on email and WhatsApp', 'Invoices keyed in by hand', 'Deadlines tracked on a whiteboard'],
+    system: ['One place for every client’s documents', 'Invoices read automatically by AI', 'Deadline reminders for every client'],
+    start: 'Document collection and AI invoice reading.',
+  },
+  {
+    id: 'services',
+    name: 'Service businesses',
+    paper: ['Enquiries lost between calls and messages', 'No website, or an outdated one', 'Hiring through word of mouth'],
+    system: ['Every enquiry captured in a CRM', 'A website that brings in enquiries', 'A hiring process that finds the right people'],
+    start: 'A website and CRM so no enquiry is missed.',
+  },
+];

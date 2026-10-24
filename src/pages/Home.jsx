@@ -8,7 +8,6 @@ import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
-import founderPhoto from '../assets/founder_photo.webp';
 
 // Content follows the M2P Nexus brand guide: problem first, plain language, one partner instead of five
 // vendors, no unverifiable numbers.
@@ -291,16 +290,18 @@ export default function Home() {
       {/* Why we exist, from the brand story */}
       <section className="bg-white border-b border-rule">
         <div className={`${sectionPad} grid gap-12 lg:grid-cols-12 lg:items-center`}>
-          <div className="lg:col-span-4">
-            <img
-              src={founderPhoto}
-              alt="Maruthu Pandi PT, Founder and Director of M2P Nexus"
-              width="800"
-              height="800"
-              loading="lazy"
-              className="w-full max-w-sm rounded-2xl object-cover aspect-square"
-            />
-          </div>
+          <figure className="lg:col-span-4">
+            <blockquote className="relative rounded-3xl bg-ink p-8 text-white shadow-[0_40px_80px_-40px_rgba(23,37,84,0.7)]">
+              <span aria-hidden="true" className="absolute -top-6 left-6 font-display text-8xl leading-none text-marigold">&ldquo;</span>
+              <p className="relative font-heading text-xl leading-snug sm:text-2xl">
+                We don&rsquo;t just build software. We build business success.
+              </p>
+            </blockquote>
+            <figcaption className="mt-5 pl-2">
+              <span className="block font-[family-name:var(--font-hand)] text-3xl text-[#2B3A8C] -rotate-2">Maruthu Pandi PT</span>
+              <span className="mt-1 block text-sm text-body">Founder &amp; Director, M2P Nexus</span>
+            </figcaption>
+          </figure>
           <div className="lg:col-span-8 space-y-6 max-w-2xl">
             <h2 className={h2Class}>Why we started M2P Nexus</h2>
             <p className="text-lg text-body leading-relaxed">
@@ -309,9 +310,7 @@ export default function Home() {
             <p className="text-lg text-body leading-relaxed">
               We built M2P Nexus to close that gap: one partner that brings technology, people and growth together, and stays with you for the long run.
             </p>
-            <p className="text-body">
-              <span className="font-heading font-semibold text-ink">Maruthu Pandi PT</span>, Founder &amp; Director
-              <span className="mx-3 text-rule" aria-hidden="true">|</span>
+            <p>
               <Link to="/founder" className={textLink}>
                 Meet the founders
               </Link>
