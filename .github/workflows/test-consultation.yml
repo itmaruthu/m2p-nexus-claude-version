@@ -1,0 +1,32 @@
+name: Test consultation endpoint
+
+# One-off check: posts a clearly labelled TEST enquiry the way the website does, and prints the
+# response and CORS header. Delete the TEST row from the sheet afterwards.
+
+on: workflow_dispatch
+
+jobs:
+  test:
+    if: github.repository == 'itmaruthu/m2p-nexus-claude-version'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post a test enquiry
+        run: |
+          URL='https://script.google.com/macros/s/AKfycbyOD5-xgjDQchGJfX9HkxTOPo3ycJcv7nk1Po0BglEQxUZtasQCbZf0Ms2fic4vX79RIQ/exec'
+          curl -sS -L -D headers.txt -o body.txt \
+            -H 'Origin: https://itmaruthu.github.io' \
+            --data-urlencode 'website=' \
+            --data-urlencode 'name=TEST from website setup (please delete)' \
+            --data-urlencode 'phone=98765 43210' \
+            --data-urlencode 'email=' \
+            --data-urlencode 'business=M2P Nexus test' \
+            --data-urlencode 'industry=Traders' \
+            --data-urlencode 'needs=Website, AI and automation' \
+            --data-urlencode 'message=Automated test of the consultation form. Safe to delete this row.' \
+            --data-urlencode 'contact=WhatsApp' \
+            --data-urlencode 'consent=yes' \
+            --data-urlencode 'elapsed=20000' \
+            --data-urlencode 'page=/setup-test' \
+            "$URL"
+          echo "--- status and CORS headers"; grep -iE '^HTTP/|access-control-allow-origin|content-type' headers.txt
+          echo "--- body"; head -c 400 body.txt; echo
