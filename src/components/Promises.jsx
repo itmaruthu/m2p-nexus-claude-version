@@ -17,8 +17,12 @@ function Seal() {
       <circle cx="60" cy="60" r="58" fill="#F2A900" />
       <circle cx="60" cy="60" r="52" fill="none" stroke="#172554" strokeWidth="1.5" strokeDasharray="2 3" />
       <g className="seal-spin" style={{ transformOrigin: '60px 60px' }}>
-        <text fill="#172554" fontSize="10.5" fontWeight="700" letterSpacing="2.2" fontFamily="Archivo Variable, sans-serif">
-          <textPath href="#seal-ring">M2P NEXUS • FROM ROOTS TO SUCCESS •</textPath>
+        {/* textLength = the ring's circumference (2π × 43 ≈ 270), so the words fill the circle exactly once
+            and the end never runs into the start. */}
+        <text fill="#172554" fontSize="9" fontWeight="700" fontFamily="Archivo Variable, sans-serif">
+          <textPath href="#seal-ring" textLength="268" lengthAdjust="spacing">
+            M2P NEXUS • FROM ROOTS TO SUCCESS •
+          </textPath>
         </text>
       </g>
       <circle cx="60" cy="60" r="27" fill="#172554" />
