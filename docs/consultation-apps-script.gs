@@ -61,7 +61,11 @@ function doPost(e) {
   const lock = LockService.getScriptLock();
   lock.waitLock(10000);
   try {
-    const sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+    let sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+    if (!sheet) {
+      setup(); // first submission before setup() was run: create the tab and headers now
+      sheet = SpreadsheetApp.getActive().getSheetByName(SHEET_NAME);
+    }
     sheet.appendRow(row);
   } finally {
     lock.releaseLock();
