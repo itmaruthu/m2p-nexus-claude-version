@@ -7,12 +7,14 @@ import { CallIcon, WhatsAppIconLink } from '../components/CallIcon';
 import { formText } from '../config/consultation';
 import { starters } from '../config/starters';
 import { needsFor, readParts } from '../config/projects';
+import { findFounder, founderTopics } from '../config/founders';
 import { links, waLink } from '../config/site';
 
 // Book a consultation (/book/ and /ta/book/). Page pattern: Form page — one task, a labelled form, and the
 // context a first-time client needs beside it. `?starter=<id>` (from the starter packs) pre-selects that
 // starter, and `?parts=a,b` (from the portfolio's blueprint builder) fills in the parts the visitor picked.
-// Both are read after hydration so the pre-rendered HTML and the first client render match.
+// `?with=<founder>&topic=<id>` (from the founder page) says who the visitor asked to speak with.
+// All are read after hydration so the pre-rendered HTML and the first client render match.
 
 const copy = {
   en: {
@@ -27,6 +29,9 @@ const copy = {
     blueprint: 'Your blueprint',
     changeParts: 'Change parts',
     partsCount: '{n} parts',
+    speakWith: 'You asked to speak with',
+    withMsg: 'I would like to speak with {name}',
+    aboutMsg: ' about {topic}',
     partsMsg: 'I built a blueprint on your website with: {parts}.',
     nextTitle: 'What happens next',
     steps: [
@@ -51,6 +56,9 @@ const copy = {
     blueprint: 'உங்கள் வரைபடம்',
     changeParts: 'பகுதிகளை மாற்ற',
     partsCount: '{n} பகுதிகள்',
+    speakWith: 'நீங்கள் பேச விரும்புவது',
+    withMsg: '{name} அவர்களுடன் பேச விரும்புகிறேன்',
+    aboutMsg: ' ({topic})',
     partsMsg: 'உங்கள் இணையதளத்தில் இந்தப் பகுதிகளுடன் ஒரு வரைபடம் உருவாக்கினேன்: {parts}.',
     nextTitle: 'அடுத்து என்ன நடக்கும்',
     steps: [
@@ -75,11 +83,15 @@ export default function Book({ lang = 'en' }) {
   const ta = lang === 'ta';
   const [starter, setStarter] = useState(null);
   const [parts, setParts] = useState([]);
+  const [ask, setAsk] = useState(null); // { founder, topic } from the founder page
 
   useEffect(() => {
     const t = setTimeout(() => {
       setStarter(readStarter());
-      setParts(readParts(new URLSearchParams(window.location.search).get('parts')));
+      const q = new URLSearchParams(window.location.search);
+      setParts(readParts(q.get('parts')));
+      const founder = findFounder(q.get('with'));
+      if (founder) setAsk({ founder, topic: founderTopics.find((t) => t.id === q.get('topic')) || null });
     }, 0);
     return () => clearTimeout(t);
   }, []);
@@ -88,7 +100,12 @@ export default function Book({ lang = 'en' }) {
     ? { needs: [starter.need], message: formText[lang].starter.replace('{starter}', starter[lang].name) }
     : parts.length
       ? { needs: needsFor(parts), message: c.partsMsg.replace('{parts}', parts.map((p) => p.name).join(', ')) }
-      : null;
+      : ask
+        ? {
+            needs: ask.topic ? [ask.topic.need] : [],
+            message: `${c.withMsg.replace('{name}', ask.founder.first)}${ask.topic ? c.aboutMsg.replace('{topic}', ask.topic.label.toLowerCase()) : ''}.`,
+          }
+        : null;
   const partIds = parts.map((p) => p.id).join(',');
 
   return (
@@ -184,7 +201,15 @@ export default function Book({ lang = 'en' }) {
                     </ul>
                   </div>
                 )}
-                <ConsultationForm key={starter?.id || partIds || 'none'} lang={lang} preset={preset} done={{ label: c.done, to: c.doneTo }} />
+                {!starter && !parts.length && ask && (
+                  <p className="mb-6 flex flex-wrap items-baseline justify-between gap-2 border-b border-dashed border-rule pb-5 text-body">
+                    <span>
+                      {c.speakWith}: <span className="font-semibold text-ink">{ask.founder.name}</span>
+                    </span>
+                    <span className="text-sm">{ask.founder.role}</span>
+                  </p>
+                )}
+                <ConsultationForm key={starter?.id || partIds || ask?.founder.id || 'none'} lang={lang} preset={preset} done={{ label: c.done, to: c.doneTo }} />
               </div>
             </div>
           </div>

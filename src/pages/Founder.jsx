@@ -1,32 +1,11 @@
 import Seo from '../components/Seo';
 import Breadcrumb from '../components/Breadcrumb';
 import FounderPaths from '../components/FounderPaths';
-import ClosingCta from '../components/ClosingCta';
-import { h2Class, sectionPad } from '../components/styles';
+import JapanToMadurai from '../components/JapanToMadurai';
+import FounderRouter from '../components/FounderRouter';
 
-// Founder details come from the existing M2P Nexus founder page. Claims that could not be verified
-// (success rates, counters) were removed.
-
-const leads = [
-  {
-    name: 'Maruthu Pandi PT',
-    area: 'Technology',
-    points: [
-      { title: 'Systems built around the shop floor', text: 'Designing databases that prevent stock mismatches, and connecting weighing scales, transport meters and billing to one central system.' },
-      { title: 'International delivery standards', text: 'Onsite project delivery in Japan, bringing disciplined coding standards, clean architecture and structured delivery home to Madurai.' },
-      { title: 'Practical AI', text: 'AI pipelines that read raw receipt logs and write daily inventory reports, so teams stop compiling them by hand.' },
-    ],
-  },
-  {
-    name: 'Priyanka M',
-    area: 'People and clients',
-    points: [
-      { title: 'Hiring that works', text: 'Auditing recruitment pipelines, building structured interviews and retention plans so the right people join and stay.' },
-      { title: 'Long-term partnerships', text: 'Staying close to every client after launch and advising startups and growing businesses as they build capable teams.' },
-      { title: 'Business development', text: 'Helping clients find and win customers, from positioning to a sales process that keeps enquiries coming.' },
-    ],
-  },
-];
+// Founder details live in src/config/founders.js (the paths in FounderPaths.jsx). Claims that could not be
+// verified (success rates, counters) were removed. The page ends with the founder router, its call to action.
 
 export default function Founder() {
   return (
@@ -52,39 +31,9 @@ export default function Founder() {
         </div>
       </section>
 
-      <section className="border-b border-rule bg-[#F4F6FA]">
-        <div className={`${sectionPad} space-y-12`}>
-          <h2 className={`${h2Class} max-w-2xl`}>What each of us leads</h2>
-          <div className="grid gap-12 lg:grid-cols-2">
-            {leads.map((l) => (
-              <div key={l.name} className="space-y-6">
-                <p className="border-b-2 border-ink pb-3">
-                  <span className="font-display text-xl font-bold text-ink">{l.area}</span>
-                  <span className="text-body">, led by {l.name}</span>
-                </p>
-                <dl className="space-y-6">
-                  {l.points.map((p) => (
-                    <div key={p.title} className="grid gap-1 sm:grid-cols-[13rem_1fr] sm:gap-6">
-                      <dt className="font-heading font-semibold text-ink">{p.title}</dt>
-                      <dd className="text-body leading-relaxed">{p.text}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <JapanToMadurai />
 
-      <ClosingCta
-        title="Talk to the founders directly."
-        text="No account managers in between. Tell us about your business and one of us will reply, in Tamil or English."
-        questions={[
-          'Can I speak with Maruthu about a software project?',
-          'Can Priyanka help us hire our first sales team?',
-          'What does a first meeting with you look like?',
-        ]}
-      />
+      <FounderRouter />
     </>
   );
 }

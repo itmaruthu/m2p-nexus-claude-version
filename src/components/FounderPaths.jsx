@@ -6,7 +6,7 @@ import coFounderPhoto from '../assets/co_founder_photo.webp';
 /**
  * Founder page signature: two career paths, technology (Maruthu) and people (Priyanka), each drawn as a
  * track of milestones under a portrait, then curving together into one M2P Nexus node. Paths draw once
- * when seen; small lights travel the merge curves. Renders complete without JavaScript or with reduced
+ * when seen. Renders complete without JavaScript or with reduced
  * motion. The founders' photos appear only on this page.
  */
 
@@ -109,11 +109,6 @@ export default function FounderPaths() {
               animate={{ pathLength: on ? 1 : 0 }}
               transition={{ duration: reduce ? 0 : 1.1, delay: reduce ? 0 : 1.6, ease: [0.2, 0.7, 0.2, 1] }}
             />
-            {inView && !reduce && (
-              <circle r="5" fill={founders[i].color}>
-                <animateMotion dur="2.6s" begin={`${2.8 + i * 0.4}s`} repeatCount="indefinite" path={d} />
-              </circle>
-            )}
           </g>
         ))}
       </svg>
