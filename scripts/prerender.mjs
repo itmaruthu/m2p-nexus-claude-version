@@ -17,10 +17,15 @@ const template = await readFile(path.join(dist, 'index.html'), 'utf8')
 // Tamil pages: preload the Tamil subsets of the body (400) and headline (700) fonts, so the large Tamil
 // headline does not re-wrap (and shift the page) when the web font arrives.
 const assets = await readdir(path.join(dist, 'assets'))
-const tamilFonts = ['hind-madurai-tamil-400-normal', 'hind-madurai-tamil-700-normal']
-  .map((name) => assets.find((f) => f.startsWith(name) && f.endsWith('.woff2')))
-  .filter(Boolean)
-  .map((f) => `<link rel="preload" as="font" type="font/woff2" href="${base}/assets/${f}" crossorigin />`)
+const preloadFonts = (names) =>
+  names
+    .map((name) => assets.find((f) => f.startsWith(name) && f.endsWith('.woff2')))
+    .filter(Boolean)
+    .map((f) => `<link rel="preload" as="font" type="font/woff2" href="${base}/assets/${f}" crossorigin />`)
+const tamilFonts = preloadFonts(['hind-madurai-tamil-400-normal', 'hind-madurai-tamil-700-normal'])
+// English pages: the Latin body font and the display headline font, so the first paragraph and the hero
+// headline do not re-wrap when the web fonts arrive (measured as a small layout shift on Home and About).
+const latinFonts = preloadFonts(['hind-madurai-latin-400-normal', 'archivo-expanded'])
 
 const escapeHtml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
@@ -32,7 +37,7 @@ function page(appHtml, seo, canonical) {
     canonical && `<meta property="og:url" content="${canonical}" />`,
     canonical && `<link rel="canonical" href="${canonical}" />`,
     seo.noindex && '<meta name="robots" content="noindex" />',
-    ...(seo.lang === 'ta' ? tamilFonts : []),
+    ...(seo.lang === 'ta' ? tamilFonts : latinFonts),
     ...(canonical ? seo.alternates : []).map(
       (a) => `<link rel="alternate" hreflang="${a.hreflang}" href="${siteUrl}${a.path}" />`,
     ),
