@@ -23,11 +23,16 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
           <p className="lg:col-span-5 text-lg text-body leading-relaxed">{intro}</p>
         </div>
 
-        <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Phones: one swipeable row (a focusable, labelled scroll region). sm and up: a grid. */}
+        <ul
+          tabIndex={0}
+          aria-label={t.listLabel}
+          className="-mx-4 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-3 outline-offset-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
+        >
           {starters.map((s) => {
             const c = s[lang];
             return (
-              <li key={s.id} className="group flex">
+              <li key={s.id} className="group flex w-[85%] shrink-0 snap-start sm:w-auto">
                 <article className="relative flex w-full flex-col rounded-3xl bg-white ring-1 ring-rule shadow-lift transition-transform duration-300 group-hover:-translate-y-1">
                   <div className="flex-1 space-y-5 p-6">
                     <div>
@@ -76,7 +81,7 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
             );
           })}
           {/* Sixth tile: a custom request, which also completes the 3-column grid */}
-          <li className="flex">
+          <li className="flex w-[85%] shrink-0 snap-start sm:w-auto">
             <div className="relative flex w-full flex-col justify-between gap-6 overflow-hidden rounded-3xl bg-ink p-6 text-white grain">
               <div className="relative z-10 space-y-3">
                 <span aria-hidden="true" className="ask-orb block h-10 w-10 rounded-full" />
@@ -91,6 +96,7 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
             </div>
           </li>
         </ul>
+        <p aria-hidden="true" className="-mt-8 text-sm text-body sm:hidden">{t.swipe}</p>
 
         <p className="flex items-start gap-3 text-body">
           <svg viewBox="0 0 20 20" aria-hidden="true" className="mt-0.5 h-5 w-5 shrink-0 text-marigold" fill="currentColor">

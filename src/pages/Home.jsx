@@ -8,7 +8,10 @@ import DigitiseSlider from '../components/DigitiseSlider';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
 import StarterOffers from '../components/StarterOffers';
+import { industries as allIndustries } from '../config/industries';
+import { projects as allProjects } from '../config/projects';
 import Promises from '../components/Promises';
+import Faq from '../components/Faq';
 import { CallIcon } from '../components/CallIcon';
 import BookButton from '../components/consultation/BookButton';
 import { h2Class, outlineButton, sectionPad, textLink, whatsappButton } from '../components/styles';
@@ -44,21 +47,8 @@ const serviceGroups = [
   },
 ];
 
-const industries = ['Retail shops', 'Traders', 'Manufacturers', 'Construction', 'Clinics', 'Schools and colleges', 'Logistics', 'Agriculture', 'Service firms', 'Startups'];
 
-const pains = [
-  'Orders arrive on WhatsApp and get lost',
-  'Bills, stock and attendance live on paper or in Excel',
-  'No website, or one that brings no enquiries',
-  'Hiring the right people takes months',
-  'Unsure which software you even need',
-];
 
-const projects = [
-  { forWhom: 'Retail and traders', problem: 'English-only billing tools that staff found hard to use.', built: 'Tamil / English billing software with GST, offline mode and fast checkout.' },
-  { forWhom: 'Logistics', problem: 'Staff spent hours every week reading and checking freight billing slips.', built: 'AI that reads shipping receipts, matches them to trips and flags anything unusual.' },
-  { forWhom: 'Coconut trading', problem: 'Bulk weights, transport and farmer payments recorded by hand.', built: 'A trading system for batch weights, transport tracking and commission settlement.' },
-];
 
 const steps = [
   { title: 'We listen', desc: 'We learn how your business runs today, in your language, before suggesting anything.' },
@@ -210,78 +200,45 @@ export default function Home() {
         intro="Not ready for a big project? Pick a fixed-scope starter. It’s the quickest way to see how we work, with a clear quotation before anything begins."
       />
 
-      {/* Who we work with, and the problems they bring */}
-      <section className="bg-[#F4F6FA] border-b border-rule">
-        <div className={`${sectionPad} grid gap-12 lg:grid-cols-12`}>
-          <div className="lg:col-span-7 space-y-6">
-            <h2 className={h2Class}>Who we work with</h2>
-            <p className="font-heading font-bold text-ink text-2xl sm:text-[2rem] leading-snug">
-              {industries.map((name, i) => (
-                <span key={name}>
-                  {name}
-                  {i < industries.length - 1 && <span className="font-normal text-body/50">, </span>}
-                </span>
-              ))}
-            </p>
-            <Link to="/industries" className={`inline-block ${textLink}`}>
-              How we help each industry
-            </Link>
-          </div>
-          <div className="lg:col-span-5 rounded-2xl bg-white p-7 sm:p-8 ring-1 ring-rule">
-            <h3 className="font-display font-bold text-ink text-xl">Sound familiar?</h3>
-            <ul className="mt-5 space-y-3">
-              {pains.map((p) => (
-                <li key={p} className="flex gap-3 text-body leading-relaxed">
-                  <span aria-hidden="true" className="mt-2.5 h-2 w-2 shrink-0 rotate-45 bg-marigold" />
-                  {p}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 font-semibold text-ink">These are the problems we fix first.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Past work as a ledger: the one place the ruled-paper motif returns */}
-      <section className="bg-white border-b border-rule">
+      {/* Explore: the Industries and Portfolio pages tell these stories in full, so Home only points there */}
+      <section aria-labelledby="explore-title" className="border-b border-rule bg-white">
         <div className={`${sectionPad} space-y-10`}>
-          <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-            <h2 className={h2Class}>Some things we&rsquo;ve built</h2>
-            <Link to="/portfolio" className={textLink}>
-              See the full portfolio
+          <h2 id="explore-title" className={`${h2Class} max-w-2xl`}>
+            See how it works for businesses like yours
+          </h2>
+          <div className="grid gap-5 md:grid-cols-2">
+            <Link
+              to="/industries"
+              className="group flex flex-col justify-between gap-6 rounded-3xl bg-[#F4F6FA] p-6 ring-1 ring-rule transition-transform duration-200 hover:-translate-y-1 sm:p-9"
+            >
+              <div className="space-y-3">
+                <p className="font-display text-4xl font-bold sm:text-5xl text-leaf tabular-nums">{allIndustries.length}</p>
+                <h3 className="font-display text-xl font-bold sm:text-2xl text-ink">Industries we work in</h3>
+                <p className="max-w-md leading-relaxed text-body">
+                  {allIndustries.slice(0, 5).map((x) => x.name.toLowerCase()).join(', ')} and {allIndustries.length - 5} more: what runs
+                  on paper today, and what changes.
+                </p>
+              </div>
+              <span className="font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 group-hover:decoration-ink">
+                Explore industries
+              </span>
             </Link>
-          </div>
-
-          <div className="relative overflow-hidden rounded-xl ring-1 ring-rule">
-            <div aria-hidden="true" className="absolute inset-y-0 left-3 w-px bg-[#E7A9A9]" />
-            <div aria-hidden="true" className="absolute inset-y-0 left-4 w-px bg-[#E7A9A9]" />
-            <table className="hidden md:table w-full text-left">
-              <thead>
-                <tr className="border-b-2 border-ink text-ink">
-                  <th scope="col" className="py-4 pl-10 pr-6 font-heading font-semibold w-[22%]">Built for</th>
-                  <th scope="col" className="py-4 pr-6 font-heading font-semibold w-[36%]">The problem</th>
-                  <th scope="col" className="py-4 pr-8 font-heading font-semibold">What we built</th>
-                </tr>
-              </thead>
-              <tbody>
-                {projects.map((p) => (
-                  <tr key={p.forWhom} className="border-b border-rule last:border-b-0 align-top">
-                    <th scope="row" className="py-6 pl-10 pr-6 font-display font-bold text-ink text-lg">{p.forWhom}</th>
-                    <td className="py-6 pr-6 text-body leading-relaxed">{p.problem}</td>
-                    <td className="py-6 pr-8 text-ink leading-relaxed">{p.built}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <ul className="md:hidden divide-y divide-rule">
-              {projects.map((p) => (
-                <li key={p.forWhom} className="py-6 pl-10 pr-5 space-y-3">
-                  <p className="font-display font-bold text-ink text-lg">{p.forWhom}</p>
-                  <p className="text-body leading-relaxed"><span className="font-semibold text-ink">The problem: </span>{p.problem}</p>
-                  <p className="text-body leading-relaxed"><span className="font-semibold text-ink">What we built: </span>{p.built}</p>
-                </li>
-              ))}
-            </ul>
+            <Link
+              to="/portfolio"
+              className="group relative flex flex-col justify-between gap-6 overflow-hidden rounded-3xl bg-ink p-6 text-white transition-transform duration-200 hover:-translate-y-1 sm:p-9 grain"
+            >
+              <div className="relative z-10 space-y-3">
+                <p className="font-display text-4xl font-bold sm:text-5xl text-marigold tabular-nums">{allProjects.length}</p>
+                <h3 className="font-display text-xl font-bold sm:text-2xl">Systems we&rsquo;ve built</h3>
+                <p className="max-w-md leading-relaxed text-slate-300">
+                  Billing and stock, supply chain, AI that reads invoices, lead generation and hiring, each drawn as a live
+                  blueprint.
+                </p>
+              </div>
+              <span className="relative z-10 font-semibold text-white underline decoration-marigold decoration-2 underline-offset-4 group-hover:decoration-white">
+                Explore our work
+              </span>
+            </Link>
           </div>
         </div>
       </section>
@@ -304,6 +261,9 @@ export default function Home() {
 
       {/* The founders' commitments, as a signed pledge */}
       <Promises />
+
+      {/* Objections, answered with confirmed facts only */}
+      <Faq />
 
       {/* Why we exist, from the brand story */}
       <section className="bg-white border-b border-rule">

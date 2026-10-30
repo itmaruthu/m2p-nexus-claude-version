@@ -85,7 +85,7 @@ export default function ScatterToSorted() {
     <section
       ref={ref}
       aria-labelledby="sorted-heading"
-      className={`relative bg-ink text-white ${reduce ? '' : 'h-[240vh]'}`}
+      className={`relative bg-ink text-white ${reduce ? '' : 'h-[180vh]'}`}
     >
       <div className={`${reduce ? '' : 'sticky top-0 h-screen'} overflow-hidden`}>
         <div className="max-w-7xl mx-auto h-full px-4 sm:px-6 lg:px-8 py-16 md:py-0 grid gap-10 lg:grid-cols-12 items-center">
