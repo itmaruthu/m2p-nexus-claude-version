@@ -103,7 +103,7 @@ export default function Tamil() {
 
             {/* A handwritten note of the owner's day: the problems, in their words */}
             <div className="lg:col-span-5">
-              <div className="relative -rotate-1 rounded-2xl bg-[#FBF6EA] p-6 shadow-[0_40px_80px_-40px_rgba(23,37,84,0.55)] ring-1 ring-[#E3D9C2] sm:p-8">
+              <div className="relative -rotate-1 rounded-2xl bg-[#FBF6EA] p-6 shadow-lift ring-1 ring-[#E3D9C2] sm:p-8">
                 <h2 className="font-[family-name:var(--font-hand)] text-2xl text-[#2B3A8C]">இது உங்களுக்கும் நடக்கிறதா?</h2>
                 <ul className="mt-4 space-y-3">
                   {pains.map((p) => (
@@ -168,7 +168,7 @@ export default function Tamil() {
           <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <li key={s.title} className="space-y-2">
-                <span className="font-display text-3xl font-extrabold text-leaf">{i + 1}</span>
+                <span className="font-display text-3xl font-bold text-leaf">{i + 1}</span>
                 <h3 className="font-sans text-lg font-bold text-ink">{s.title}</h3>
                 <p className="leading-relaxed text-body">{s.desc}</p>
               </li>

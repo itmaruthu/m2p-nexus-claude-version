@@ -54,7 +54,7 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_60%,rgba(242,169,0,0.16),transparent_70%)]" />
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 space-y-10">
         <div className="max-w-3xl space-y-4">
-          <h2 id={headingId} className="font-display font-extrabold text-3xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
+          <h2 id={headingId} className="font-display font-bold text-3xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
             {title}
           </h2>
           {text && <p className="text-lg text-slate-300 leading-relaxed">{text}</p>}
@@ -85,10 +85,16 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
               type="button"
               onClick={toggle}
               aria-label={playing ? 'Pause the film' : 'Play the film'}
-              className={`absolute flex items-center justify-center rounded-full bg-white text-ink shadow-lg transition-all hover:scale-105 focus-visible:outline-4 focus-visible:outline-marigold ${
+              className={`group/tip absolute flex items-center justify-center rounded-full bg-white text-ink shadow-soft transition-transform duration-150 hover:scale-105 focus-visible:outline-4 focus-visible:outline-marigold ${
                 playing ? 'top-3 right-3 sm:top-4 sm:right-4 h-11 w-11 opacity-80 hover:opacity-100' : 'inset-0 m-auto h-20 w-20'
               }`}
             >
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-full z-50 mt-2 hidden whitespace-nowrap rounded-md bg-ink px-2.5 py-1.5 text-xs font-semibold text-white shadow-soft group-hover/tip:block group-focus-visible/tip:block"
+              >
+                {playing ? 'Pause the film' : 'Play the film'}
+              </span>
               {playing ? (
                 <svg viewBox="0 0 24 24" className="h-5 w-5" fill="currentColor" aria-hidden="true">
                   <rect x="6" y="5" width="4" height="14" rx="1" />
@@ -101,7 +107,7 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
               )}
             </button>
 
-            <span aria-hidden="true" className="absolute bottom-0 left-0 h-1 bg-marigold" style={{ width: `${progress * 100}%` }} />
+            <span aria-hidden="true" className="absolute bottom-0 left-0 h-1 w-full origin-left bg-marigold" style={{ transform: `scaleX(${progress})` }} />
           </div>
 
           <figcaption className="flex flex-wrap items-baseline justify-between gap-2 text-sm text-slate-300">

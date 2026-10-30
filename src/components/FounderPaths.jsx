@@ -40,7 +40,7 @@ const MERGE = ['M250 0 C250 90 500 70 500 150', 'M750 0 C750 90 500 70 500 150']
 function FounderCard({ f, on, reduce, side }) {
   return (
     <article className="flex flex-col items-center text-center">
-      <div className={`rounded-[2rem] bg-gradient-to-br ${f.ring} p-[3px] shadow-[0_30px_60px_-30px_rgba(23,37,84,0.6)]`}>
+      <div className={`rounded-[2rem] bg-gradient-to-br ${f.ring} p-[3px] shadow-lift`}>
         <img
           src={f.photo}
           alt={`${f.name}, ${f.role} of M2P Nexus`}
@@ -49,7 +49,7 @@ function FounderCard({ f, on, reduce, side }) {
           className="aspect-[4/5] w-56 rounded-[calc(2rem-3px)] object-cover object-top sm:w-64"
         />
       </div>
-      <h2 className="mt-6 font-display text-2xl font-extrabold text-ink sm:text-3xl">{f.name}</h2>
+      <h2 className="mt-6 font-display text-2xl font-bold text-ink sm:text-3xl">{f.name}</h2>
       <p className="mt-1 font-heading font-semibold text-leaf">{f.role}</p>
       <p className="mt-3 max-w-sm text-body leading-relaxed">{f.summary}</p>
 
@@ -127,7 +127,7 @@ export default function FounderPaths() {
           animate={on ? { scale: 1, opacity: 1 } : { scale: 0.6, opacity: 0.5 }}
           transition={{ delay: reduce ? 0 : 2.5, type: 'spring', stiffness: 220, damping: 14 }}
         />
-        <p className="mt-5 font-display text-3xl font-extrabold text-ink sm:text-4xl">M2P Nexus</p>
+        <p className="mt-5 font-display text-3xl font-bold text-ink sm:text-4xl">M2P Nexus</p>
         <p className="mt-2 font-heading text-lg font-semibold text-body">Technology + People = Growth</p>
         <p lang="ta" className="mt-1 font-semibold text-leaf">வேரிலிருந்து வெற்றிவரை</p>
       </div>

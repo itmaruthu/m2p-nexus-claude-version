@@ -1,7 +1,6 @@
 import Seo from '../components/Seo';
 import { Link } from 'react-router-dom';
 import ChatDemo from '../components/ChatDemo';
-import ConsultationForm from '../components/consultation/ConsultationForm';
 import BookButton from '../components/consultation/BookButton';
 import { CallIcon, WhatsAppIconLink } from '../components/CallIcon';
 import { links, site } from '../config/site';
@@ -42,7 +41,7 @@ export default function Contact() {
           </nav>
           <div className="grid gap-12 lg:grid-cols-12 lg:items-center">
             <div className="lg:col-span-7 space-y-7">
-              <h1 className="font-display font-extrabold text-ink text-[2.6rem] sm:text-6xl lg:text-[4.6rem] leading-[1.02] tracking-[-0.03em]">
+              <h1 className="font-display font-bold text-ink text-[2.6rem] sm:text-6xl lg:text-[4.6rem] leading-[1.02] tracking-[-0.03em]">
                 Talk to us like you&rsquo;d talk to a friend who knows tech.
               </h1>
               <p className="text-lg sm:text-xl text-body leading-relaxed max-w-xl">
@@ -64,27 +63,23 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* Book a consultation: a button that opens the dialog. The form itself shows here only when this
-          section is the URL target (#book): links opened in a new tab, browsers without <dialog>, no JS. */}
+      {/* Book a consultation: links to the booking page (/book/). */}
       <section id="book" aria-labelledby="book-title" className="scroll-mt-24 border-b border-rule bg-white">
-        <div className={`${sectionPad} space-y-10`}>
+        <div className={sectionPad}>
           <div className="grid gap-6 rounded-3xl bg-ink p-6 text-white sm:p-10 lg:grid-cols-12 lg:items-center">
             <div className="space-y-3 lg:col-span-8">
-              <h2 id="book-title" className="font-display text-3xl font-extrabold leading-tight sm:text-4xl">
+              <h2 id="book-title" className="font-display text-3xl font-bold leading-tight sm:text-4xl">
                 Book a consultation
               </h2>
               <p className="text-lg leading-relaxed text-slate-300">
                 Your first consultation is free. Tell us a little about your business and we&rsquo;ll reply within one working day with questions and a sensible first step.
               </p>
             </div>
-            <div className="book-cta lg:col-span-4 lg:text-right">
+            <div className="lg:col-span-4 lg:text-right">
               <BookButton className="inline-flex w-full items-center justify-center rounded-xl bg-white px-8 py-4 font-semibold text-ink transition-colors hover:bg-marigold sm:w-auto">
                 Book now
               </BookButton>
             </div>
-          </div>
-          <div className="book-inline rounded-3xl bg-[#F8FAFD] p-5 ring-1 ring-rule sm:p-8">
-            <ConsultationForm />
           </div>
         </div>
       </section>
@@ -147,7 +142,7 @@ export default function Contact() {
               <ol className="mt-6 space-y-6">
                 {nextSteps.map((s, i) => (
                   <li key={s.title} className="flex gap-4">
-                    <span className="font-display font-extrabold text-leaf text-3xl leading-none w-7 shrink-0">{i + 1}</span>
+                    <span className="font-display font-bold text-leaf text-3xl leading-none w-7 shrink-0">{i + 1}</span>
                     <div>
                       <p className="font-heading font-semibold text-ink text-lg">{s.title}</p>
                       <p className="mt-1 text-body leading-relaxed">{s.desc}</p>

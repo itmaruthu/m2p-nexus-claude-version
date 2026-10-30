@@ -13,7 +13,7 @@ export function PaperBill() {
     ['சர்க்கரை 10 கிலோ', '450'],
   ];
   return (
-    <div className="relative -rotate-2 rounded-sm bg-white shadow-[0_18px_40px_-18px_rgba(23,37,84,0.45)] ring-1 ring-rule">
+    <div className="relative -rotate-2 rounded-sm bg-white shadow-lift ring-1 ring-rule">
       <div className="h-3 border-b-2 border-dashed border-rule" />
       <div className="relative px-6 pb-8 pt-4 sm:px-8 font-[family-name:var(--font-hand)] text-[#2B3A8C] text-[15px] sm:text-xl leading-8 bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_31px,var(--color-rule)_31px,var(--color-rule)_32px)]">
         <div className="absolute inset-y-0 left-5 sm:left-6 w-px bg-[#E7A9A9]" />
@@ -39,7 +39,7 @@ export function PaperBill() {
 }
 
 /** The same bill as a digital invoice: what changes for the business. Illustration only. */
-export function DigitalInvoice() {
+export function DigitalInvoice({ slipIn = true }) {
   const rows = [
     ['Coconut', 'தேங்காய்', '200 × ₹18', '₹3,600'],
     ['Rice', 'அரிசி', '25 kg', '₹1,350'],
@@ -47,7 +47,7 @@ export function DigitalInvoice() {
     ['Sugar', 'சர்க்கரை', '10 kg', '₹450'],
   ];
   return (
-    <div className="animate-slip-in rounded-2xl bg-white p-5 sm:p-6 shadow-[0_30px_60px_-24px_rgba(23,37,84,0.5)] ring-1 ring-ink/10 tabular-nums">
+    <div className={`${slipIn ? 'animate-slip-in ' : ''}rounded-2xl bg-white p-5 sm:p-6 shadow-lift ring-1 ring-ink/10 tabular-nums`}>
       <div className="flex items-baseline justify-between">
         <p className="font-heading font-bold text-ink text-lg">Invoice 214</p>
         <p className="rounded-full bg-leaf/10 px-2.5 py-0.5 text-sm font-semibold text-leaf">Paid by UPI</p>

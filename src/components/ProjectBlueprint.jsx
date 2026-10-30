@@ -77,7 +77,7 @@ export default function ProjectBlueprint({ project, draw, live }) {
         {pts.map((p, i) => (
           <motion.span
             key={project.modules[i]}
-            className="absolute max-w-[7.5rem] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#1B2A63] px-2 py-1 text-center text-[11px] font-semibold leading-tight text-white ring-1 ring-white/15 sm:text-xs"
+            className="absolute max-w-[7.5rem] -translate-x-1/2 -translate-y-1/2 rounded-lg bg-[#1B2A63] px-2 py-1 text-center text-xs font-semibold leading-tight text-white ring-1 ring-white/15 sm:text-xs"
             style={{ left: `${(p.x / W) * 100}%`, top: `${(p.y / H) * 100}%` }}
             initial={draw ? { opacity: 0, scale: 0.7 } : false}
             animate={{ opacity: 1, scale: 1 }}

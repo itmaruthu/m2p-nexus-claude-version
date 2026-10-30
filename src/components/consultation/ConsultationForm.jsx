@@ -1,4 +1,5 @@
 import { useId, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { consultEndpoint, contactOptions, formText, industryOptions, needOptions, optionLabelsTa } from '../../config/consultation';
 import { waLink } from '../../config/site';
 import { WhatsAppIcon } from '../icons';
@@ -61,8 +62,9 @@ function FieldError({ id, msg }) {
 /**
  * `lang` ('en' | 'ta') switches every label and message; option values sent to the sheet stay English.
  * `preset` ({ needs, message }) pre-fills the form, e.g. when a starter pack's button opened it.
+ * `done` ({ label, to }) adds an onward link to the thank-you state.
  */
-export default function ConsultationForm({ onDone, lang = 'en', preset }) {
+export default function ConsultationForm({ onDone, lang = 'en', preset, done }) {
   const t = formText[lang] || formText.en;
   const label = (v) => (lang === 'ta' ? optionLabelsTa[v] || v : v);
   const uid = useId();
@@ -89,6 +91,7 @@ export default function ConsultationForm({ onDone, lang = 'en', preset }) {
 
   const submit = async (e) => {
     e.preventDefault();
+    if (status === 'sending') return;
     const errs = validate(form, t);
     if (Object.keys(errs).length) {
       setTouched({ name: true, phone: true, email: true, needs: true, consent: true });
@@ -128,6 +131,11 @@ export default function ConsultationForm({ onDone, lang = 'en', preset }) {
           <button type="button" onClick={onDone} className="font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4">
             {t.close}
           </button>
+        )}
+        {done && (
+          <Link to={done.to} className="inline-block py-2.5 font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4">
+            {done.label}
+          </Link>
         )}
       </div>
     );
@@ -239,7 +247,7 @@ export default function ConsultationForm({ onDone, lang = 'en', preset }) {
             return (
               <label
                 key={n}
-                className={`cursor-pointer rounded-full px-4 py-2 text-sm font-semibold transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-marigold ${
+                className={`inline-flex min-h-11 cursor-pointer items-center rounded-full px-4 text-sm font-semibold transition-colors has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-marigold ${
                   on ? 'bg-ink text-white' : 'bg-white text-ink ring-1 ring-rule hover:ring-ink'
                 }`}
               >
@@ -272,7 +280,7 @@ export default function ConsultationForm({ onDone, lang = 'en', preset }) {
         <legend className={labelCls}>{t.contact}</legend>
         <div className="mt-2 flex flex-wrap gap-x-6 gap-y-2">
           {contactOptions.map((c) => (
-            <label key={c} className="inline-flex cursor-pointer items-center gap-2 py-1 text-ink">
+            <label key={c} className="inline-flex min-h-11 cursor-pointer items-center gap-2 text-ink">
               <input type="radio" name="contact" value={c} checked={form.contact === c} onChange={set('contact')} className="h-4 w-4 accent-[#172554]" />
               {label(c)}
             </label>
@@ -311,8 +319,8 @@ export default function ConsultationForm({ onDone, lang = 'en', preset }) {
 
       <button
         type="submit"
-        disabled={status === 'sending'}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-semibold text-white transition-colors hover:bg-[#0E173A] disabled:cursor-wait disabled:opacity-80"
+        aria-disabled={status === 'sending'}
+        className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-semibold text-white transition-colors hover:bg-[#0E173A] aria-disabled:cursor-wait aria-disabled:opacity-80"
       >
         {status === 'sending' ? t.sending : consultEndpoint ? t.submit : t.submitWa}
       </button>

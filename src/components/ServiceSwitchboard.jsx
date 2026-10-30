@@ -91,7 +91,7 @@ export default function ServiceSwitchboard() {
 
         <div className="grid gap-10 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-5 space-y-7">
-            <h1 className="font-display font-extrabold text-ink text-[2.1rem] sm:text-5xl lg:text-[3.3rem] leading-[1.05] tracking-[-0.025em]">
+            <h1 className="font-display font-bold text-ink text-[2.1rem] sm:text-5xl lg:text-[3.3rem] leading-[1.05] tracking-[-0.025em]">
               Pick what you want to change first
             </h1>
             <p className="text-lg text-body leading-relaxed">
@@ -132,9 +132,9 @@ export default function ServiceSwitchboard() {
                       <motion.span
                         key={`bar-${active}-${hovered}`}
                         aria-hidden="true"
-                        className="absolute bottom-0 left-0 h-1 bg-marigold"
-                        initial={{ width: '0%' }}
-                        animate={{ width: hovered ? '0%' : '100%' }}
+                        className="absolute bottom-0 left-0 h-1 w-full origin-left bg-marigold"
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: hovered ? 0 : 1 }}
                         transition={{ duration: hovered ? 0 : AUTOPLAY_MS / 1000, ease: 'linear' }}
                       />
                     )}

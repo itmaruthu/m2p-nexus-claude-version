@@ -63,7 +63,7 @@ export default function ClosingCta({
     <section ref={spotlight} className="relative overflow-hidden bg-ink text-white grain spotlight">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 grid gap-12 lg:grid-cols-12 lg:items-center">
         <div className="lg:col-span-6 space-y-5">
-          <h2 className={`${lang === 'ta' ? 'font-sans font-bold leading-snug' : 'font-display font-extrabold leading-[1.05] tracking-[-0.02em]'} text-4xl sm:text-5xl`}>{title}</h2>
+          <h2 className={`${lang === 'ta' ? 'font-sans font-bold leading-snug' : 'font-display font-bold leading-[1.05] tracking-[-0.02em]'} text-4xl sm:text-5xl`}>{title}</h2>
           <p className="text-lg text-slate-300 leading-relaxed max-w-xl">{text}</p>
           <p className="flex items-center gap-3 text-slate-300">
             {c.talk}
@@ -95,7 +95,7 @@ export default function ClosingCta({
                       type="button"
                       aria-pressed={i === active}
                       onClick={() => pick(i)}
-                      className={`rounded-full px-3.5 py-2 text-left text-sm transition-colors ${
+                      className={`min-h-11 rounded-full px-3.5 py-2 text-left text-sm transition-colors ${
                         i === active ? 'bg-white text-ink font-semibold' : 'bg-white/[0.07] text-slate-200 hover:bg-white/[0.14]'
                       }`}
                     >

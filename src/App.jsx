@@ -14,6 +14,7 @@ const Founder = lazy(() => import('./pages/Founder'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Connect = lazy(() => import('./pages/Connect'));
 const Tamil = lazy(() => import('./pages/Tamil'));
+const Book = lazy(() => import('./pages/Book'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // The router is supplied by the caller: BrowserRouter in main.jsx, StaticRouter in entry-server.jsx.
@@ -34,6 +35,8 @@ export default function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/connect" element={<Connect />} />
             <Route path="/ta" element={<Tamil />} />
+            <Route path="/book" element={<Book />} />
+            <Route path="/ta/book" element={<Book lang="ta" />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>

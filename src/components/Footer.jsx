@@ -8,6 +8,7 @@ import { links, site } from '../config/site';
 import { LinkedinIcon } from './icons';
 import { useIsConnectPage } from './useIsConnectPage';
 import useSpotlight from './useSpotlight';
+import Tooltip from './Tooltip';
 
 const base = import.meta.env.BASE_URL;
 
@@ -29,7 +30,7 @@ const services = [
 
 const iconLink =
   'inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white ring-1 ring-white/25 transition-colors hover:bg-white hover:text-ink';
-const navLink = 'inline-block py-1 text-slate-300 transition-colors hover:text-white';
+const navLink = 'inline-flex min-h-11 min-w-11 items-center text-slate-300 transition-colors hover:text-white';
 
 /** Current time in Madurai, filled in after hydration so server and client HTML match. */
 function MaduraiTime() {
@@ -74,7 +75,7 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-7 lg:col-span-5">
-            <Link to="/" className="inline-flex rounded-2xl bg-white px-4 py-2.5 shadow-lg" aria-label="M2P Nexus home">
+            <Link to="/" className="inline-flex rounded-2xl bg-white px-4 py-2.5 shadow-lift" aria-label="M2P Nexus home">
               <img src={m2pLogo} alt="" width="72" height="48" loading="lazy" className="h-12 w-auto object-contain" />
             </Link>
             <p className="max-w-sm text-lg leading-relaxed text-slate-300">
@@ -82,7 +83,7 @@ export default function Footer() {
             </p>
             <a
               href={links.email()}
-              className="inline-block break-all font-display text-2xl font-bold text-white underline decoration-marigold decoration-2 underline-offset-[10px] transition-colors hover:decoration-white sm:text-3xl"
+              className="inline-block break-all py-1.5 font-display text-2xl font-bold text-white underline decoration-marigold decoration-2 underline-offset-[10px] transition-colors hover:decoration-white sm:text-3xl"
             >
               {site.email}
             </a>
@@ -97,28 +98,30 @@ export default function Footer() {
                 <WhatsAppIconLink href={links.whatsapp} tone="dark" />
               </li>
               <li>
-                <a
+                <Tooltip label="Open M2P Nexus on LinkedIn" tone="dark">
+<a
                   href={site.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="M2P Nexus on LinkedIn (opens in a new tab)"
-                  title="LinkedIn"
+                  aria-label="Open M2P Nexus on LinkedIn (opens in a new tab)"
                   className={iconLink}
                 >
                   <LinkedinIcon className="h-5 w-5" />
                 </a>
+</Tooltip>
               </li>
               <li>
-                <a
+                <Tooltip label="Find us on Google Maps" tone="dark">
+<a
                   href={site.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Find us on Google Maps (opens in a new tab)"
-                  title="Google Maps"
                   className={iconLink}
                 >
                   <MapPin className="h-5 w-5" aria-hidden="true" />
                 </a>
+</Tooltip>
               </li>
             </ul>
           </div>
@@ -128,7 +131,7 @@ export default function Footer() {
               <h2 id="footer-company" className="font-heading text-sm font-semibold text-marigold">
                 Company
               </h2>
-              <ul className="mt-4 space-y-1.5">
+              <ul className="mt-2">
                 {company.map((l) => (
                   <li key={l.to}>
                     <Link to={l.to} className={navLink}>
@@ -142,7 +145,7 @@ export default function Footer() {
               <h2 id="footer-services" className="font-heading text-sm font-semibold text-marigold">
                 Services
               </h2>
-              <ul className="mt-4 space-y-1.5">
+              <ul className="mt-2">
                 {services.map((l) => (
                   <li key={l.href}>
                     <a href={l.href} className={navLink}>
@@ -188,7 +191,7 @@ export default function Footer() {
 
       {/* Signature wordmark: revealed by a marigold light under the pointer. Decorative. */}
       <div ref={mark} aria-hidden="true" className="mark-spot relative z-10 select-none overflow-hidden">
-        <p className="footer-mark -mb-[0.18em] whitespace-nowrap text-center font-display text-[min(14vw,15rem)] font-extrabold leading-[0.9] tracking-[-0.04em]">
+        <p className="footer-mark -mb-[0.18em] whitespace-nowrap text-center font-display text-[min(14vw,15rem)] font-bold leading-[0.9] tracking-[-0.04em]">
           M2P Nexus
         </p>
       </div>

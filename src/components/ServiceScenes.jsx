@@ -34,7 +34,7 @@ export function RunScene() {
 
   return (
     <div className="grid w-full gap-4 sm:grid-cols-5">
-      <div className="sm:col-span-3 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg">
+      <div className="sm:col-span-3 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lift">
         <div className="flex items-center justify-between">
           <p className="font-heading font-bold text-ink">Today</p>
           <span className="flex items-center gap-1.5 text-xs font-semibold text-leaf">
@@ -45,11 +45,11 @@ export function RunScene() {
         <div className="mt-3 grid grid-cols-2 gap-3">
           <div>
             <p className="text-sm text-body">Sales</p>
-            <motion.p className="font-display font-extrabold text-ink text-2xl tabular-nums">{salesText}</motion.p>
+            <motion.p className="font-display font-bold text-ink text-2xl tabular-nums">{salesText}</motion.p>
           </div>
           <div>
             <p className="text-sm text-body">Invoices on WhatsApp</p>
-            <motion.p className="font-display font-extrabold text-ink text-2xl tabular-nums">{invoicesText}</motion.p>
+            <motion.p className="font-display font-bold text-ink text-2xl tabular-nums">{invoicesText}</motion.p>
           </div>
         </div>
         <svg viewBox="0 0 300 70" className="mt-3 w-full" fill="none">
@@ -65,7 +65,7 @@ export function RunScene() {
         </svg>
       </div>
 
-      <div className="sm:col-span-2 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg space-y-3">
+      <div className="sm:col-span-2 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lift space-y-3">
         <p className="font-heading font-bold text-ink">Stock</p>
         {STOCK.map((s, i) => (
           <div key={s.item}>
@@ -75,9 +75,9 @@ export function RunScene() {
             </div>
             <div className="mt-1 h-2 rounded-full bg-[#EEF2F8]">
               <motion.div
-                className={`h-2 rounded-full ${s.low ? 'bg-marigold' : 'bg-leaf'}`}
-                initial={{ width: '100%' }}
-                animate={{ width: `${s.level}%` }}
+                className={`h-2 w-full origin-left rounded-full ${s.low ? 'bg-marigold' : 'bg-leaf'}`}
+                initial={{ scaleX: 1 }}
+                animate={{ scaleX: s.level / 100 }}
                 transition={{ duration: 1.4, delay: 0.5 + i * 0.15, ease: [0.2, 0.7, 0.2, 1] }}
               />
             </div>
@@ -87,7 +87,7 @@ export function RunScene() {
 
       <motion.div
         {...rise(2.2)}
-        className="sm:col-span-5 flex items-start gap-3 rounded-2xl bg-ink p-4 text-white shadow-lg"
+        className="sm:col-span-5 flex items-start gap-3 rounded-2xl bg-ink p-4 text-white shadow-lift"
       >
         <span className="ask-orb mt-0.5 h-7 w-7 shrink-0 rounded-full" />
         <p className="text-sm leading-relaxed">
@@ -117,13 +117,13 @@ export function SmarterScene() {
             key={m.text}
             lang={m.lang}
             {...rise(0.25 + i * 0.35)}
-            className="w-fit max-w-[90%] rounded-xl rounded-tl-sm bg-white px-3 py-2 text-sm text-ink shadow-sm"
+            className="w-fit max-w-[90%] rounded-xl rounded-tl-sm bg-white px-3 py-2 text-sm text-ink shadow-soft"
           >
             {m.text}
           </motion.p>
         ))}
       </div>
-      <div className="rounded-2xl bg-white p-4 ring-1 ring-rule shadow-lg">
+      <div className="rounded-2xl bg-white p-4 ring-1 ring-rule shadow-lift">
         <div className="flex items-center justify-between">
           <p className="font-heading font-bold text-ink">Order book</p>
           <motion.span {...rise(3.2)} className="rounded-full bg-leaf/10 px-2.5 py-0.5 text-xs font-semibold text-leaf">
@@ -178,11 +178,11 @@ export function CustomersScene() {
 
   return (
     <div className="grid w-full gap-4 sm:grid-cols-5">
-      <div className="sm:col-span-3 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg">
+      <div className="sm:col-span-3 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lift">
         <div className="flex items-end justify-between">
           <div>
             <p className="font-heading font-semibold text-ink">Enquiries this week</p>
-            <p className="font-display font-extrabold text-leaf text-4xl tabular-nums">
+            <p className="font-display font-bold text-leaf text-4xl tabular-nums">
               <motion.span>{rounded}</motion.span>
             </p>
           </div>
@@ -203,7 +203,7 @@ export function CustomersScene() {
           />
         </svg>
       </div>
-      <div className="sm:col-span-2 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lg space-y-3">
+      <div className="sm:col-span-2 rounded-2xl bg-white p-5 ring-1 ring-rule shadow-lift space-y-3">
         <p className="font-heading font-bold text-ink">Where they came from</p>
         {CHANNELS.map((c, i) => (
           <div key={c.name}>
@@ -213,9 +213,9 @@ export function CustomersScene() {
             </div>
             <div className="mt-1 h-2 rounded-full bg-[#EEF2F8]">
               <motion.div
-                className="h-2 rounded-full bg-marigold"
-                initial={{ width: 0 }}
-                animate={{ width: `${(c.value / 18) * 100}%` }}
+                className="h-2 w-full origin-left rounded-full bg-marigold"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: c.value / 18 }}
                 transition={{ duration: 1.2, delay: 0.6 + i * 0.15, ease: [0.2, 0.7, 0.2, 1] }}
               />
             </div>
@@ -229,7 +229,7 @@ export function CustomersScene() {
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 1.4 + i * 0.6, type: 'spring', stiffness: 220, damping: 22 }}
-            className="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-sm text-ink ring-1 ring-rule shadow-sm"
+            className="flex items-center gap-3 rounded-xl bg-white px-4 py-3 text-sm text-ink ring-1 ring-rule shadow-soft"
           >
             <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-marigold" />
             {t}
@@ -258,7 +258,7 @@ export function TeamScene() {
 
   return (
     <div className="w-full space-y-4">
-      <div className="rounded-2xl bg-white p-4 ring-1 ring-rule shadow-lg sm:p-5">
+      <div className="rounded-2xl bg-white p-4 ring-1 ring-rule shadow-lift sm:p-5">
         <div className="flex items-center justify-between">
           <p className="font-heading font-bold text-ink">Hiring: billing executive</p>
           <span className="rounded-full bg-leaf/10 px-2.5 py-0.5 text-xs font-semibold text-leaf">Screened by us</span>
@@ -266,24 +266,24 @@ export function TeamScene() {
         <div className="mt-4 grid grid-cols-4 gap-2 sm:gap-3">
           {STAGES.map((name, i) => (
             <div key={name} className={`min-h-[9.5rem] rounded-xl p-2 sm:p-3 ${i === 3 ? 'bg-leaf/10' : 'bg-[#F4F6FA]'}`}>
-              <p className="text-[11px] font-semibold text-body sm:text-xs">{name}</p>
-              <p className="font-display text-lg font-extrabold text-ink tabular-nums sm:text-2xl">{STAGE_COUNTS[i]}</p>
+              <p className="text-xs font-semibold text-body sm:text-xs">{name}</p>
+              <p className="font-display text-lg font-bold text-ink tabular-nums sm:text-2xl">{STAGE_COUNTS[i]}</p>
               <div className="mt-2 space-y-1.5">
                 {i === 0 &&
                   POOL.slice(1).map((c) => (
                     <div key={c.initials} className="flex items-center gap-1.5 rounded-lg bg-white p-1.5 ring-1 ring-rule">
-                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D6E0F0] text-[9px] font-bold text-ink">{c.initials}</span>
-                      <span className="hidden truncate text-[10px] text-body sm:block">{c.role}</span>
+                      <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#D6E0F0] text-xs font-bold text-ink">{c.initials}</span>
+                      <span className="hidden truncate text-xs text-body sm:block">{c.role}</span>
                     </div>
                   ))}
                 {stage === i && (
                   <motion.div
                     layoutId="moving-candidate"
                     transition={{ type: 'spring', stiffness: 260, damping: 26 }}
-                    className={`flex items-center gap-1.5 rounded-lg p-1.5 shadow-md ${i === 3 ? 'bg-leaf text-white' : 'bg-ink text-white'}`}
+                    className={`flex items-center gap-1.5 rounded-lg p-1.5 shadow-soft ${i === 3 ? 'bg-leaf text-white' : 'bg-ink text-white'}`}
                   >
-                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-marigold text-[9px] font-bold text-ink">{POOL[0].initials}</span>
-                    <span className="hidden truncate text-[10px] sm:block">{POOL[0].role}</span>
+                    <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-marigold text-xs font-bold text-ink">{POOL[0].initials}</span>
+                    <span className="hidden truncate text-xs sm:block">{POOL[0].role}</span>
                   </motion.div>
                 )}
               </div>
@@ -295,7 +295,7 @@ export function TeamScene() {
         initial={{ opacity: 0, y: 10 }}
         animate={stage === 3 ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
         transition={{ delay: stage === 3 ? 0.5 : 0, duration: 0.4 }}
-        className="flex items-center gap-3 rounded-2xl bg-ink p-4 text-sm text-white shadow-lg"
+        className="flex items-center gap-3 rounded-2xl bg-ink p-4 text-sm text-white shadow-lift"
       >
         <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-[#7CC793]" />
         <span>

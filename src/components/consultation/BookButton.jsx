@@ -1,24 +1,17 @@
-import { useConsultation } from './consultationContext';
+import { Link, useLocation } from 'react-router-dom';
 
 /**
- * "Book a consultation" trigger. It is a real link to the form on the Contact page, so it works before
- * JavaScript loads and when opened in a new tab; a plain click opens the dialog instead.
+ * "Book a consultation" link. The form has its own page (/book/, or /ta/book/ on Tamil pages): booking takes
+ * about a minute, which is too long for a pop-up, and a page gives the team a link to share on WhatsApp,
+ * Instagram and email. `starter` (an id from src/config/starters.js) pre-selects that starter on the form.
  */
-export default function BookButton({ className, children = 'Book a consultation', onOpen, preset, href }) {
-  const { open } = useConsultation();
+export default function BookButton({ className, children = 'Book a consultation', onOpen, starter }) {
+  const { pathname } = useLocation();
+  const tamil = /^\/ta(\/|$)/.test(pathname);
+  const to = `${tamil ? '/ta' : ''}/book/${starter ? `?starter=${starter}` : ''}`;
   return (
-    <a
-      href={href || `${import.meta.env.BASE_URL}contact/#book`}
-      onClick={(e) => {
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
-        e.preventDefault();
-        onOpen?.();
-        open(preset);
-      }}
-      aria-haspopup="dialog"
-      className={className}
-    >
+    <Link to={to} onClick={onOpen} className={className}>
       {children}
-    </a>
+    </Link>
   );
 }

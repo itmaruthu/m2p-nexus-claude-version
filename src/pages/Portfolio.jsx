@@ -18,7 +18,7 @@ export default function Portfolio() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-10 md:pb-24 space-y-10">
           <Breadcrumb page="Portfolio" />
           <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-            <h1 className="lg:col-span-8 font-display font-extrabold text-ink text-[2.2rem] sm:text-5xl lg:text-[3.6rem] leading-[1.04] tracking-[-0.025em]">
+            <h1 className="lg:col-span-8 font-display font-bold text-ink text-[2.2rem] sm:text-5xl lg:text-[3.6rem] leading-[1.04] tracking-[-0.025em]">
               Systems that run real businesses, every day.
             </h1>
             <p className="lg:col-span-4 text-lg text-body leading-relaxed">

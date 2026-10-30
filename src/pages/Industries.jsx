@@ -21,7 +21,7 @@ export default function Industries() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-14 md:pt-10 md:pb-20 space-y-10">
           <Breadcrumb page="Industries" />
           <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-            <h1 className="lg:col-span-9 font-display font-extrabold text-ink text-[2.2rem] sm:text-5xl lg:text-[3.1rem] leading-[1.05] tracking-[-0.025em]">
+            <h1 className="lg:col-span-9 font-display font-bold text-ink text-[2.2rem] sm:text-5xl lg:text-[3.1rem] leading-[1.05] tracking-[-0.025em]">
               Every business has a notebook somewhere. We turn it into a system.
             </h1>
             <p className="lg:col-span-3 text-lg text-body leading-relaxed">

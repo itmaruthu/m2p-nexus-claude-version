@@ -6,6 +6,7 @@ import m2pLogo from '../assets/m2p_nexus_logo.webp';
 import { links } from '../config/site';
 import { WhatsAppIcon } from './icons';
 import BookButton from './consultation/BookButton';
+import Tooltip from './Tooltip';
 import { useIsConnectPage } from './useIsConnectPage';
 
 const navLinks = [
@@ -90,7 +91,7 @@ export default function Header() {
   return (
     <header
       className={`sticky top-0 z-40 w-full bg-white transition-all duration-300 ${
-        isScrolled ? 'shadow-md border-b border-brand-border py-1' : 'py-2'
+        isScrolled ? 'border-b border-rule py-1' : 'py-2'
       }`}
     >
       <a
@@ -108,7 +109,7 @@ export default function Header() {
               alt="M2P Nexus"
               width="96"
               height="64"
-              className="h-[64px] w-auto object-contain drop-shadow-sm"
+              className="h-[64px] w-auto object-contain "
             />
           </Link>
 
@@ -120,9 +121,9 @@ export default function Header() {
                 to={link.path}
                 end={link.path === '/'}
                 className={({ isActive }) =>
-                  `text-sm font-medium transition-colors hover:text-brand-secondary ${
+                  `inline-flex min-h-11 min-w-11 items-center justify-center text-sm font-medium transition-colors hover:text-brand-secondary ${
                     isActive
-                      ? 'text-brand-secondary font-semibold border-b-2 border-brand-secondary pb-1'
+                      ? 'text-brand-secondary font-semibold shadow-[inset_0_-2px_0_currentColor]'
                       : 'text-brand-text'
                   }`
                 }
@@ -134,21 +135,22 @@ export default function Header() {
 
           {/* RIGHT: Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <LangSwitch tamil={onTamil} className="text-sm font-semibold text-brand-text hover:text-brand-secondary px-2 py-2" />
+            <LangSwitch tamil={onTamil} className="inline-flex min-h-11 items-center px-3 text-sm font-semibold text-brand-text hover:text-brand-secondary" />
             <a
               href={links.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm font-semibold text-[#0F7A40] hover:bg-[#25D366]/10 px-4 py-2 rounded-md transition-all flex items-center gap-1.5 border border-[#25D366]/40"
+              className="text-sm font-semibold text-[#0F7A40] hover:bg-[#25D366]/10 px-4 min-h-11 rounded-md transition-colors flex items-center gap-1.5 border border-[#25D366]/40"
             >
               <WhatsAppIcon />
               WhatsApp Us
             </a>
-            <BookButton className="text-sm font-semibold bg-brand-secondary text-white hover:bg-brand-primary px-4 py-2.5 rounded-md transition-all shadow-sm hover:shadow-md flex items-center gap-1" />
+            <BookButton className="text-sm font-semibold bg-brand-secondary text-white hover:bg-brand-primary px-4 min-h-11 rounded-md transition-colors flex items-center gap-1" />
           </div>
 
           {/* Hamburger Menu Icon (Mobile/Tablet) */}
           <div className="flex lg:hidden items-center">
+            <Tooltip label={isMenuOpen ? 'Close menu' : 'Open menu'} side="bottom">
             <button
               ref={toggleRef}
               type="button"
@@ -160,6 +162,7 @@ export default function Header() {
             >
               {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
             </button>
+            </Tooltip>
           </div>
         </div>
       </div>
@@ -182,12 +185,13 @@ export default function Header() {
             role="dialog"
             aria-modal="true"
             aria-label="Main menu"
-            className="relative flex-1 flex flex-col max-w-xs w-full bg-white pt-5 pb-4 shadow-xl z-10 transition-transform duration-300"
+            className="relative flex-1 flex flex-col max-w-xs w-full bg-white pt-5 pb-4 shadow-lift border-r border-rule z-10 transition-transform duration-300"
           >
             <div className="flex items-center justify-between px-4 pb-4 border-b border-brand-border">
               <Link to="/" className="flex items-center" onClick={closeMenu} aria-label="M2P Nexus home">
                 <img src={m2pLogo} alt="M2P Nexus" width="72" height="48" className="h-[48px] w-auto object-contain" />
               </Link>
+              <Tooltip label="Close menu" side="bottom">
               <button
                 type="button"
                 onClick={closeMenu}
@@ -196,6 +200,7 @@ export default function Header() {
               >
                 <X className="w-6 h-6" />
               </button>
+              </Tooltip>
             </div>
 
             <div className="mt-5 flex-1 h-0 overflow-y-auto px-4">

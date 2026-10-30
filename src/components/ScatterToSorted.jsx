@@ -53,17 +53,17 @@ function Slip({ index, progress, reduce }) {
   return (
     <motion.div className="relative aspect-[3/4] [transform-style:preserve-3d]" style={style}>
       {/* Digital face (front) */}
-      <div className="absolute inset-0 [backface-visibility:hidden] rounded-xl bg-white shadow-lg overflow-hidden flex flex-col">
+      <div className="absolute inset-0 [backface-visibility:hidden] rounded-xl bg-white shadow-lift overflow-hidden flex flex-col">
         <div className={`${TONES[index % TONES.length]} h-2 sm:h-3`} />
         <div className="flex-1 p-2 sm:p-4 flex flex-col justify-between">
-          <p className="font-heading font-bold text-ink text-[11px] sm:text-base leading-tight">{module}</p>
-          <p className="font-display font-extrabold text-leaf text-xs sm:text-xl leading-tight tabular-nums">{figure}</p>
+          <p className="font-heading font-bold text-ink text-xs sm:text-base leading-tight">{module}</p>
+          <p className="font-display font-bold text-leaf text-xs sm:text-xl leading-tight tabular-nums">{figure}</p>
         </div>
       </div>
       {/* Paper face (back): ruled slip with the Tamil word in handwriting */}
-      <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-sm bg-white shadow-md bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_15px,var(--color-rule)_15px,var(--color-rule)_16px)] sm:bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_23px,var(--color-rule)_23px,var(--color-rule)_24px)]">
+      <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)] rounded-sm bg-white shadow-soft bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_15px,var(--color-rule)_15px,var(--color-rule)_16px)] sm:bg-[repeating-linear-gradient(to_bottom,transparent_0,transparent_23px,var(--color-rule)_23px,var(--color-rule)_24px)]">
         <div className="absolute inset-y-0 left-2 sm:left-4 w-px bg-[#E7A9A9]" />
-        <p lang="ta" className="pl-3 sm:pl-6 pt-1 sm:pt-2 font-[family-name:var(--font-hand)] text-[#2B3A8C] text-[10px] sm:text-lg leading-4 sm:leading-6 break-words">
+        <p lang="ta" className="pl-3 sm:pl-6 pt-1 sm:pt-2 font-[family-name:var(--font-hand)] text-[#2B3A8C] text-xs sm:text-lg leading-4 sm:leading-6 break-words">
           {word}
         </p>
       </div>
@@ -92,7 +92,7 @@ export default function ScatterToSorted() {
           {/* Two states of the story; scroll crossfades between them. */}
           <div className="lg:col-span-5 relative min-h-[11rem] sm:min-h-[13rem]">
             <motion.div style={reduce ? { opacity: 0 } : { opacity: beforeOpacity }} className="absolute inset-0 space-y-4">
-              <p className="font-display font-extrabold text-3xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
+              <p className="font-display font-bold text-3xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
                 Your business today: paper everywhere.
               </p>
               <p className="text-lg text-slate-300 leading-relaxed max-w-md">
@@ -100,7 +100,7 @@ export default function ScatterToSorted() {
               </p>
             </motion.div>
             <motion.div style={reduce ? undefined : { opacity: afterOpacity }} className="absolute inset-0 space-y-4">
-              <h2 id="sorted-heading" className="font-display font-extrabold text-3xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
+              <h2 id="sorted-heading" className="font-display font-bold text-3xl sm:text-5xl leading-[1.05] tracking-[-0.02em]">
                 With M2P Nexus: one connected system.
               </h2>
               <p className="text-lg text-slate-300 leading-relaxed max-w-md">

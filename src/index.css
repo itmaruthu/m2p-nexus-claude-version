@@ -13,6 +13,8 @@
   --color-brand-border: #E2E8F0;
 
   /* Home palette: carbon-copy ink, ledger rule, logo leaf green, Madurai marigold (decoration only). */
+  --shadow-soft: 0 1px 2px rgb(23 37 84 / 0.04), 0 8px 24px -6px rgb(23 37 84 / 0.07);
+  --shadow-lift: 0 2px 4px rgb(23 37 84 / 0.04), 0 24px 48px -16px rgb(23 37 84 / 0.075);
   --color-ink: #172554;
   --color-rule: #D6E0F0;
   --color-leaf: #1F6B3A;
@@ -173,21 +175,6 @@
   }
 }
 
-/* WhatsApp Pulse Animation */
-@keyframes custom-pulse {
-  0%, 100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(15, 122, 64, 0.6);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(15, 122, 64, 0);
-  }
-}
-
-.pulse-whatsapp {
-  animation: custom-pulse 2s infinite;
-}
 
 /* Custom subtle scrollbar for cards */
 .custom-scrollbar::-webkit-scrollbar {
@@ -204,32 +191,4 @@
   background-color: #94a3b8;
 }
 
-/* "Book a consultation" dialog: dimmed, blurred page behind; a short rise on open. Hidden unless open,
-   also in browsers that do not know <dialog> and would otherwise show it as a normal block. */
-dialog.consult-dialog:not([open]) {
-  display: none !important;
-}
-.consult-dialog::backdrop {
-  background: rgba(10, 18, 48, 0.55);
-  backdrop-filter: blur(4px);
-}
-.consult-dialog[open] {
-  animation: consult-in 220ms cubic-bezier(0.2, 0.7, 0.2, 1);
-}
-@keyframes consult-in {
-  from {
-    opacity: 0;
-    transform: translateY(16px) scale(0.98);
-  }
-}
 
-/* Contact page: the inline consultation form only appears when #book is the URL target. */
-.book-inline {
-  display: none;
-}
-#book:target .book-inline {
-  display: block;
-}
-#book:target .book-cta {
-  display: none;
-}

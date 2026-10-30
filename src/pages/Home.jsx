@@ -4,7 +4,7 @@ import { links } from '../config/site';
 import { clients } from '../config/clients';
 import { WhatsAppIcon } from '../components/icons';
 import ClosingCta from '../components/ClosingCta';
-import { DigitalInvoice, PaperBill } from '../components/BillIllustration';
+import DigitiseSlider from '../components/DigitiseSlider';
 import ScatterToSorted from '../components/ScatterToSorted';
 import BrandFilm from '../components/BrandFilm';
 import StarterOffers from '../components/StarterOffers';
@@ -84,7 +84,7 @@ export default function Home() {
       <section className="bg-white border-b border-rule overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 md:pt-16 md:pb-24 grid gap-14 lg:grid-cols-12 lg:items-center">
           <div className="lg:col-span-7 space-y-7">
-            <h1 className="font-display font-extrabold text-ink text-[2.1rem] sm:text-5xl lg:text-[3.6rem] leading-[1.04] tracking-[-0.025em]">
+            <h1 className="font-display font-bold text-ink text-[2.1rem] sm:text-5xl lg:text-[3.6rem] leading-[1.04] tracking-[-0.025em]">
               Still running your business on paper bills and WhatsApp orders?
             </h1>
             <p className="text-lg sm:text-xl text-body leading-relaxed max-w-[34rem]">
@@ -109,13 +109,9 @@ export default function Home() {
             </p>
           </div>
 
-          <div aria-hidden="true" className="lg:col-span-5 relative mx-auto w-full max-w-[34rem] lg:max-w-none">
-            <div className="w-[88%] sm:w-[78%]">
-              <PaperBill />
-            </div>
-            <div className="relative -mt-16 ml-auto w-[86%] sm:-mt-24 sm:w-[72%]">
-              <DigitalInvoice />
-            </div>
+          {/* Signature: drag the handle and the handwritten bill becomes a digital invoice */}
+          <div className="lg:col-span-5">
+            <DigitiseSlider />
           </div>
         </div>
       </section>
@@ -164,7 +160,7 @@ export default function Home() {
                 </li>
               ))}
             </ul>
-            <p className="mt-6 border-t-2 border-ink pt-5 font-display font-extrabold text-ink text-3xl sm:text-4xl">M2P Nexus</p>
+            <p className="mt-6 border-t-2 border-ink pt-5 font-display font-bold text-ink text-3xl sm:text-4xl">M2P Nexus</p>
             <p className="mt-2 text-lg text-body">One team that knows your whole business.</p>
           </div>
         </div>
@@ -297,7 +293,7 @@ export default function Home() {
           <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {steps.map((s, i) => (
               <li key={s.title} className="space-y-3">
-                <span className="block font-display font-extrabold text-leaf text-5xl leading-none">{i + 1}</span>
+                <span className="block font-display font-bold text-leaf text-5xl leading-none">{i + 1}</span>
                 <h3 className="font-heading font-bold text-ink text-xl">{s.title}</h3>
                 <p className="text-body leading-relaxed">{s.desc}</p>
               </li>
@@ -313,7 +309,7 @@ export default function Home() {
       <section className="bg-white border-b border-rule">
         <div className={`${sectionPad} grid gap-12 lg:grid-cols-12 lg:items-center`}>
           <figure className="lg:col-span-4">
-            <blockquote className="relative rounded-3xl bg-ink p-8 text-white shadow-[0_40px_80px_-40px_rgba(23,37,84,0.7)]">
+            <blockquote className="relative rounded-3xl bg-ink p-8 text-white shadow-lift">
               <span aria-hidden="true" className="absolute -top-6 left-6 font-display text-8xl leading-none text-marigold">&ldquo;</span>
               <p className="relative font-heading text-xl leading-snug sm:text-2xl">
                 We don&rsquo;t just build software. We build business success.

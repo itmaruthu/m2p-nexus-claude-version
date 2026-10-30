@@ -60,7 +60,7 @@ export default function ChatDemo() {
 
   return (
     <figure ref={ref} className="mx-auto w-full max-w-[22rem]">
-      <div aria-hidden="true" className="rounded-[2.6rem] bg-ink p-2.5 shadow-[0_40px_80px_-30px_rgba(23,37,84,0.6)]">
+      <div aria-hidden="true" className="rounded-[2.6rem] bg-ink p-2.5 shadow-lift">
         <div className="overflow-hidden rounded-[2.1rem] bg-[#EFEAE2]">
           <div className="flex items-center gap-3 bg-[#0F5132] px-4 pb-3 pt-5 text-white">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-white p-1">
@@ -80,12 +80,12 @@ export default function ChatDemo() {
                   initial={{ opacity: 0, y: 12, scale: 0.96 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                  className={`max-w-[84%] rounded-2xl px-3 py-2 text-[0.92rem] leading-snug shadow-sm ${
+                  className={`max-w-[84%] rounded-2xl px-3 py-2 text-[0.92rem] leading-snug shadow-soft ${
                     m.from === 'us' ? 'self-start rounded-tl-sm bg-white text-ink' : 'self-end rounded-tr-sm bg-[#D9FDD3] text-ink'
                   }`}
                 >
                   {m.text}
-                  <span className="ml-2 align-bottom text-[0.7rem] text-body">{m.time}</span>
+                  <span className="ml-2 align-bottom text-xs text-body">{m.time}</span>
                 </motion.div>
               ))}
               {typing && (
@@ -95,7 +95,7 @@ export default function ChatDemo() {
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0 }}
-                  className="self-start flex gap-1 rounded-2xl rounded-tl-sm bg-white px-4 py-3 shadow-sm"
+                  className="self-start flex gap-1 rounded-2xl rounded-tl-sm bg-white px-4 py-3 shadow-soft"
                 >
                   {[0, 1, 2].map((d) => (
                     <motion.span

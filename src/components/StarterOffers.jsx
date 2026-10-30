@@ -1,11 +1,10 @@
 import { starters, starterText } from '../config/starters';
-import { formText } from '../config/consultation';
 import BookButton from './consultation/BookButton';
 
 /**
  * "Start small": fixed-scope starter packs shown as tear-off tickets (a nod to the paper-bill motif).
- * Each ticket's button opens the consultation dialog with that starter already selected, so the lead
- * arrives in the sheet tagged with what they asked for. `lang` is 'en' or 'ta'.
+ * Each ticket's button opens the booking page with that starter already selected, so the lead arrives in
+ * the sheet tagged with what they asked for. `lang` is 'en' or 'ta'.
  */
 export default function StarterOffers({ lang = 'en', title, intro, headingId = 'start-small-title' }) {
   const t = starterText[lang];
@@ -17,7 +16,7 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
         <div className="grid gap-5 lg:grid-cols-12 lg:items-end">
           <h2
             id={headingId}
-            className={`lg:col-span-7 text-ink text-3xl sm:text-4xl leading-[1.12] ${ta ? 'font-sans font-bold' : 'font-display font-extrabold tracking-[-0.015em]'}`}
+            className={`lg:col-span-7 text-ink text-3xl sm:text-4xl leading-[1.12] ${ta ? 'font-sans font-bold' : 'font-display font-bold tracking-[-0.015em]'}`}
           >
             {title}
           </h2>
@@ -29,7 +28,7 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
             const c = s[lang];
             return (
               <li key={s.id} className="group flex">
-                <article className="relative flex w-full flex-col rounded-3xl bg-white ring-1 ring-rule shadow-[0_24px_50px_-34px_rgba(23,37,84,0.45)] transition-transform duration-300 group-hover:-translate-y-1">
+                <article className="relative flex w-full flex-col rounded-3xl bg-white ring-1 ring-rule shadow-lift transition-transform duration-300 group-hover:-translate-y-1">
                   <div className="flex-1 space-y-5 p-6">
                     <div>
                       <p className="text-sm text-body">
@@ -60,12 +59,12 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
                   </div>
 
                   <div className="space-y-4 p-6">
-                    <p className="flex items-baseline justify-between gap-3">
-                      <span className="text-sm text-body">{t.time}</span>
-                      <span className="rounded-full bg-marigold/20 px-3 py-1 text-sm font-semibold text-[#6B4700]">{c.time}</span>
+                    <p className="flex items-baseline justify-between gap-3 text-sm">
+                      <span className="text-body">{t.time}</span>
+                      <span className="font-semibold text-ink">{c.time}</span>
                     </p>
                     <BookButton
-                      preset={{ needs: [s.need], message: formText[lang].starter.replace('{starter}', c.name) }}
+                      starter={s.id}
                       className="flex w-full items-center justify-center rounded-xl bg-ink px-5 py-3 text-center font-semibold text-white transition-colors hover:bg-[#0E173A]"
                     >
                       {t.book}
@@ -85,7 +84,6 @@ export default function StarterOffers({ lang = 'en', title, intro, headingId = '
                 <p className="leading-relaxed text-slate-300">{t.mixText}</p>
               </div>
               <BookButton
-                preset={{ needs: [], message: '' }}
                 className="relative z-10 flex w-full items-center justify-center rounded-xl bg-marigold px-5 py-3 text-center font-semibold text-ink transition-colors hover:bg-[#FFC233]"
               >
                 {t.mixButton}

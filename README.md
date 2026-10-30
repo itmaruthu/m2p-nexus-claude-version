@@ -80,8 +80,9 @@ Scenes: paper bills, five vendors, roots becoming one connected system, the M2P 
 
 ## Consultation form
 
-Every "Book a consultation" button opens a short form (a dialog; the same form is inline on
-`/contact/#book`). Each submission is added as a row to a Google Sheet, with Status, Follow-up date,
+Every "Book a consultation" button opens the booking page, `/book/` (Tamil: `/ta/book/`). It is a
+shareable link for WhatsApp, Instagram and email signatures; `/book/?starter=website` (any id from
+`src/config/starters.js`) pre-selects a starter pack. Each submission is added as a row to a Google Sheet, with Status, Follow-up date,
 Owner and Notes columns for follow-ups (File > Download > Microsoft Excel gives an .xlsx copy), and is
 emailed to hello@m2pnexus.com. If sending fails, the form offers to send the details on WhatsApp instead.
 

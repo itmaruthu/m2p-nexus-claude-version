@@ -6,7 +6,7 @@ export const h2Class = 'font-display font-extrabold text-ink text-3xl sm:text-4x
 
 /** Inline text link: ink text with a marigold underline that turns ink on hover. */
 export const textLink =
-  'font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink';
+  'py-2.5 font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4 hover:decoration-ink';
 
 export const whatsappButton =
   'inline-flex items-center justify-center gap-2 rounded-lg bg-leaf px-6 py-3.5 font-semibold text-white hover:bg-[#185730] transition-colors';

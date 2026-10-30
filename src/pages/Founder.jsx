@@ -41,7 +41,7 @@ export default function Founder() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-10 md:pb-24 space-y-14">
           <Breadcrumb page="Founders" />
           <div className="mx-auto max-w-3xl text-center space-y-5">
-            <h1 className="font-display font-extrabold text-ink text-[2.6rem] sm:text-6xl lg:text-[4.4rem] leading-[1.02] tracking-[-0.03em]">
+            <h1 className="font-display font-bold text-ink text-[2.6rem] sm:text-6xl lg:text-[4.4rem] leading-[1.02] tracking-[-0.03em]">
               Two paths. One nexus.
             </h1>
             <p className="text-lg sm:text-xl text-body leading-relaxed">

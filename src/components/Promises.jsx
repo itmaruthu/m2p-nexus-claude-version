@@ -66,7 +66,7 @@ export default function Promises({ lang = 'en', headingId = 'promise-title' }) {
           <div className="space-y-4 lg:col-span-8">
             <h2
               id={headingId}
-              className={`text-4xl sm:text-5xl ${ta ? 'font-sans font-bold leading-snug' : 'font-display font-extrabold leading-[1.05] tracking-[-0.02em]'}`}
+              className={`text-4xl sm:text-5xl ${ta ? 'font-sans font-bold leading-snug' : 'font-display font-bold leading-[1.05] tracking-[-0.02em]'}`}
             >
               {p.title}
             </h2>
@@ -132,7 +132,6 @@ export default function Promises({ lang = 'en', headingId = 'promise-title' }) {
         {/* Act at the moment of trust */}
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
           <BookButton
-            preset={{ needs: [], message: '' }}
             className="inline-flex items-center justify-center rounded-xl bg-marigold px-7 py-4 font-semibold text-ink transition-colors hover:bg-[#FFC233]"
           >
             {c.book}

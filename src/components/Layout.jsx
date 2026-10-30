@@ -4,7 +4,6 @@ import Header from './Header';
 import Footer from './Footer';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import MobileContactBar from './MobileContactBar';
-import ConsultationProvider from './consultation/ConsultationProvider';
 
 export default function Layout({ children }) {
   const { pathname } = useLocation();
@@ -15,7 +14,6 @@ export default function Layout({ children }) {
   }, [pathname]);
 
   return (
-    <ConsultationProvider>
     <div className="flex flex-col min-h-screen bg-brand-bg text-brand-text font-sans antialiased">
       <Header />
       <main id="main" tabIndex={-1} className="flex-grow outline-none">
@@ -25,6 +23,5 @@ export default function Layout({ children }) {
       <FloatingWhatsApp />
       <MobileContactBar />
     </div>
-    </ConsultationProvider>
   );
 }

@@ -111,7 +111,7 @@ export default function ProjectExplorer() {
                   aria-expanded={selected}
                   onClick={() => pick(p.id)}
                   className={`group relative w-full overflow-hidden rounded-2xl p-5 text-left transition-all ${
-                    selected ? 'bg-ink text-white shadow-xl' : 'bg-white ring-1 ring-rule hover:-translate-y-0.5 hover:shadow-lg'
+                    selected ? 'bg-ink text-white shadow-lift' : 'bg-white ring-1 ring-rule hover:-translate-y-0.5 hover:shadow-lift'
                   }`}
                 >
                   <span className={`block font-heading text-sm font-semibold ${selected ? 'text-marigold' : 'text-leaf'}`}>{p.sector}</span>

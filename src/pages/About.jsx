@@ -42,7 +42,7 @@ export default function About() {
             </ol>
           </nav>
           <div className="grid gap-6 lg:grid-cols-12 lg:items-end">
-            <h1 className="lg:col-span-7 font-display font-extrabold text-ink text-[2.4rem] sm:text-6xl lg:text-[4.4rem] leading-[1.02] tracking-[-0.03em]">
+            <h1 className="lg:col-span-7 font-display font-bold text-ink text-[2.4rem] sm:text-6xl lg:text-[4.4rem] leading-[1.02] tracking-[-0.03em]">
               From roots to success.
               <span lang="ta" className="mt-3 block font-sans font-semibold text-leaf text-2xl sm:text-3xl tracking-normal">
                 வேரிலிருந்து வெற்றிவரை
@@ -105,7 +105,7 @@ export default function About() {
       <section className="bg-white border-b border-rule">
         <div className={`${sectionPad} space-y-6`}>
           <h2 className="font-heading font-semibold text-body">What we believe</h2>
-          <p className="font-display font-extrabold text-ink text-3xl sm:text-5xl leading-[1.1] tracking-[-0.02em] max-w-5xl">
+          <p className="font-display font-bold text-ink text-3xl sm:text-5xl leading-[1.1] tracking-[-0.02em] max-w-5xl">
             Every business, whether a startup, an MSME, a trader or an enterprise, deserves modern technology, skilled people and digital growth, whatever its size or location.
           </p>
         </div>

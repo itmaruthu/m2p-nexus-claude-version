@@ -1,10 +1,11 @@
 import { Phone, PhoneCall } from 'lucide-react';
 import { site } from '../config/site';
 import { WhatsAppIcon } from './icons';
+import Tooltip from './Tooltip';
 
 /**
  * Phone numbers are never printed on the site: calls and WhatsApp are offered as round icon buttons.
- * The number stays in the tel:/wa.me link only. Each button has an accessible name and a tooltip, and a
+ * The number stays in the tel:/wa.me link only. Each button has an accessible name and a hover/focus tooltip, and a
  * 44px tap target (WCAG 2.5.8).
  */
 
@@ -21,24 +22,27 @@ export function CallIcon({ line = 0, tone = 'light', className = '' }) {
   const label = line === 0 ? 'Call M2P Nexus' : 'Call M2P Nexus on our second line';
   const Icon = line === 0 ? Phone : PhoneCall;
   return (
-    <a href={`tel:${phone.tel}`} aria-label={label} title={label} className={`${base} ${tones[tone]} ${className}`}>
-      <Icon className="h-5 w-5" aria-hidden="true" />
-    </a>
+    <Tooltip label={label} tone={tone}>
+      <a href={`tel:${phone.tel}`} aria-label={label} className={`${base} ${tones[tone]} ${className}`}>
+        <Icon className="h-5 w-5" aria-hidden="true" />
+      </a>
+    </Tooltip>
   );
 }
 
 /** WhatsApp chat button, icon only. */
 export function WhatsAppIconLink({ href, tone = 'light', className = '' }) {
   return (
+    <Tooltip label="Chat on WhatsApp" tone={tone}>
     <a
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with M2P Nexus on WhatsApp (opens in a new tab)"
-      title="Chat on WhatsApp"
+      aria-label="Chat on WhatsApp with M2P Nexus (opens in a new tab)"
       className={`${base} ${tone === 'dark' ? tones.dark : 'bg-white text-leaf ring-1 ring-rule hover:bg-leaf hover:text-white hover:ring-leaf'} ${className}`}
     >
       <WhatsAppIcon className="h-5 w-5" />
     </a>
+    </Tooltip>
   );
 }
