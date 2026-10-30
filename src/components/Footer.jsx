@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowUp, MapPin } from 'lucide-react';
 import { useReducedMotion } from 'framer-motion';
 import { CallIcon, WhatsAppIconLink } from './CallIcon';
-import m2pLogo from '../assets/m2p_nexus_logo.webp';
+import m2pMark from '../assets/m2p_nexus_mark_reversed.webp';
 import { links, site } from '../config/site';
 import { LinkedinIcon } from './icons';
 import { useIsConnectPage } from './useIsConnectPage';
@@ -75,8 +75,15 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 md:pt-20">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-7 lg:col-span-5">
-            <Link to="/" className="inline-flex rounded-2xl bg-white px-4 py-2.5 shadow-lift" aria-label="M2P Nexus home">
-              <img src={m2pLogo} alt="" width="72" height="48" loading="lazy" className="h-12 w-auto object-contain" />
+            {/* Logo lockup for the dark footer: the mark reversed out (navy -> white, greens kept), cropped tight
+                and exported at 3x; the tagline is live text (crisp at any size, correctly spelled, readable). */}
+            <Link to="/" aria-label="M2P Nexus home" className="group inline-flex flex-col items-center gap-2 rounded-xl">
+              <img src={m2pMark} alt="" width="177" height="112" loading="lazy" className="h-28 w-auto transition-transform duration-300 group-hover:-translate-y-0.5" />
+              <span lang="ta" className="flex items-center gap-1.5 text-xs font-semibold text-slate-200">
+                <span aria-hidden="true" className="h-px w-3 bg-[#3FA866]" />
+                வேரிலிருந்து வெற்றிவரை
+                <span aria-hidden="true" className="h-px w-3 bg-[#3FA866]" />
+              </span>
             </Link>
             <p className="max-w-sm text-lg leading-relaxed text-slate-300">
               Software, AI, hiring and marketing for growing businesses, from one team in Madurai.
