@@ -6,7 +6,7 @@ export default function Breadcrumb({ page }) {
     <nav aria-label="Breadcrumb">
       <ol className="flex items-center gap-2 text-sm text-body">
         <li>
-          <Link to="/" className="underline decoration-rule underline-offset-4 hover:decoration-ink">
+          <Link to="/" className="inline-flex min-h-11 min-w-11 items-center underline decoration-rule underline-offset-4 hover:decoration-ink">
             Home
           </Link>
         </li>

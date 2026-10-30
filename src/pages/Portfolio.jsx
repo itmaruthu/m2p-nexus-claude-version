@@ -1,16 +1,17 @@
 import Seo from '../components/Seo';
 import Breadcrumb from '../components/Breadcrumb';
 import ProjectExplorer from '../components/ProjectExplorer';
-import ClosingCta from '../components/ClosingCta';
+import BlueprintBuilder from '../components/BlueprintBuilder';
 
 // Portfolio content comes from src/config/projects.js (see the note there on client names and numbers).
+// The page ends with the blueprint builder, which is its call to action.
 
 export default function Portfolio() {
   return (
     <>
       <Seo
         title="Portfolio: Billing Systems, AI Automation, Growth & Hiring Projects"
-        description="Projects by M2P Nexus: billing and inventory software, an agribusiness supply chain portal, a business website, AI invoice reading, a stock chat assistant, lead generation, an HR setup and talent acquisition."
+        description="Projects by M2P Nexus, before and after: billing and inventory software, an agribusiness supply chain portal, a business website, AI invoice reading, a stock chat assistant, lead generation, an HR setup and talent acquisition."
       />
 
       <section className="relative overflow-hidden border-b border-rule bg-[#F4F6FA]">
@@ -22,22 +23,14 @@ export default function Portfolio() {
               Systems that run real businesses, every day.
             </h1>
             <p className="lg:col-span-4 text-lg text-body leading-relaxed">
-              Software, AI, growth and hiring work for traders, manufacturers and growing teams. Pick a project to see the system we built, drawn as a blueprint.
+              Start from the problem you have today. Each project shows how the business ran before, and the system that runs it now.
             </p>
           </div>
           <ProjectExplorer />
         </div>
       </section>
 
-      <ClosingCta
-        title="Your business could be the next blueprint."
-        text="Tell us what slows you down today. We’ll sketch the system that fixes it, with a clear scope and quotation before any work starts."
-        questions={[
-          'Can you build billing software like the textile project for my shop?',
-          'Can AI read our supplier invoices and match them to orders?',
-          'Can you help us set up an HR function as we grow?',
-        ]}
-      />
+      <BlueprintBuilder />
     </>
   );
 }

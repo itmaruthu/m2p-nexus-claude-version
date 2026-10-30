@@ -6,12 +6,14 @@ import FloatingWhatsApp from './FloatingWhatsApp';
 import MobileContactBar from './MobileContactBar';
 
 export default function Layout({ children }) {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
-  // Automatically scroll back to top of page on route shifts
+  // On route changes, go to the linked section (e.g. /portfolio/#build) or back to the top of the page
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+    const target = hash && document.getElementById(hash.slice(1));
+    if (target) target.scrollIntoView({ behavior: 'instant' });
+    else window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname, hash]);
 
   return (
     <div className="flex flex-col min-h-screen bg-brand-bg text-brand-text font-sans antialiased">

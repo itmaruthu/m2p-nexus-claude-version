@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Seo from '../components/Seo';
 import Breadcrumb from '../components/Breadcrumb';
 import ConsultationForm from '../components/consultation/ConsultationForm';
 import { CallIcon, WhatsAppIconLink } from '../components/CallIcon';
 import { formText } from '../config/consultation';
 import { starters } from '../config/starters';
+import { needsFor, readParts } from '../config/projects';
 import { links, waLink } from '../config/site';
 
 // Book a consultation (/book/ and /ta/book/). Page pattern: Form page — one task, a labelled form, and the
 // context a first-time client needs beside it. `?starter=<id>` (from the starter packs) pre-selects that
-// starter; it is read after hydration so the pre-rendered HTML and the first client render match.
+// starter, and `?parts=a,b` (from the portfolio's blueprint builder) fills in the parts the visitor picked.
+// Both are read after hydration so the pre-rendered HTML and the first client render match.
 
 const copy = {
   en: {
@@ -21,6 +24,10 @@ const copy = {
     intro: 'Tell us about your business. We reply within one working day, in Tamil or English, with questions and a sensible first step.',
     picked: 'You picked',
     change: 'See all starters',
+    blueprint: 'Your blueprint',
+    changeParts: 'Change parts',
+    partsCount: '{n} parts',
+    partsMsg: 'I built a blueprint on your website with: {parts}.',
     nextTitle: 'What happens next',
     steps: [
       { title: 'We reply within one working day', text: 'On WhatsApp, by phone or by email, whichever you choose below.' },
@@ -41,6 +48,10 @@ const copy = {
     intro: 'உங்கள் வணிகம் பற்றிச் சொல்லுங்கள். ஒரு வேலை நாளுக்குள், தமிழிலோ ஆங்கிலத்திலோ, கேள்விகளுடனும் பொருத்தமான முதல் படியுடனும் பதிலளிப்போம்.',
     picked: 'நீங்கள் தேர்ந்தெடுத்தது',
     change: 'எல்லா திட்டங்களையும் பார்க்க',
+    blueprint: 'உங்கள் வரைபடம்',
+    changeParts: 'பகுதிகளை மாற்ற',
+    partsCount: '{n} பகுதிகள்',
+    partsMsg: 'உங்கள் இணையதளத்தில் இந்தப் பகுதிகளுடன் ஒரு வரைபடம் உருவாக்கினேன்: {parts}.',
     nextTitle: 'அடுத்து என்ன நடக்கும்',
     steps: [
       { title: 'ஒரு வேலை நாளுக்குள் பதில்', text: 'கீழே நீங்கள் தேர்ந்தெடுப்பது போல WhatsApp, தொலைபேசி அல்லது மின்னஞ்சலில்.' },
@@ -63,15 +74,22 @@ export default function Book({ lang = 'en' }) {
   const c = copy[lang];
   const ta = lang === 'ta';
   const [starter, setStarter] = useState(null);
+  const [parts, setParts] = useState([]);
 
   useEffect(() => {
-    const t = setTimeout(() => setStarter(readStarter()), 0);
+    const t = setTimeout(() => {
+      setStarter(readStarter());
+      setParts(readParts(new URLSearchParams(window.location.search).get('parts')));
+    }, 0);
     return () => clearTimeout(t);
   }, []);
 
   const preset = starter
     ? { needs: [starter.need], message: formText[lang].starter.replace('{starter}', starter[lang].name) }
-    : null;
+    : parts.length
+      ? { needs: needsFor(parts), message: c.partsMsg.replace('{parts}', parts.map((p) => p.name).join(', ')) }
+      : null;
+  const partIds = parts.map((p) => p.id).join(',');
 
   return (
     <div lang={ta ? 'ta' : undefined}>
@@ -146,7 +164,27 @@ export default function Book({ lang = 'en' }) {
                     </a>
                   </p>
                 )}
-                <ConsultationForm key={starter?.id || 'none'} lang={lang} preset={preset} done={{ label: c.done, to: c.doneTo }} />
+                {!starter && parts.length > 0 && (
+                  <div className="mb-6 space-y-3 border-b border-dashed border-rule pb-5">
+                    <p className="flex flex-wrap items-baseline justify-between gap-2 text-body">
+                      <span>
+                        {c.blueprint}: <span className="font-semibold text-ink">{c.partsCount.replace('{n}', parts.length)}</span>
+                      </span>
+                      <Link to={`/portfolio/?parts=${partIds}#build`} className="py-2.5 text-sm font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4">
+                        {c.changeParts}
+                      </Link>
+                    </p>
+                    <ul className="flex flex-wrap gap-x-4 gap-y-1.5 text-sm text-ink">
+                      {parts.map((p) => (
+                        <li key={p.id} className="flex items-center gap-1.5">
+                          <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-marigold" />
+                          {p.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <ConsultationForm key={starter?.id || partIds || 'none'} lang={lang} preset={preset} done={{ label: c.done, to: c.doneTo }} />
               </div>
             </div>
           </div>
