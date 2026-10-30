@@ -2,18 +2,21 @@ import { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 
 /**
- * The M2P Nexus brand film (designed and animated in Moda, see public/media/README.md): paper bills, five
- * vendors, roots becoming one connected system, then the tagline. Silent, so it plays muted while at least
- * half of it is on screen and pauses when scrolled away. Visitors who prefer reduced motion see the poster
- * and press play themselves. The pause button covers WCAG 2.2.2 (moving content longer than 5 seconds).
+ * The M2P Nexus brand film, drawn in code with Remotion (source and render script in video/): paper bills,
+ * five vendors, roots becoming one connected system, the logo, then the offer. Phones get the 4:5 cut and
+ * wider screens the 16:9 cut; the box takes its shape from CSS, so choosing a cut after hydration causes no
+ * layout shift. Silent, so it plays muted while at least half of it is on screen and pauses when scrolled
+ * away. Visitors who prefer reduced motion see the poster and press play themselves. The pause button
+ * covers WCAG 2.2.2 (moving content longer than 5 seconds).
  */
 
 const base = import.meta.env.BASE_URL;
-const SRC = {
-  webm: `${base}media/brand-film-720.webm`,
-  mp4: `${base}media/brand-film-720.mp4`,
-  poster: `${base}media/brand-film-poster.webp`,
-};
+const cut = (name) => ({
+  webm: `${base}media/${name}.webm`,
+  mp4: `${base}media/${name}.mp4`,
+  poster: `${base}media/${name}-poster.webp`,
+});
+const CUTS = { wide: cut('brand-film'), tall: cut('brand-film-4x5') };
 
 export default function BrandFilm({ title, text, headingId = 'brand-film-heading' }) {
   const reduce = useReducedMotion();
@@ -21,6 +24,17 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
   const [playing, setPlaying] = useState(false);
   const [userPaused, setUserPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [variant, setVariant] = useState('wide');
+  const SRC = CUTS[variant];
+
+  // Pick the cut for this screen (after hydration, so the pre-rendered HTML and first render match).
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 639px)');
+    const pickCut = () => setVariant(mq.matches ? 'tall' : 'wide');
+    pickCut();
+    mq.addEventListener('change', pickCut);
+    return () => mq.removeEventListener('change', pickCut);
+  }, []);
 
   // Autoplay only while on screen, never for reduced-motion visitors, and never after the visitor paused.
   useEffect(() => {
@@ -35,7 +49,7 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
     );
     io.observe(video);
     return () => io.disconnect();
-  }, [reduce, userPaused]);
+  }, [reduce, userPaused, variant]);
 
   const toggle = () => {
     const video = ref.current;
@@ -63,15 +77,16 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
         <figure className="space-y-4">
           <div className="relative overflow-hidden rounded-[1.75rem] ring-1 ring-white/15 shadow-[0_50px_120px_-40px_rgba(242,169,0,0.45)] bg-[#0E173A]">
             <video
+              key={variant}
               ref={ref}
-              className="block aspect-video w-full"
+              className="block aspect-[4/5] w-full object-cover sm:aspect-video"
               poster={SRC.poster}
               muted
               loop
               playsInline
               preload="none"
-              width="1280"
-              height="720"
+              width={variant === 'tall' ? 1080 : 1920}
+              height={variant === 'tall' ? 1350 : 1080}
               aria-describedby={`${headingId}-transcript`}
               onPlay={() => setPlaying(true)}
               onPause={() => setPlaying(false)}
@@ -111,16 +126,18 @@ export default function BrandFilm({ title, text, headingId = 'brand-film-heading
           </div>
 
           <figcaption className="flex flex-wrap items-baseline justify-between gap-2 text-sm text-slate-300">
-            <span>From paper bills to one connected business. 17 seconds, no sound.</span>
+            <span>From paper bills to one connected business. 20 seconds, no sound.</span>
             <span lang="ta" className="text-marigold">வேரிலிருந்து வெற்றிவரை</span>
           </figcaption>
           <p id={`${headingId}-transcript`} className="sr-only">
             Film transcript. Scene 1: Every morning in Madurai. Bills on paper, orders on WhatsApp, stock in a notebook,
-            payments in your head; a handwritten bill ends with an unknown total. Scene 2: Five vendors, five follow-ups:
-            a software company, website agency, marketing agency, HR consultant and AI consultant that don&rsquo;t talk to
-            each other. Scene 3: Roots grow under your business and become one connected system for billing and stock,
-            website and apps, AI and automation, marketing, and hiring. One partner, all connected. Scene 4: M2P Nexus.
-            From Roots to Success.
+            payments in your head; WhatsApp orders arrive while a handwritten bill ends with an unknown total. Scene 2:
+            Five vendors, five follow-ups: a software company, website agency, marketing agency, HR consultant and AI
+            consultant that don&rsquo;t talk to each other. Scene 3: They fall into one seed, which sprouts; roots spread
+            and five branches connect your business to billing and stock, website and apps, AI and automation,
+            marketing, and hiring. One partner, all connected. Scene 4: The M2P Nexus logo: வேரிலிருந்து
+            வெற்றிவரை, From Roots to Success. Scene 5: Your first consultation is free. Tell us how your business runs
+            today; we reply within one working day, in Tamil or English. Book at m2pnexus.com or WhatsApp us.
           </p>
         </figure>
       </div>
