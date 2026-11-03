@@ -63,13 +63,16 @@ function FieldError({ id, msg }) {
  * `lang` ('en' | 'ta') switches every label and message; option values sent to the sheet stay English.
  * `preset` ({ needs, message }) pre-fills the form, e.g. when a starter pack's button opened it.
  * `done` ({ label, to }) adds an onward link to the thank-you state.
+ * `cancel` ({ label, confirm, onCancel }) adds a Cancel button beside submit; when anything has been typed it
+ * asks `confirm` first, so nothing is lost by accident.
  */
-export default function ConsultationForm({ onDone, lang = 'en', preset, done }) {
+export default function ConsultationForm({ onDone, lang = 'en', preset, done, cancel }) {
   const t = formText[lang] || formText.en;
   const label = (v) => (lang === 'ta' ? optionLabelsTa[v] || v : v);
   const uid = useId();
   const id = (k) => `${uid}-${k}`;
-  const [form, setForm] = useState(() => ({ ...empty, needs: preset?.needs || [], message: preset?.message || '' }));
+  const [initial] = useState(() => ({ ...empty, needs: preset?.needs || [], message: preset?.message || '' }));
+  const [form, setForm] = useState(initial);
   const [touched, setTouched] = useState({});
   const [status, setStatus] = useState('idle'); // idle | sending | sent | whatsapp | error
   const started = useRef(0);
@@ -317,13 +320,27 @@ export default function ConsultationForm({ onDone, lang = 'en', preset, done }) 
         </div>
       )}
 
-      <button
-        type="submit"
-        aria-disabled={status === 'sending'}
-        className="flex w-full items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-semibold text-white transition-colors hover:bg-[#0E173A] aria-disabled:cursor-wait aria-disabled:opacity-80"
-      >
-        {status === 'sending' ? t.sending : consultEndpoint ? t.submit : t.submitWa}
-      </button>
+      <div className="flex flex-col gap-3 sm:flex-row-reverse">
+        <button
+          type="submit"
+          aria-disabled={status === 'sending'}
+          className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-ink px-6 py-3.5 font-semibold text-white transition-colors hover:bg-[#0E173A] aria-disabled:cursor-wait aria-disabled:opacity-80"
+        >
+          {status === 'sending' ? t.sending : consultEndpoint ? t.submit : t.submitWa}
+        </button>
+        {cancel && (
+          <button
+            type="button"
+            onClick={() => {
+              const dirty = JSON.stringify(form) !== JSON.stringify(initial);
+              if (!dirty || window.confirm(cancel.confirm)) cancel.onCancel();
+            }}
+            className="flex min-h-12 items-center justify-center rounded-xl px-6 font-semibold text-ink ring-1 ring-rule transition-colors hover:ring-ink"
+          >
+            {cancel.label}
+          </button>
+        )}
+      </div>
     </form>
   );
 }

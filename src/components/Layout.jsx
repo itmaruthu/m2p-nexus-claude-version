@@ -4,12 +4,14 @@ import Header from './Header';
 import Footer from './Footer';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import MobileContactBar from './MobileContactBar';
+import { recordPath } from './previousPath';
 
 export default function Layout({ children }) {
   const { pathname, hash } = useLocation();
 
   // On route changes, go to the linked section (e.g. /portfolio/#build) or back to the top of the page
   useEffect(() => {
+    recordPath(pathname);
     const target = hash && document.getElementById(hash.slice(1));
     if (target) target.scrollIntoView({ behavior: 'instant' });
     else window.scrollTo({ top: 0, behavior: 'instant' });

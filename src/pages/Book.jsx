@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
+import { pageName, previousPath } from '../components/previousPath';
 import Seo from '../components/Seo';
 import Breadcrumb from '../components/Breadcrumb';
 import ConsultationForm from '../components/consultation/ConsultationForm';
@@ -23,6 +25,9 @@ const copy = {
     seoDescription:
       'Book a free consultation with M2P Nexus, Madurai. Tell us about your business; we reply within one working day, in Tamil or English.',
     crumb: 'Book a consultation',
+    back: 'Back to {page}',
+    cancel: 'Cancel',
+    leave: 'Leave without sending? What you have typed will be lost.',
     title: 'Book your free consultation',
     intro: 'Tell us about your business. We reply within one working day, in Tamil or English, with questions and a sensible first step.',
     picked: 'You picked',
@@ -45,6 +50,9 @@ const copy = {
     seoDescription:
       'M2P Nexus, மதுரை: இலவச ஆலோசனைக்கு முன்பதிவு செய்யுங்கள். ஒரு வேலை நாளுக்குள் தமிழிலோ ஆங்கிலத்திலோ பதிலளிப்போம்.',
     crumb: 'ஆலோசனைக்கு முன்பதிவு',
+    back: '{page} பக்கத்துக்குத் திரும்ப',
+    cancel: 'ரத்து செய்',
+    leave: 'அனுப்பாமல் வெளியேறவா? நீங்கள் எழுதியது நீக்கப்படும்.',
     title: 'உங்கள் இலவச ஆலோசனையை முன்பதிவு செய்யுங்கள்',
     intro: 'உங்கள் வணிகம் பற்றிச் சொல்லுங்கள். ஒரு வேலை நாளுக்குள், தமிழிலோ ஆங்கிலத்திலோ, கேள்விகளுடனும் பொருத்தமான முதல் படியுடனும் பதிலளிப்போம்.',
     picked: 'நீங்கள் தேர்ந்தெடுத்தது',
@@ -75,6 +83,8 @@ export default function Book({ lang = 'en' }) {
   const [starter, setStarter] = useState(null);
   const [parts, setParts] = useState([]);
   const [ask, setAsk] = useState(null); // { founder, topic } from the founder page
+  const [from, setFrom] = useState(null); // the in-site page the visitor came from
+  const navigate = useNavigate();
 
   useEffect(() => {
     const t = setTimeout(() => {
@@ -83,6 +93,7 @@ export default function Book({ lang = 'en' }) {
       setParts(readParts(q.get('parts')));
       const founder = findFounder(q.get('with'));
       if (founder) setAsk({ founder, topic: founderTopics.find((t) => t.id === q.get('topic')) || null });
+      setFrom(previousPath());
     }, 0);
     return () => clearTimeout(t);
   }, []);
@@ -98,6 +109,15 @@ export default function Book({ lang = 'en' }) {
           }
         : null;
   const partIds = parts.map((p) => p.id).join(',');
+
+  // Back / Cancel: return to the page the visitor came from, or Home when they landed here directly.
+  const home = ta ? '/ta' : '/';
+  const backName = pageName(from || home, lang);
+  const goBack = (e) => {
+    if (!from) return; // the link's own href (Home) handles it
+    e?.preventDefault();
+    navigate(-1);
+  };
 
   return (
     <div lang={ta ? 'ta' : undefined}>
@@ -115,7 +135,20 @@ export default function Book({ lang = 'en' }) {
       <section className="relative overflow-hidden border-b border-rule bg-[#F4F6FA]">
         <div aria-hidden="true" className="dot-grid pointer-events-none absolute inset-0" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16 md:pt-10 md:pb-24 space-y-10">
-          <Breadcrumb page={c.crumb} />
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1">
+            <Link
+              to={from || home}
+              onClick={goBack}
+              className="inline-flex min-h-11 items-center gap-2 rounded-lg pr-2 font-semibold text-ink underline decoration-marigold decoration-2 underline-offset-4"
+            >
+              <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+              {c.back.replace('{page}', backName)}
+            </Link>
+            {/* On phones the back link is enough; the breadcrumb returns from sm up */}
+            <div className="hidden sm:block">
+              <Breadcrumb page={c.crumb} />
+            </div>
+          </div>
 
           <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
             {/* Context: what this is, what happens next, other ways to reach us */}
@@ -200,7 +233,11 @@ export default function Book({ lang = 'en' }) {
                     <span className="text-sm">{ask.founder.role}</span>
                   </p>
                 )}
-                <ConsultationForm key={starter?.id || partIds || ask?.founder.id || 'none'} lang={lang} preset={preset} done={{ label: c.done, to: c.doneTo }} />
+                <ConsultationForm
+                  key={starter?.id || partIds || ask?.founder.id || 'none'}
+                  cancel={{ label: c.cancel, confirm: c.leave, onCancel: () => (from ? navigate(-1) : navigate(home)) }}
+                  lang={lang}
+                  preset={preset} done={{ label: c.done, to: c.doneTo }} />
               </div>
             </div>
           </div>
