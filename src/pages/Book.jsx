@@ -9,6 +9,7 @@ import { starters } from '../config/starters';
 import { needsFor, readParts } from '../config/projects';
 import { findFounder, founderTopics } from '../config/founders';
 import { links, waLink } from '../config/site';
+import { nextSteps } from '../config/nextSteps';
 
 // Book a consultation (/book/ and /ta/book/). Page pattern: Form page — one task, a labelled form, and the
 // context a first-time client needs beside it. `?starter=<id>` (from the starter packs) pre-selects that
@@ -34,11 +35,6 @@ const copy = {
     aboutMsg: ' about {topic}',
     partsMsg: 'I built a blueprint on your website with: {parts}.',
     nextTitle: 'What happens next',
-    steps: [
-      { title: 'We reply within one working day', text: 'On WhatsApp, by phone or by email, whichever you choose below.' },
-      { title: 'A free first call', text: 'We listen to how your business runs today and ask the right questions.' },
-      { title: 'A written scope and quotation', text: 'Before any work begins, so you know exactly what you get.' },
-    ],
     alsoTitle: 'Prefer to talk now?',
     alsoText: 'Call or message us directly.',
     done: 'Explore our work',
@@ -61,11 +57,6 @@ const copy = {
     aboutMsg: ' ({topic})',
     partsMsg: 'உங்கள் இணையதளத்தில் இந்தப் பகுதிகளுடன் ஒரு வரைபடம் உருவாக்கினேன்: {parts}.',
     nextTitle: 'அடுத்து என்ன நடக்கும்',
-    steps: [
-      { title: 'ஒரு வேலை நாளுக்குள் பதில்', text: 'கீழே நீங்கள் தேர்ந்தெடுப்பது போல WhatsApp, தொலைபேசி அல்லது மின்னஞ்சலில்.' },
-      { title: 'இலவச முதல் அழைப்பு', text: 'உங்கள் வணிகம் இன்று எப்படி நடக்கிறது என்று கேட்டு, சரியான கேள்விகளைக் கேட்போம்.' },
-      { title: 'எழுத்துப்பூர்வ வேலை வரம்பும் விலைப்பட்டியலும்', text: 'எந்த வேலையும் தொடங்கும் முன்பே, உங்களுக்கு என்ன கிடைக்கும் என்று தெளிவாகத் தெரியும்.' },
-    ],
     alsoTitle: 'இப்போதே பேச விருப்பமா?',
     alsoText: 'நேரடியாக அழைக்கவும் அல்லது செய்தி அனுப்பவும்.',
     done: 'முகப்புக்குத் திரும்ப',
@@ -142,7 +133,7 @@ export default function Book({ lang = 'en' }) {
                 <h2 className={`text-ink text-lg ${ta ? 'font-sans font-bold' : 'font-heading font-semibold'}`}>{c.nextTitle}</h2>
                 <ol className="relative mt-5 space-y-6">
                   <span aria-hidden="true" className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-[linear-gradient(to_bottom,#1F6B3A,#F2A900)]" />
-                  {c.steps.map((s, i) => (
+                  {nextSteps[lang].map((s, i) => (
                     <li key={s.title} className="relative flex gap-4">
                       <span className="relative z-10 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-ink font-display text-sm font-bold text-marigold ring-4 ring-[#F4F6FA]">
                         {i + 1}
