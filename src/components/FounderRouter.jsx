@@ -71,7 +71,7 @@ export default function FounderRouter() {
         <div className="grid gap-6 md:grid-cols-2">
           {ordered.map((f) => {
             const leads = lead === f;
-            const hello = topic ? `Hello ${f.first}, I would like to talk about ${topic.label.toLowerCase()}.` : `Hello ${f.first}, I found M2P Nexus on your website and would like to talk.`;
+            const hello = topic ? `Hello ${f.first}, I would like to talk about ${topic.say}.` : `Hello ${f.first}, I found M2P Nexus on your website and would like to talk.`;
             const book = `/book/?with=${f.id}${topic ? `&topic=${topic.id}` : ''}`;
             return (
               <article

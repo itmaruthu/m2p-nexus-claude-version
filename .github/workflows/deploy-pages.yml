@@ -40,6 +40,10 @@ jobs:
           VITE_SITE_URL: ${{ steps.pages.outputs.base_url }}
           # Google Apps Script web app URL for the consultation form (Settings > Variables > Actions)
           VITE_CONSULT_ENDPOINT: ${{ vars.CONSULT_ENDPOINT }}
+          # Phone numbers are not in the repository (see vite.config.js); the build fails without them.
+          M2P_PHONE_MAIN: ${{ vars.M2P_PHONE_MAIN }}
+          M2P_PHONE_SECOND: ${{ vars.M2P_PHONE_SECOND }}
+          M2P_WHATSAPP: ${{ vars.M2P_WHATSAPP }}
 
       # Every page is pre-rendered to its own folder (about/index.html, ...) plus 404.html, so GitHub
       # Pages serves real HTML for each URL. .nojekyll stops Pages from post-processing the files.

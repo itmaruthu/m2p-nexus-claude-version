@@ -1,11 +1,11 @@
 import { Phone, PhoneCall } from 'lucide-react';
-import { site } from '../config/site';
+import { telLink } from '../config/site';
 import { WhatsAppIcon } from './icons';
 import Tooltip from './Tooltip';
 
 /**
  * Phone numbers are never printed on the site: calls and WhatsApp are offered as round icon buttons.
- * The number stays in the tel:/wa.me link only. Each button has an accessible name and a hover/focus tooltip, and a
+ * The number is not even in the page: the link is filled in when a visitor reaches for it (config/site.js). Each button has an accessible name and a hover/focus tooltip, and a
  * 44px tap target (WCAG 2.5.8).
  */
 
@@ -18,12 +18,11 @@ const base = 'inline-flex h-11 w-11 shrink-0 items-center justify-center rounded
 
 /** Call button for one of the site's phone lines (0 = main line, 1 = second line). */
 export function CallIcon({ line = 0, tone = 'light', className = '' }) {
-  const phone = site.phones[line];
   const label = line === 0 ? 'Call M2P Nexus' : 'Call M2P Nexus on our second line';
   const Icon = line === 0 ? Phone : PhoneCall;
   return (
     <Tooltip label={label} tone={tone}>
-      <a href={`tel:${phone.tel}`} aria-label={label} className={`${base} ${tones[tone]} ${className}`}>
+      <a href={telLink(line)} aria-label={label} className={`${base} ${tones[tone]} ${className}`}>
         <Icon className="h-5 w-5" aria-hidden="true" />
       </a>
     </Tooltip>

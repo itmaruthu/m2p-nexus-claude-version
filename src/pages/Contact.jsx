@@ -4,7 +4,7 @@ import Seo from '../components/Seo';
 import Breadcrumb from '../components/Breadcrumb';
 import ChatDemo from '../components/ChatDemo';
 import MessageComposer from '../components/MessageComposer';
-import { links, site } from '../config/site';
+import { links, site, telLink } from '../config/site';
 import { nextSteps } from '../config/nextSteps';
 import { LinkedinIcon, WhatsAppIcon } from '../components/icons';
 import { h2Class, sectionPad, whatsappButton } from '../components/styles';
@@ -100,11 +100,11 @@ export default function Contact() {
                 <p className="mt-1 text-body">Talk to our team directly, in Tamil or English.</p>
               </div>
               <div className="mt-auto flex flex-wrap gap-2">
-                <a href={`tel:${site.phones[0].tel}`} className={`${action} bg-ink text-white hover:bg-[#0E173A]`}>
+                <a href={telLink(0)} className={`${action} bg-ink text-white hover:bg-[#0E173A]`}>
                   <Phone aria-hidden="true" className="h-4 w-4" />
                   Main line
                 </a>
-                <a href={`tel:${site.phones[1].tel}`} className={`${action} text-ink ring-1 ring-rule hover:ring-ink`}>
+                <a href={telLink(1)} className={`${action} text-ink ring-1 ring-rule hover:ring-ink`}>
                   <PhoneCall aria-hidden="true" className="h-4 w-4" />
                   Second line
                 </a>

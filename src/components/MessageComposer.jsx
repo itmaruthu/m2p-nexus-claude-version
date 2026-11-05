@@ -12,11 +12,11 @@ import { WhatsAppIcon } from './icons';
  */
 
 const TOPICS = [
-  { id: 'billing', en: 'Billing and stock software', ta: 'பில்லிங் மற்றும் ஸ்டாக் மென்பொருள்' },
-  { id: 'website', en: 'A website or an app', ta: 'இணையதளம் அல்லது செயலி' },
-  { id: 'ai', en: 'AI and automation', ta: 'AI மற்றும் ஆட்டோமேஷன்' },
-  { id: 'customers', en: 'Getting more customers', ta: 'அதிக வாடிக்கையாளர்களைப் பெறுவது' },
-  { id: 'hiring', en: 'Hiring and HR', ta: 'பணியமர்த்தல் மற்றும் HR' },
+  { id: 'billing', say: 'billing and stock software', en: 'Billing and stock software', ta: 'பில்லிங் மற்றும் ஸ்டாக் மென்பொருள்' },
+  { id: 'website', say: 'a website or an app', en: 'A website or an app', ta: 'இணையதளம் அல்லது செயலி' },
+  { id: 'ai', say: 'AI and automation', en: 'AI and automation', ta: 'AI மற்றும் ஆட்டோமேஷன்' },
+  { id: 'customers', say: 'getting more customers', en: 'Getting more customers', ta: 'அதிக வாடிக்கையாளர்களைப் பெறுவது' },
+  { id: 'hiring', say: 'hiring and HR', en: 'Hiring and HR', ta: 'பணியமர்த்தல் மற்றும் HR' },
   { id: 'unsure', en: 'Not sure where to start', ta: 'எங்கிருந்து தொடங்குவது என்று தெரியவில்லை' },
 ];
 
@@ -54,7 +54,7 @@ function compose(lang, topic, business) {
   const intro = b ? `Hello M2P Nexus, I run ${b}.` : 'Hello M2P Nexus,';
   if (!topic) return `${intro} I would like to talk about my business. Please contact me.`;
   if (topic.id === 'unsure') return `${intro} I'm not sure where to start with technology for my business. Can we talk?`;
-  return `${intro} I would like to talk about ${topic.en.toLowerCase()}. Please contact me.`;
+  return `${intro} I would like to talk about ${topic.say}. Please contact me.`;
 }
 
 export default function MessageComposer() {

@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import { routes } from './src/config/routes.js'
 
@@ -56,8 +56,29 @@ const seoFiles = {
   },
 }
 
+// Phone numbers are never committed. Builds read them from the environment (CI variables, or a git-ignored
+// .env.local for local builds) and the site receives them base64-encoded, so they are neither in the
+// repository nor plain digits in the JavaScript; src/config/site.js keeps them out of the pre-rendered HTML.
+// A build without them fails, so a deploy can never ship broken Call / WhatsApp buttons.
+function contactDefine(command, mode) {
+  const env = loadEnv(mode, process.cwd(), 'M2P_')
+  const contact = { main: env.M2P_PHONE_MAIN, second: env.M2P_PHONE_SECOND, whatsapp: env.M2P_WHATSAPP }
+  const missing = Object.entries({ M2P_PHONE_MAIN: contact.main, M2P_PHONE_SECOND: contact.second, M2P_WHATSAPP: contact.whatsapp })
+    .filter(([, v]) => !v)
+    .map(([k]) => k)
+  if (command === 'build' && missing.length) {
+    throw new Error(
+      `Missing ${missing.join(', ')}. Set them in the build environment (GitHub: Settings > Secrets and variables > ` +
+        'Actions > Variables; Vercel: Project > Settings > Environment Variables) or in a git-ignored .env.local. ' +
+        'Format: M2P_PHONE_MAIN=+91XXXXXXXXXX, M2P_PHONE_SECOND=+91XXXXXXXXXX, M2P_WHATSAPP=91XXXXXXXXXX (digits only).',
+    )
+  }
+  return JSON.stringify(Buffer.from(JSON.stringify(contact)).toString('base64'))
+}
+
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command, mode }) => ({
   base,
   plugins: [react(), cspMeta, seoFiles],
-})
+  define: { __M2P_CONTACT__: contactDefine(command, mode) },
+}))

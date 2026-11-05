@@ -10,6 +10,7 @@ import '@fontsource/hind-madurai/700.css'
 import '@fontsource-variable/archivo/wght.css'
 import './index.css'
 import App from './App.jsx'
+import { armContactLinks } from './config/site'
 
 const app = (
   <StrictMode>
@@ -19,6 +20,9 @@ const app = (
     </BrowserRouter>
   </StrictMode>
 )
+
+// Call / WhatsApp links get their real numbers only when a visitor reaches for them (see config/site.js).
+armContactLinks()
 
 const root = document.getElementById('root')
 // Production pages are pre-rendered (scripts/prerender.mjs), so attach to that HTML; dev starts empty.

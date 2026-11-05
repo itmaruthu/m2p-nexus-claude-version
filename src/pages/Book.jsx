@@ -105,7 +105,7 @@ export default function Book({ lang = 'en' }) {
       : ask
         ? {
             needs: ask.topic ? [ask.topic.need] : [],
-            message: `${c.withMsg.replace('{name}', ask.founder.first)}${ask.topic ? c.aboutMsg.replace('{topic}', ask.topic.label.toLowerCase()) : ''}.`,
+            message: `${c.withMsg.replace('{name}', ask.founder.first)}${ask.topic ? c.aboutMsg.replace('{topic}', ask.topic.say) : ''}.`,
           }
         : null;
   const partIds = parts.map((p) => p.id).join(',');

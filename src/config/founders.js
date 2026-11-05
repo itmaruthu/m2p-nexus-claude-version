@@ -30,12 +30,12 @@ export const founderLeads = [
 ];
 
 export const founderTopics = [
-  { id: 'software', label: 'Billing, stock or business software', founder: 'maruthu', point: 0, need: 'Billing or business software' },
-  { id: 'website', label: 'A website or an app', founder: 'maruthu', point: 1, need: 'Website' },
-  { id: 'ai', label: 'AI and automation', founder: 'maruthu', point: 2, need: 'AI and automation' },
-  { id: 'hiring', label: 'Hiring the right people', founder: 'priyanka', point: 0, need: 'Hiring and HR' },
-  { id: 'customers', label: 'Finding more customers', founder: 'priyanka', point: 2, need: 'Digital marketing' },
-  { id: 'after', label: 'Support as we grow', founder: 'priyanka', point: 1, need: 'Not sure yet' },
+  { id: 'software', label: 'Billing, stock or business software', say: 'billing, stock or business software', founder: 'maruthu', point: 0, need: 'Billing or business software' },
+  { id: 'website', label: 'A website or an app', say: 'a website or an app', founder: 'maruthu', point: 1, need: 'Website' },
+  { id: 'ai', label: 'AI and automation', say: 'AI and automation', founder: 'maruthu', point: 2, need: 'AI and automation' },
+  { id: 'hiring', label: 'Hiring the right people', say: 'hiring the right people', founder: 'priyanka', point: 0, need: 'Hiring and HR' },
+  { id: 'customers', label: 'Finding more customers', say: 'finding more customers', founder: 'priyanka', point: 2, need: 'Digital marketing' },
+  { id: 'after', label: 'Support as we grow', say: 'support as we grow', founder: 'priyanka', point: 1, need: 'Not sure yet' },
 ];
 
 export const findFounder = (id) => founderLeads.find((f) => f.id === id) || null;

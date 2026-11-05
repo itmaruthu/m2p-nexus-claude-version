@@ -1,7 +1,7 @@
 import { useId, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { consultEndpoint, contactOptions, formText, industryOptions, needOptions, optionLabelsTa } from '../../config/consultation';
-import { waLink } from '../../config/site';
+import { openWhatsApp } from '../../config/site';
 import { WhatsAppIcon } from '../icons';
 
 /**
@@ -90,7 +90,7 @@ export default function ConsultationForm({ onDone, lang = 'en', preset, done, ca
   };
   const blur = (k) => () => setTouched((t) => ({ ...t, [k]: true }));
 
-  const toWhatsApp = () => window.open(waLink(summary(form)), '_blank', 'noopener');
+  const toWhatsApp = () => openWhatsApp(summary(form));
 
   const submit = async (e) => {
     e.preventDefault();
