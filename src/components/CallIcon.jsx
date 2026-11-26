@@ -5,7 +5,7 @@ import Tooltip from './Tooltip';
 
 /**
  * Phone numbers are never printed on the site: calls and WhatsApp are offered as round icon buttons.
- * The number is not even in the page: the link is filled in when a visitor reaches for it (config/site.js). Each button has an accessible name and a hover/focus tooltip, and a
+ * Tapping one shows the number in a card (CallToast). Each button has an accessible name and a hover/focus tooltip, and a
  * 44px tap target (WCAG 2.5.8).
  */
 

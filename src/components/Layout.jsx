@@ -4,6 +4,7 @@ import Header from './Header';
 import Footer from './Footer';
 import FloatingWhatsApp from './FloatingWhatsApp';
 import MobileContactBar from './MobileContactBar';
+import CallToast from './CallToast';
 import { recordPath } from './previousPath';
 
 export default function Layout({ children }) {
@@ -26,6 +27,7 @@ export default function Layout({ children }) {
       <Footer />
       <FloatingWhatsApp />
       <MobileContactBar />
+      <CallToast />
     </div>
   );
 }

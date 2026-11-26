@@ -22,7 +22,7 @@ npm run preview   # serve dist/ locally
 
 | What | File |
 |---|---|
-| Email, WhatsApp message text, LinkedIn, map link (phone numbers are **not** in the repo: see below) | `src/config/site.js` |
+| Phone numbers, email, WhatsApp link + message, LinkedIn, map link | `src/config/site.js` |
 | Routes (pages other than Home load on demand) | `src/App.jsx` |
 | Pages | `src/pages/*.jsx` |
 | Header, footer, floating buttons, SEO tags | `src/components/` |
@@ -50,25 +50,11 @@ Use WebP, sized for how large the image is shown (about 2× the display size), a
 - Use `<Link>` for navigation, not `<button onClick={navigate}>`.
 - Keep text contrast at 4.5:1 or more. The WhatsApp green for buttons is `#0F7A40`, because white text on the lighter `#25D366` is not readable enough.
 
-## Phone numbers (not in the repository)
+## Phone numbers
 
-The Call and WhatsApp numbers are deliberately kept out of the code. Every build reads them from three
-environment variables, and **a build without them fails** (so a deploy can never ship broken Call buttons):
-
-| Variable | Format | Used for |
-|---|---|---|
-| `M2P_PHONE_MAIN` | `+91XXXXXXXXXX` | "Main line" call buttons |
-| `M2P_PHONE_SECOND` | `+91XXXXXXXXXX` | "Second line" call buttons |
-| `M2P_WHATSAPP` | `91XXXXXXXXXX` (digits only) | every WhatsApp link |
-
-- **Local:** put them in `.env.local` at the repo root (git-ignored, never committed).
-- **GitHub Pages:** Settings → Secrets and variables → Actions → **Secrets** tab → New repository secret, for all three (secrets, not variables: build logs of a public repo are public, and only secrets are hidden in them).
-- **Vercel:** Project → Settings → Environment Variables → add all three for Production and Preview.
-
-They reach the site base64-encoded, and the pre-rendered HTML holds only stand-in links
-(`/contact/?call=0`, `/contact/?wa=…`) that `armContactLinks()` in `src/config/site.js` turns into real
-`tel:` / `wa.me` links when a visitor points at, touches or focuses one. Without JavaScript they lead to
-the Contact page. Note: older commits in this repository's history still contain the numbers.
+Both lines and the WhatsApp number live in `src/config/site.js` (`site.phones`, `site.whatsapp`). Buttons show icons
+or labels rather than printed numbers; when a visitor taps any Call button, `src/components/CallToast.jsx` shows
+the number they are calling, with a Copy button (useful on computers, where tel: links often do nothing).
 
 ## Deploying
 
