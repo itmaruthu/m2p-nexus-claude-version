@@ -69,7 +69,7 @@ function contactDefine(command, mode) {
   if (command === 'build' && missing.length) {
     throw new Error(
       `Missing ${missing.join(', ')}. Set them in the build environment (GitHub: Settings > Secrets and variables > ` +
-        'Actions > Variables; Vercel: Project > Settings > Environment Variables) or in a git-ignored .env.local. ' +
+        'Actions > Secrets; Vercel: Project > Settings > Environment Variables) or in a git-ignored .env.local. ' +
         'Format: M2P_PHONE_MAIN=+91XXXXXXXXXX, M2P_PHONE_SECOND=+91XXXXXXXXXX, M2P_WHATSAPP=91XXXXXXXXXX (digits only).',
     )
   }

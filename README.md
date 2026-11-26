@@ -62,7 +62,7 @@ environment variables, and **a build without them fails** (so a deploy can never
 | `M2P_WHATSAPP` | `91XXXXXXXXXX` (digits only) | every WhatsApp link |
 
 - **Local:** put them in `.env.local` at the repo root (git-ignored, never committed).
-- **GitHub Pages:** Settings → Secrets and variables → Actions → **Variables** tab → add all three.
+- **GitHub Pages:** Settings → Secrets and variables → Actions → **Secrets** tab → New repository secret, for all three (secrets, not variables: build logs of a public repo are public, and only secrets are hidden in them).
 - **Vercel:** Project → Settings → Environment Variables → add all three for Production and Preview.
 
 They reach the site base64-encoded, and the pre-rendered HTML holds only stand-in links
